@@ -19,14 +19,14 @@ export default function About() {
           </h2>
           <p className="about-copy">
             We started Theirs. Mine. Yours. because the pieces we loved most
-            were never the ones from a mall — they were the strange, brilliant,
+            were never the ones from a mall. They were the strange, brilliant,
             one-off finds with a little wear and a lot of story. So we go
             looking, we curate hard, and we only pass on what we&#39;d happily
             keep.
           </p>
           <p className="about-pull">
             No mass production. No two the same. Just gold that was loved
-            before — and will be again.
+            before, and will be again.
           </p>
           <a href="#about" className="tmy-link text-link">
             Read our story

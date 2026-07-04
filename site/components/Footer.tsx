@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-cta">
           <div className="footer-cta-title">
-            First dibs drop on Instagram — when it&#39;s gone, it&#39;s gone.
+            First dibs drop on Instagram. When it&#39;s gone, it&#39;s gone.
           </div>
           <a href="#contact" className="btn-lime">
             Follow @theirs.mine.yours
@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-legal">
-          <span>© 2026 Theirs. Mine. Yours. — curated preloved fine jewellery</span>
+          <span>© 2026 Theirs. Mine. Yours. · curated preloved fine jewellery</span>
           <span>Solid gold only · One of one · Made with love (and on mat leave)</span>
         </div>
       </div>

@@ -7,6 +7,10 @@ export type Product = {
   color: string;
   size?: "big" | "wide";
   tilt: number;
+  // Path to a product photo, e.g. "/products/lot-01.jpg". Drop the file in
+  // site/public/products/ and set this; cards without one show the striped
+  // placeholder. (Don't hotlink Instagram URLs — they're signed and expire.)
+  image?: string;
 };
 
 export const products: Product[] = [

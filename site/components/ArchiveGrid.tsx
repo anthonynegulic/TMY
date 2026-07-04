@@ -23,9 +23,13 @@ export default function ArchiveGrid() {
             className={`tmy-card product${p.size ? ` product-${p.size}` : ""}`}
           >
             <div className="product-block" style={{ background: p.color }}>
-              <div className="hatch hatch-sm product-hatch">
-                <span>product shot</span>
-              </div>
+              {p.image ? (
+                <img className="product-img" src={p.image} alt={p.name} />
+              ) : (
+                <div className="hatch hatch-sm product-hatch">
+                  <span>product shot</span>
+                </div>
+              )}
               <div
                 className="lot-chip product-chip"
                 style={{ "--chip-tilt": `${p.tilt}deg` } as React.CSSProperties}

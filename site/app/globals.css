@@ -78,6 +78,7 @@ body {
   position: relative;
   color: inherit;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 .tmy-link::after {
   content: "";
@@ -96,8 +97,14 @@ body {
 .tmy-card {
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.tmy-card:hover {
-  transform: translateY(-4px);
+@media (hover: hover) {
+  .tmy-card:hover {
+    transform: translateY(-4px);
+  }
+}
+/* tap feedback on touch (and a satisfying press on desktop) */
+.tmy-card:active {
+  transform: scale(0.98);
 }
 
 .text-link {
@@ -114,6 +121,53 @@ body {
   font-size: 15px;
   padding: 15px 28px;
   border-radius: 999px;
+}
+
+/* —— hovers & taps: playful, springy, on-vibe —— */
+
+.btn-dark,
+.btn-lime,
+.price-btn {
+  display: inline-block;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .btn-dark:hover {
+    background: var(--maroon);
+    transform: rotate(-1.5deg) scale(1.04);
+  }
+  .btn-lime:hover {
+    background: var(--pink);
+    transform: rotate(1.5deg) scale(1.04);
+  }
+  .price-btn:hover {
+    border-style: solid;
+    border-color: var(--pink);
+    background: rgba(247, 220, 230, 0.12);
+  }
+  .price-btn-solid:hover {
+    background: var(--pink);
+    transform: rotate(-1.5deg) scale(1.05);
+  }
+  .nav-link:hover,
+  .text-link:hover {
+    color: var(--maroon);
+  }
+  .footer-col a:hover {
+    color: var(--pink);
+  }
+  .bag-link:hover .bag-count {
+    transform: scale(1.18) rotate(10deg);
+  }
+}
+.btn-dark:active,
+.btn-lime:active,
+.price-btn:active {
+  transform: scale(0.95);
 }
 
 /* diagonal-stripe placeholder for product/lifestyle shots */
@@ -241,6 +295,7 @@ body {
   color: var(--pink);
   font-size: 11px;
   padding: 0 5px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .nav-mobile {
@@ -334,6 +389,10 @@ body {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(43, 33, 26, 0.16);
+  transform: rotate(var(--tilt, 0deg));
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
 }
 .hero-tag-1 {
   width: 250px;
@@ -341,7 +400,7 @@ body {
   right: 18px;
   top: 8px;
   background: var(--orange);
-  transform: rotate(-3deg);
+  --tilt: -3deg;
 }
 .hero-tag-2 {
   width: 184px;
@@ -349,7 +408,7 @@ body {
   left: 6px;
   top: 64px;
   background: var(--blue);
-  transform: rotate(4deg);
+  --tilt: 4deg;
 }
 .hero-tag-3 {
   width: 168px;
@@ -357,7 +416,17 @@ body {
   left: 46px;
   bottom: 6px;
   background: var(--lime);
-  transform: rotate(-2.5deg);
+  --tilt: -2.5deg;
+}
+/* lifting a pinned tag off the board: rises, half-straightens, deeper shadow */
+@media (hover: hover) {
+  .hero-tag:hover {
+    transform: translateY(-6px) rotate(calc(var(--tilt, 0deg) * 0.4));
+    box-shadow: 0 20px 44px rgba(43, 33, 26, 0.24);
+  }
+}
+.hero-tag:active {
+  transform: scale(0.98) rotate(var(--tilt, 0deg));
 }
 
 .hero-tag .lot-chip {
@@ -564,8 +633,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: none;
+  overflow: hidden;
+}
+/* stripes live on a bleed layer so they can drift on hover */
+.product-hatch::before {
+  content: "";
+  position: absolute;
+  inset: -26px;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(43, 33, 26, 0.07) 0 8px,
+    transparent 8px 16px
+  );
 }
 .product-hatch span {
+  position: relative;
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.06em;
@@ -577,6 +660,37 @@ body {
   position: absolute;
   top: 13px;
   left: 13px;
+  transform: rotate(var(--chip-tilt, 0deg));
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* picking up a lot card: alternating lean, tag straightens, stripes drift */
+@media (hover: hover) {
+  .product:nth-child(odd):hover {
+    transform: translateY(-5px) rotate(-0.5deg);
+  }
+  .product:nth-child(even):hover {
+    transform: translateY(-5px) rotate(0.5deg);
+  }
+  .product:hover .product-chip {
+    transform: rotate(0deg);
+  }
+  .product:hover .product-name {
+    color: var(--maroon);
+  }
+  .product:hover .product-hatch::before {
+    animation: stripe-drift 0.9s linear infinite;
+  }
+}
+@keyframes stripe-drift {
+  to {
+    transform: translate(11.31px, 11.31px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product:hover .product-hatch::before {
+    animation: none;
+  }
 }
 .product-dot {
   position: absolute;
@@ -599,6 +713,7 @@ body {
   font-family: var(--font-serif), serif;
   font-size: 20px;
   line-height: 1.15;
+  transition: color 0.2s ease;
 }
 .product-price {
   font-weight: 700;

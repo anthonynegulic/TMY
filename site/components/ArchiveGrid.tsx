@@ -28,7 +28,7 @@ export default function ArchiveGrid() {
               </div>
               <div
                 className="lot-chip product-chip"
-                style={p.tilt ? { transform: `rotate(${p.tilt}deg)` } : undefined}
+                style={{ "--chip-tilt": `${p.tilt}deg` } as React.CSSProperties}
               >
                 <span className="lot-hole" />
                 LOT {p.lot} · {p.era}

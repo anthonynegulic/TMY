@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#F7DCE6}
+  ::selection{background:#7A2E2B;color:#F7DCE6}
+  .tmy-link{position:relative}
+  .tmy-link::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:1.5px;background:currentColor;transition:right .28s ease}
+  .tmy-link:hover::after{right:0}
+  .tmy-card{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  .tmy-card:hover{transform:translateY(-4px)}
+</style>
+</helmet>
+<div data-screen-label="Homepage" style="background:#F7DCE6;color:#2B211A;font-family:'Bricolage Grotesque',system-ui,sans-serif;min-height:100vh;overflow-x:hidden">
+
+  <!-- masthead -->
+  <header style="border-bottom:1px solid rgba(43,33,26,.16)">
+    <div style="max-width:1280px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a href="#top" style="text-decoration:none;color:#2B211A;display:flex;align-items:center;gap:11px">
+        <span style="width:30px;height:30px;border-radius:999px;background:#7A2E2B;color:#F7DCE6;font-size:12px;font-weight:700;display:grid;place-items:center;letter-spacing:.02em">TMY</span>
+        <span style="font-weight:700;font-size:18px;letter-spacing:-.01em">Theirs. Mine. Yours.</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:600">
+        <a href="#shop" class="tmy-link" style="color:#2B211A;text-decoration:none">Shop</a>
+        <a href="#story" class="tmy-link" style="color:#2B211A;text-decoration:none">The story</a>
+        <a href="#about" class="tmy-link" style="color:#2B211A;text-decoration:none">About</a>
+        <a href="#contact" class="tmy-link" style="color:#2B211A;text-decoration:none">Contact</a>
+        <span style="width:1px;height:16px;background:rgba(43,33,26,.2)"></span>
+        <a href="#shop" style="color:#2B211A;text-decoration:none;display:inline-flex;align-items:center;gap:7px;font-weight:700">Bag <span style="display:inline-grid;place-items:center;min-width:19px;height:19px;border-radius:999px;background:#7A2E2B;color:#F7DCE6;font-size:11px;padding:0 5px">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- hero: statement + pinned-tag collage -->
+  <section style="max-width:1280px;margin:0 auto;padding:54px 40px 30px">
+    <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center">
+      <div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A2E2B;margin-bottom:24px">✦&nbsp;&nbsp;Curated · preloved · solid gold only</div>
+        <h1 data-comment-anchor="30ca7d03b1-h1" style="font-weight:800;font-size:clamp(46px,6.6vw,92px);line-height:.92;letter-spacing:-.03em;margin:0 0 26px;text-wrap:balance">
+          Gold that's already <span style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:0;color:#7A2E2B">lived</span> a little.
+        </h1>
+        <p style="font-size:17.5px;line-height:1.55;max-width:44ch;margin:0 0 32px;color:#4a3d31">
+          Forty-five solid-gold pieces, hand-picked from other lives and other decades. No reproductions, no two the same — just the one that's about to be yours.
+        </p>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <a href="#shop" style="background:#2B211A;color:#F7DCE6;text-decoration:none;font-weight:700;font-size:15px;padding:15px 28px;border-radius:999px">Shop the collection</a>
+          <a href="#story" class="tmy-link" style="color:#2B211A;text-decoration:none;font-weight:700;font-size:15px">Read the name's story</a>
+        </div>
+      </div>
+
+      <!-- collage of pinned lot tags -->
+      <div style="position:relative;height:480px">
+        <div class="tmy-card" style="{{ tag1Style }}">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(43,33,26,.08) 0 9px,transparent 9px 18px)"></div>
+          <div style="position:absolute;top:13px;left:13px;display:flex;align-items:center;gap:7px;background:#F7DCE6;border:1px solid rgba(43,33,26,.22);border-radius:7px;padding:5px 11px 5px 8px;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.03em">
+            <span style="width:7px;height:7px;border-radius:999px;border:1.5px solid rgba(43,33,26,.5)"></span>LOT 14 · 18k
+          </div>
+          <div style="position:absolute;left:14px;bottom:13px;font-family:'Instrument Serif',serif;font-size:19px">Byzantine bracelet</div>
+          <div style="position:absolute;right:14px;bottom:14px;font-weight:700;font-size:14px">$1,250</div>
+        </div>
+        <div class="tmy-card" style="{{ tag2Style }}">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(43,33,26,.08) 0 9px,transparent 9px 18px)"></div>
+          <div style="position:absolute;top:11px;left:11px;display:flex;align-items:center;gap:7px;background:#F7DCE6;border:1px solid rgba(43,33,26,.22);border-radius:7px;padding:4px 10px 4px 7px;font-family:ui-monospace,monospace;font-size:10.5px;font-weight:700">
+            <span style="width:6px;height:6px;border-radius:999px;border:1.5px solid rgba(43,33,26,.5)"></span>LOT 07 · 14k
+          </div>
+          <div style="position:absolute;left:12px;bottom:11px;font-family:'Instrument Serif',serif;font-size:16px">Bombé ring</div>
+        </div>
+        <div class="tmy-card" style="{{ tag3Style }}">
+          <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(43,33,26,.08) 0 9px,transparent 9px 18px)"></div>
+          <div style="position:absolute;top:11px;left:11px;display:flex;align-items:center;gap:6px;background:#F7DCE6;border:1px solid rgba(43,33,26,.22);border-radius:7px;padding:4px 9px 4px 7px;font-family:ui-monospace,monospace;font-size:10.5px;font-weight:700">
+            <span style="width:6px;height:6px;border-radius:999px;border:1.5px solid rgba(43,33,26,.5)"></span>LOT 22 · 9k
+          </div>
+          <div style="position:absolute;left:12px;bottom:11px;font-family:'Instrument Serif',serif;font-size:16px">Curb chain</div>
+        </div>
+        <div style="position:absolute;right:6px;bottom:-6px;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b5d4f">pinned from the archive ↑</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- provenance / name story (lime) -->
+  <section id="story" data-comment-anchor="e85bd2498b-section" style="{{ storyBandStyle }}">
+    <div style="max-width:1280px;margin:0 auto;padding:66px 40px 72px">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:46px">
+        <div>
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#3a3322;margin-bottom:16px">✦&nbsp;&nbsp;How it finds you</div>
+          <h2 style="font-weight:800;font-size:clamp(30px,4.4vw,52px);line-height:.98;letter-spacing:-.02em;margin:0;max-width:18ch">Every piece has lived a life before yours.</h2>
+        </div>
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;line-height:1.4;max-width:26ch;color:#3a3322">Theirs, then mine, then — the good part — yours.</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;position:relative">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:999px;background:#2B211A;color:#F7DCE6;display:grid;place-items:center;font-family:ui-monospace,monospace;font-size:13px;font-weight:700">1</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:#7A2E2B">Theirs.</span></div>
+          <p style="margin:0;font-size:15.5px;line-height:1.6;color:#33301f;max-width:36ch">It belonged to someone before — worn to weddings, passed across a counter, tucked in a drawer for decades. It carried a story we'll never fully know.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:999px;background:#2B211A;color:#F7DCE6;display:grid;place-items:center;font-family:ui-monospace,monospace;font-size:13px;font-weight:700">2</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:#7A2E2B">Mine.</span></div>
+          <p style="margin:0;font-size:15.5px;line-height:1.6;color:#33301f;max-width:36ch">Then it found its way to us. We only keep the solid-gold pieces with real character — cleaned, checked, and chosen because we'd happily wear it ourselves.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:34px;height:34px;border-radius:999px;background:#2B211A;color:#F7DCE6;display:grid;place-items:center;font-family:ui-monospace,monospace;font-size:13px;font-weight:700">3</span><span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:#7A2E2B">Yours.</span></div>
+          <p style="margin:0;font-size:15.5px;line-height:1.6;color:#33301f;max-width:36ch">And now we get to pass it on to the person it was always meant for. That's where you come in — and where its next life starts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- the archive: irregular magazine grid -->
+  <section id="shop" style="max-width:1280px;margin:0 auto;padding:74px 40px 30px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:32px;flex-wrap:wrap">
+      <div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A2E2B;margin-bottom:14px">✦&nbsp;&nbsp;45 in the collection</div>
+        <h2 style="font-weight:800;font-size:clamp(32px,4.6vw,56px);line-height:.95;letter-spacing:-.025em;margin:0">Recently unearthed</h2>
+      </div>
+      <a href="#shop" class="tmy-link" style="color:#2B211A;text-decoration:none;font-weight:700;font-size:15px">See the whole archive →</a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:218px;grid-auto-flow:dense;gap:18px">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+        <a href="#shop" class="tmy-card" style="{{ p.wrapStyle }}">
+          <div style="{{ p.blockStyle }}">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(135deg,rgba(43,33,26,.07) 0 8px,transparent 8px 16px)">
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.06em;color:#2B211A;opacity:.45;text-transform:uppercase">product shot</span>
+            </div>
+            <div style="{{ p.tagStyle }}">
+              <span style="width:6px;height:6px;border-radius:999px;border:1.5px solid rgba(43,33,26,.5)"></span>LOT {{ p.lot }} · {{ p.era }}
+            </div>
+            <span style="position:absolute;top:13px;right:13px;width:9px;height:9px;border-radius:999px;background:#7A2E2B" title="available"></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-top:12px">
+            <div style="font-family:'Instrument Serif',serif;font-size:20px;line-height:1.15">{{ p.name }}</div>
+            <div style="font-weight:700;font-size:14.5px;white-space:nowrap">{{ p.price }}</div>
+          </div>
+          <div style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.02em;color:#6b5d4f;margin-top:5px;text-transform:uppercase">{{ p.meta }}</div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- shop by price: ticket stubs -->
+  <section style="max-width:1280px;margin:0 auto;padding:42px 40px 78px">
+    <div style="background:#7A2E2B;color:#F7DCE6;border-radius:18px;padding:38px 40px;display:grid;grid-template-columns:1fr auto;gap:34px;align-items:center">
+      <div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#E9b89f;margin-bottom:12px">Every piece $300 – $2,000</div>
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(26px,3.2vw,38px);line-height:1.08">Shop to your budget.</div>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#shop" style="text-decoration:none;background:#F7DCE6;color:#2B211A;font-weight:700;font-size:14px;padding:14px 22px;border-radius:11px;font-family:ui-monospace,monospace;letter-spacing:.02em">Under $500</a>
+        <a href="#shop" style="text-decoration:none;background:transparent;color:#F7DCE6;font-weight:700;font-size:14px;padding:14px 22px;border-radius:11px;border:1.5px dashed rgba(241,232,214,.55);font-family:ui-monospace,monospace;letter-spacing:.02em">$500 – $1,000</a>
+        <a href="#shop" style="text-decoration:none;background:transparent;color:#F7DCE6;font-weight:700;font-size:14px;padding:14px 22px;border-radius:11px;border:1.5px dashed rgba(241,232,214,.55);font-family:ui-monospace,monospace;letter-spacing:.02em">$1,000+</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- about -->
+  <section id="about" style="max-width:1280px;margin:0 auto;padding:0 40px 88px">
+    <div style="display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center">
+      <div style="{{ aboutBlockStyle }}">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background-image:repeating-linear-gradient(135deg,rgba(43,33,26,.07) 0 9px,transparent 9px 18px)">
+          <span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.08em;color:#2B211A;opacity:.5;text-transform:uppercase">the two of us · lifestyle shot</span>
+        </div>
+        <div style="position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:7px;background:#F7DCE6;border:1px solid rgba(43,33,26,.22);border-radius:7px;padding:5px 11px 5px 8px;font-family:ui-monospace,monospace;font-size:11px;font-weight:700"><span style="width:6px;height:6px;border-radius:999px;border:1.5px solid rgba(43,33,26,.5)"></span>EST. BY TWO</div>
+      </div>
+      <div>
+        <div style="font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#7A2E2B;margin-bottom:18px">✦&nbsp;&nbsp;Who we are</div>
+        <h2 style="font-weight:800;font-size:clamp(28px,3.8vw,46px);line-height:1.0;letter-spacing:-.02em;margin:0 0 22px;text-wrap:balance">A shared eye, and a soft spot for <span style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;letter-spacing:0;color:#7A2E2B">gold with a past</span>.</h2>
+        <p style="font-size:16px;line-height:1.6;color:#4a3d31;margin:0 0 18px;max-width:54ch">We started Theirs. Mine. Yours. because the pieces we loved most were never the ones from a mall — they were the strange, brilliant, one-off finds with a little wear and a lot of story. So we go looking, we curate hard, and we only pass on what we'd happily keep.</p>
+        <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:21px;line-height:1.4;color:#2B211A;margin:0 0 26px;max-width:46ch">No mass production. No two the same. Just gold that was loved before — and will be again.</p>
+        <a href="#about" class="tmy-link" style="color:#2B211A;text-decoration:none;font-weight:700;font-size:15px">Read our story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer id="contact" style="background:#2B211A;color:#E9DcC2">
+    <div style="max-width:1280px;margin:0 auto;padding:0 40px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:46px 0;border-bottom:1px solid rgba(241,232,214,.16)">
+        <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,3.2vw,34px);line-height:1.1;color:#F7DCE6;max-width:24ch">First dibs drop on Instagram — when it's gone, it's gone.</div>
+        <a href="#contact" style="text-decoration:none;background:#BBC471;color:#2B211A;font-weight:700;font-size:15px;padding:15px 28px;border-radius:999px;white-space:nowrap">Follow @theirs.mine.yours</a>
+      </div>
+      <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;align-items:start;padding:52px 0 44px">
+        <div style="font-weight:800;font-size:clamp(34px,4.4vw,54px);line-height:.96;letter-spacing:-.02em;color:#F7DCE6">Theirs.<br>Mine.<br>Yours.</div>
+        <div style="font-size:14px;line-height:2.05">
+          <div style="font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A9967f;margin-bottom:10px">Browse</div>
+          <a href="#shop" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">Shop all</a><br>
+          <a href="#shop" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">Shop by price</a><br>
+          <a href="#about" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">About</a><br>
+          <a href="#contact" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">Contact</a>
+        </div>
+        <div style="font-size:14px;line-height:2.05">
+          <div style="font-family:ui-monospace,monospace;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:#A9967f;margin-bottom:10px">Say hello</div>
+          <a href="#contact" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">Instagram</a><br>
+          <a href="#contact" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">Depop</a><br>
+          <a href="#contact" class="tmy-link" style="display:inline-block;color:#E9DcC2;text-decoration:none">hello@theirsmineyours.com</a><br>
+          <span style="color:#9c8a76">Enquiries on hard-to-find pieces welcome.</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:22px 0 36px;font-family:ui-monospace,monospace;font-size:11.5px;letter-spacing:.02em;color:#9c8a76">
+        <span>© 2026 Theirs. Mine. Yours. — curated preloved fine jewellery</span>
+        <span>Solid gold only · One of one · Made with love (and on mat leave)</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:2500},&quot;storyBg&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#BBC471&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#BBC471&quot;,&quot;#A9C6D6&quot;,&quot;#E5A06B&quot;,&quot;#EFD27E&quot;,&quot;#7A2E2B&quot;],&quot;section&quot;:&quot;Look&quot;},&quot;playfulTilt&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Look&quot;},&quot;roundedCards&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Look&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const storyBg = this.props.storyBg ?? '#BBC471';
+    const tilt = (this.props.playfulTilt ?? true);
+    const radius = (this.props.roundedCards ?? true) ? 14 : 3;
+    const r = (deg) => tilt ? deg : 0;
+
+    const tag = (rot) =>
+      `position:absolute;display:flex;align-items:center;gap:7px;background:#F7DCE6;border:1px solid rgba(43,33,26,.22);border-radius:7px;padding:5px 11px 5px 8px;font-family:ui-monospace,Menlo,monospace;font-size:11px;font-weight:700;letter-spacing:.02em;top:13px;left:13px;transform:rotate(${rot}deg)`;
+
+    const items = [
+      { lot: '01', name: 'Etruscan revival signet', era: '18k', price: '$680', meta: 'Heavy oval face · c.1970s', color: '#E5A06B', big: true },
+      { lot: '02', name: 'Bombé cocktail ring', era: '14k', price: '$540', meta: 'Domed, unsigned · c.1960s', color: '#A9C6D6' },
+      { lot: '03', name: 'Seed pearl drops', era: '15k', price: '$420', meta: 'Victorian · tested gold', color: '#EFD27E' },
+      { lot: '04', name: 'Sculptural knot studs', era: '18k', price: '$760', meta: 'Modernist · c.1980s', color: '#BBC471' },
+      { lot: '05', name: 'Florentine dome ring', era: '18k', price: '$890', meta: 'Textured · c.1970s', color: '#A9C6D6' },
+      { lot: '06', name: 'Flat curb tank chain', era: '9k', price: '$1,480', meta: '24 inch · solid links', color: '#E5A06B', wide: true },
+      { lot: '07', name: 'Charm gate bracelet', era: '9k', price: '$1,120', meta: 'Five charms · padlock clasp', color: '#EFD27E' },
+      { lot: '08', name: 'Byzantine chain bracelet', era: '18k', price: '$1,250', meta: 'Hand-linked · Italy', color: '#BBC471' },
+    ];
+
+    const tilts = [-1.5, 1.2, -1, 1.4, -1.3, 0, 1.1, -1.2];
+    const products = items.map((p, i) => {
+      const span = p.big ? 'grid-column:span 2;grid-row:span 2' : (p.wide ? 'grid-column:span 2' : '');
+      return {
+        ...p,
+        wrapStyle: `text-decoration:none;color:inherit;display:flex;flex-direction:column;${span}`,
+        blockStyle: `position:relative;flex:1;min-height:0;border-radius:${radius}px;overflow:hidden;background:${p.color}`,
+        tagStyle: tag(r(tilts[i])),
+      };
+    });
+
+    const heroTag = (bg, rot, w, h, pos) =>
+      `position:absolute;${pos};width:${w}px;height:${h}px;border-radius:${radius}px;overflow:hidden;background:${bg};box-shadow:0 12px 30px rgba(43,33,26,.16);transform:rotate(${r(rot)}deg)`;
+
+    return {
+      products,
+      storyBandStyle: `background:${storyBg};color:#2B211A`,
+      aboutBlockStyle: `position:relative;aspect-ratio:5/4;border-radius:${Math.max(radius,6)}px;overflow:hidden;background:#A9C6D6`,
+      tag1Style: heroTag('#E5A06B', -3, 250, 320, 'right:18px;top:8px'),
+      tag2Style: heroTag('#A9C6D6', 4, 184, 184, 'left:6px;top:64px'),
+      tag3Style: heroTag('#BBC471', -2.5, 168, 168, 'left:46px;bottom:6px'),
+    };
+  }
+}
+</script>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "Homepage";
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…}. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var STAMP = true;
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', source: 'declared', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false } };
+  }
+
+  // Declared kind: a doc-page tag names the kind outright, so no signal
+  // heuristics run (like the deck branch above, signals report false —
+  // they describe inferred classifications only). The tag alone is not
+  // trusted: the element must have upgraded (shadowRoot present), so a
+  // leftover tag whose script was deleted falls through to the heuristics
+  // that handle plain markup.
+  var stageSx = window.scrollX || 0, stageSy = window.scrollY || 0;
+  var dp = document.querySelector('doc-page');
+  if (dp && dp.shadowRoot) {
+    // Crop to the sheet, not the host — the desk around it is screen-only
+    // chrome that must not land in PNG exports.
+    var sheet = dp.shadowRoot.querySelector('.sheet');
+    var sr = (sheet || dp).getBoundingClientRect();
+    return { kind: 'paper-doc', source: 'declared', doc: doc,
+      frames: [{ left: sr.left + stageSx, top: sr.top + stageSy,
+        width: sr.width, height: sr.height }],
+      authored: [{ width: false, height: false }],
+      signals: { paperPage: false, pxPage: false } };
+  }
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    if (STAMP) el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', source: 'inferred', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: ≥2 visible non-fixed children, each with authored px width
+  // AND height, all within ±2px of each other. Off unless the page opts in
+  // via data-om-multi-frame on the stop element — guards against card grids
+  // and pricing tables that match the geometry but aren't separate canvases.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var cands = [];
+    for (var k = 0; k < el.children.length; k++) {
+      var ch = el.children[k];
+      var cs; try { cs = getComputedStyle(ch); } catch (e) { continue; }
+      if (cs.display === 'none' || cs.visibility === 'hidden' || cs.position === 'fixed') continue;
+      var rc = rectOf(ch);
+      if (rc.width < 2 || rc.height < 2) continue;
+      if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+      cands.push(rc);
+    }
+    if (cands.length >= 2) {
+      var w0 = cands[0].width, h0 = cands[0].height, ok = true;
+      for (var q = 1; q < cands.length; q++)
+        if (Math.abs(cands[q].width - w0) > 2 || Math.abs(cands[q].height - h0) > 2) ok = false;
+      if (ok) return { kind: 'multi-frame', source: 'inferred', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  if (STAMP) el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', source: 'inferred', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (__m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          if (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always') {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { products } from "@/lib/products";
+import { products, productPath } from "@/lib/products";
 
 export default function ArchiveGrid() {
   return (
@@ -10,7 +10,7 @@ export default function ArchiveGrid() {
           </div>
           <h2 className="archive-title">Recently unearthed</h2>
         </div>
-        <a href="#shop" className="tmy-link text-link">
+        <a href="/shop" className="tmy-link text-link">
           See the whole archive →
         </a>
       </div>
@@ -19,7 +19,7 @@ export default function ArchiveGrid() {
         {products.map((p) => (
           <a
             key={p.lot}
-            href="#shop"
+            href={productPath(p)}
             className={`tmy-card product${p.size ? ` product-${p.size}` : ""}`}
           >
             <div className="product-block" style={{ background: p.color }}>

@@ -27,6 +27,10 @@ export default function StoryBand() {
           </div>
           <div className="story-aside">
             Theirs, then mine, then the good part: yours.
+            <br />
+            <a href="/story" className="tmy-link text-link story-aside-link">
+              Read the whole story →
+            </a>
           </div>
         </div>
 

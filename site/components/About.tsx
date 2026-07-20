@@ -28,8 +28,8 @@ export default function About() {
             No mass production. No two the same. Just gold that was loved
             before, and will be again.
           </p>
-          <a href="#about" className="tmy-link text-link">
-            Read our story
+          <a href="/about" className="tmy-link text-link">
+            Meet the two of us
           </a>
         </div>
       </div>

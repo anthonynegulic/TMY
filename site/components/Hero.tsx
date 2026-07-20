@@ -15,10 +15,10 @@ export default function Hero() {
             that&#39;s about to be yours.
           </p>
           <div className="hero-ctas">
-            <a href="#shop" className="btn-dark">
+            <a href="/shop" className="btn-dark">
               Shop the collection
             </a>
-            <a href="#story" className="tmy-link text-link">
+            <a href="/story" className="tmy-link text-link">
               Read the name&#39;s story
             </a>
           </div>

@@ -46,6 +46,15 @@ export default function EnquiryForm({ piece }: { piece?: string }) {
 
   return (
     <form className="enquiry-form" onSubmit={handleSubmit}>
+      <input
+        type="hidden"
+        name="_subject"
+        value={
+          piece
+            ? `TMY enquiry — ${piece}`
+            : "TMY enquiry — via the website"
+        }
+      />
       {piece && <input type="hidden" name="piece" value={piece} />}
       <div className="form-row">
         <label className="form-field">

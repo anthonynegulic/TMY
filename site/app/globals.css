@@ -350,10 +350,6 @@ body {
   align-items: center;
 }
 
-.hero-kicker {
-  margin-bottom: 24px;
-}
-
 .hero-title {
   font-weight: 800;
   font-size: clamp(46px, 6.6vw, 92px);
@@ -588,10 +584,6 @@ body {
   flex-wrap: wrap;
 }
 
-.archive-kicker {
-  margin-bottom: 14px;
-}
-
 .archive-title {
   font-weight: 800;
   font-size: clamp(32px, 4.6vw, 56px);
@@ -754,15 +746,6 @@ body {
   align-items: center;
 }
 
-.price-kicker {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--peach);
-  margin-bottom: 12px;
-}
-
 .price-title {
   font-family: var(--font-serif), serif;
   font-style: italic;
@@ -833,9 +816,6 @@ body {
   left: 14px;
 }
 
-.about-kicker {
-  margin-bottom: 18px;
-}
 .about-title {
   font-weight: 800;
   font-size: clamp(28px, 3.8vw, 46px);

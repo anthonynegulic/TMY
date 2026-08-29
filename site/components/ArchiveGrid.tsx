@@ -5,9 +5,6 @@ export default function ArchiveGrid() {
     <section id="shop" className="container archive">
       <div className="archive-head">
         <div>
-          <div className="kicker archive-kicker">
-            ✦&nbsp;&nbsp;45 in the collection
-          </div>
           <h2 className="archive-title">Recently unearthed</h2>
         </div>
         <a href="/shop" className="tmy-link text-link">

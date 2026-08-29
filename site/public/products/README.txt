@@ -11,6 +11,7 @@ master is plenty; anything wider is just repo weight.
 
 The photos are cropped with object-fit: cover, so framing matters more than
 aspect ratio — keep the piece centred and leave a little margin. Lot 01 is
-the "big" card (2x2) and lot 06 is "wide" (2x1); the rest are 1x1.
+the "big" card (2x2), lot 09 is also big, and lots 06 and 13 are "wide"
+(2x1); the rest are 1x1.
 
 (Don't hotlink Instagram or Drive URLs — they're signed and expire.)

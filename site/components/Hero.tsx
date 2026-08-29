@@ -31,7 +31,7 @@ export default function Hero() {
               <span className="lot-hole" />
               LOT 14 · 18k
             </div>
-            <div className="hero-tag-name">Byzantine bracelet</div>
+            <div className="hero-tag-name">Lorem ipsum</div>
             <div className="hero-tag-price">$1,250</div>
           </div>
           <div className="hero-tag hero-tag-2">
@@ -40,7 +40,7 @@ export default function Hero() {
               <span className="lot-hole" />
               LOT 07 · 14k
             </div>
-            <div className="hero-tag-name">Bombé ring</div>
+            <div className="hero-tag-name">Dolor sit</div>
           </div>
           <div className="hero-tag hero-tag-3">
             <div className="hatch" />
@@ -48,7 +48,7 @@ export default function Hero() {
               <span className="lot-hole" />
               LOT 22 · 9k
             </div>
-            <div className="hero-tag-name">Curb chain</div>
+            <div className="hero-tag-name">Amet elit</div>
           </div>
           <div className="collage-caption">pinned from the archive ↑</div>
         </div>

@@ -69,7 +69,7 @@ export default function EnquiryForm({ piece }: { piece?: string }) {
       {!piece && (
         <label className="form-field">
           <span className="form-label">Piece (if it&#39;s about one)</span>
-          <input name="piece" type="text" placeholder="e.g. Lot 08, Byzantine chain bracelet" />
+          <input name="piece" type="text" placeholder="e.g. Lot 08, lorem ipsum dolor" />
         </label>
       )}
       <label className="form-field">

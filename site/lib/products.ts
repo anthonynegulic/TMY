@@ -23,95 +23,98 @@ export function priceNumber(p: Product): number {
   return Number(p.price.replace(/[^0-9.]/g, ""));
 }
 
+// Placeholder copy: names, notes and descriptions are lorem ipsum until the
+// real pieces are photographed and written up. Lot numbers, gold, prices and
+// card layout are real — the price filters on /shop key off `price`.
 export const products: Product[] = [
   {
     lot: "01",
-    name: "Etruscan revival signet",
+    name: "Lorem ipsum dolor",
     era: "18k",
     price: "$680",
-    meta: "Heavy oval face · c.1970s",
+    meta: "Sit amet consectetur · adipiscing elit",
     color: "#E5A06B",
     size: "big",
     tilt: -1.5,
     description:
-      "A heavy oval-faced signet in the Etruscan revival style, with the kind of presence you can feel across a room. Unsigned, beautifully worn in, and ready for its next initials (or none at all).",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     lot: "02",
-    name: "Bombé cocktail ring",
+    name: "Consectetur adipiscing",
     era: "14k",
     price: "$540",
-    meta: "Domed, unsigned · c.1960s",
+    meta: "Sed do eiusmod · tempor incididunt",
     color: "#A9C6D6",
     tilt: 1.2,
     description:
-      "A domed bombé cocktail ring from the 1960s. Smooth, sculptural and surprisingly comfortable, it sits on the hand like it was always meant to be there.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
     lot: "03",
-    name: "Seed pearl drops",
+    name: "Tempor incididunt",
     era: "15k",
     price: "$420",
-    meta: "Victorian · tested gold",
+    meta: "Ut labore et dolore · magna aliqua",
     color: "#EFD27E",
     tilt: -1,
     description:
-      "Victorian seed pearl drop earrings in tested gold. Delicate without being fussy, with over a century of evenings already behind them.",
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   },
   {
     lot: "04",
-    name: "Sculptural knot studs",
+    name: "Ut enim ad minim",
     era: "18k",
     price: "$760",
-    meta: "Modernist · c.1980s",
+    meta: "Quis nostrud · exercitation ullamco",
     color: "#BBC471",
     tilt: 1.4,
     description:
-      "Modernist knot studs from the 1980s. Small, sculptural and quietly odd in the best way. They read as contemporary until you learn their age.",
+      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
   },
   {
     lot: "05",
-    name: "Florentine dome ring",
+    name: "Nisi ut aliquip",
     era: "18k",
     price: "$890",
-    meta: "Textured · c.1970s",
+    meta: "Ex ea commodo · consequat duis",
     color: "#A9C6D6",
     tilt: -1.3,
     description:
-      "A textured Florentine dome ring from the 1970s. The brushed finish softens the shine to a glow, which is exactly the point.",
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti. Quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
   },
   {
     lot: "06",
-    name: "Flat curb tank chain",
+    name: "Voluptate velit esse",
     era: "9k",
     price: "$1,480",
-    meta: "24 inch · solid links",
+    meta: "Cillum dolore · eu fugiat nulla",
     color: "#E5A06B",
     size: "wide",
     tilt: 0,
     description:
-      "A flat curb tank chain in solid 9k, 24 inches of it. Substantial links, satisfying weight, and it layers with everything.",
+      "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore cum soluta nobis est eligendi optio.",
   },
   {
     lot: "07",
-    name: "Charm gate bracelet",
+    name: "Excepteur sint occaecat",
     era: "9k",
     price: "$1,120",
-    meta: "Five charms · padlock clasp",
+    meta: "Cupidatat non proident · sunt in culpa",
     color: "#EFD27E",
     tilt: 1.1,
     description:
-      "A 9k gate bracelet carrying five charms and closed with its original padlock clasp. Somebody collected these charms one by one; now the collection continues.",
+      "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
   },
   {
     lot: "08",
-    name: "Byzantine chain bracelet",
+    name: "Officia deserunt mollit",
     era: "18k",
     price: "$1,250",
-    meta: "Hand-linked · Italy",
+    meta: "Anim id est · laborum sed ut",
     color: "#BBC471",
     tilt: -1.2,
     description:
-      "A hand-linked Byzantine chain bracelet made in Italy. Dense, liquid and precise, this is craftsmanship you can no longer order off a shelf.",
+      "Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
   },
 ];

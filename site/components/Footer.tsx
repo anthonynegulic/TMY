@@ -64,7 +64,6 @@ export default function Footer() {
 
           <div className="footer-legal">
             <span>© 2026 Theirs. Mine. Yours. · curated preloved fine jewellery</span>
-            <span>Solid gold only · One of one · Made with love (and on mat leave)</span>
           </div>
         </div>
       </div>

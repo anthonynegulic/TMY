@@ -3,14 +3,11 @@ export default function Hero() {
     <section className="container hero">
       <div className="hero-grid">
         <div>
-          <div className="kicker hero-kicker">
-            ✦&nbsp;&nbsp;Curated · preloved · solid gold only
-          </div>
           <h1 className="hero-title">
             Gold that&#39;s already <em className="accent">lived</em> a little.
           </h1>
           <p className="hero-lede">
-            Solid gold only, hand-picked from other lives and other
+            Solid-gold pieces, hand-picked from other lives and other
             decades. No reproductions, no two the same. Just the one
             that&#39;s about to be yours.
           </p>

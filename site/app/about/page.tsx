@@ -10,7 +10,6 @@ export default function AboutPage() {
   return (
     <div>
       <section className="container page-hero">
-        <div className="kicker page-kicker">✦&nbsp;&nbsp;Who we are</div>
         <h1 className="page-title">
           A shared eye, and a soft spot for{" "}
           <em className="accent">gold with a past</em>.

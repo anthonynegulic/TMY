@@ -73,9 +73,6 @@ export default async function ProductPage({
         </div>
 
         <div>
-          <div className="kicker page-kicker">
-            ✦&nbsp;&nbsp;One of one · available
-          </div>
           <h1 className="product-page-name">{product.name}</h1>
           <div className="product-page-price">{product.price}</div>
           <p className="page-copy">{product.description}</p>
@@ -95,9 +92,6 @@ export default async function ProductPage({
           </dl>
 
           <div className="product-enquiry">
-            <div className="kicker page-kicker">
-              ✦&nbsp;&nbsp;Enquire about this piece
-            </div>
             <p className="product-enquiry-note">
               Sizing, condition, extra photos, holds: ask us anything.
             </p>

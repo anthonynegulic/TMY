@@ -20,7 +20,7 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Theirs. Mine. Yours. · curated preloved fine jewellery",
   description:
-    "Solid gold only, hand-picked from other lives and other decades. No reproductions, no two the same. Just the one that's about to be yours.",
+    "Solid-gold pieces, hand-picked from other lives and other decades. No reproductions, no two the same. Just the one that's about to be yours.",
 };
 
 export default function RootLayout({

@@ -17,9 +17,6 @@ export default async function ShopPage() {
   return (
     <div>
       <section className="container page-hero page-hero-tight">
-        <div className="kicker page-kicker">
-          ✦&nbsp;&nbsp;{products.length} pieces in the archive right now
-        </div>
         <h1 className="page-title">
           The <em className="accent">archive</em>.
         </h1>

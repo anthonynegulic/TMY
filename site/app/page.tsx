@@ -8,7 +8,6 @@ import { getProducts } from "@/lib/getProducts";
 
 const PINK = "#F7DCE6";
 const LIME = "#BBC471";
-const INK = "#2B211A";
 
 // Re-check Sanity at most once a minute so Studio edits appear without a deploy.
 export const revalidate = 60;
@@ -24,7 +23,6 @@ export default async function Home() {
       <ArchiveGrid products={products} />
       <PriceBand />
       <About />
-      <WaveDivider fill={PINK} bg={INK} />
     </div>
   );
 }

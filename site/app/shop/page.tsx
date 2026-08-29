@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import ShopGrid from "@/components/ShopGrid";
-import { products } from "@/lib/products";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -14,9 +13,6 @@ export default function ShopPage() {
   return (
     <div>
       <section className="container page-hero page-hero-tight">
-        <div className="kicker page-kicker">
-          ✦&nbsp;&nbsp;{products.length} pieces in the archive right now
-        </div>
         <h1 className="page-title">
           The <em className="accent">archive</em>.
         </h1>

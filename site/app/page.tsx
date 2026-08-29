@@ -7,7 +7,6 @@ import About from "@/components/About";
 
 const PINK = "#F7DCE6";
 const LIME = "#BBC471";
-const INK = "#2B211A";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <ArchiveGrid />
       <PriceBand />
       <About />
-      <WaveDivider fill={PINK} bg={INK} />
     </div>
   );
 }

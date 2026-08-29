@@ -10,8 +10,8 @@ export default function Hero() {
             Gold that&#39;s already <em className="accent">lived</em> a little.
           </h1>
           <p className="hero-lede">
-            Forty-five solid-gold pieces, hand-picked from other lives and
-            other decades. No reproductions, no two the same. Just the one
+            Solid gold only, hand-picked from other lives and other
+            decades. No reproductions, no two the same. Just the one
             that&#39;s about to be yours.
           </p>
           <div className="hero-ctas">

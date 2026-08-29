@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import {
-  products,
   productPath,
   priceNumber,
   cardImageSizes,
+  type Product,
 } from "@/lib/products";
 
 const FILTERS = [
@@ -26,7 +26,7 @@ function matches(filter: FilterKey, price: number): boolean {
   return true;
 }
 
-export default function ShopGrid() {
+export default function ShopGrid({ products }: { products: Product[] }) {
   const initial = useSearchParams().get("price") as FilterKey | null;
   const [filter, setFilter] = useState<FilterKey>(
     initial && FILTERS.some((f) => f.key === initial) ? initial : "all",

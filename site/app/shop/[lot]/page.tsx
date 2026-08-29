@@ -2,16 +2,22 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import EnquiryForm from "@/components/EnquiryForm";
-import { products } from "@/lib/products";
+import { getProducts, getProduct } from "@/lib/getProducts";
 
 type Params = { lot: string };
 
-function findProduct(slug: string) {
-  return products.find((p) => `lot-${p.lot}` === slug);
+export const revalidate = 60;
+
+// Pieces added in the Studio after a deploy are not in this list; Next renders
+// them on demand (dynamicParams defaults to true) and caches from then on.
+export async function generateStaticParams(): Promise<Params[]> {
+  const products = await getProducts();
+  return products.map((p) => ({ lot: `lot-${p.lot}` }));
 }
 
-export function generateStaticParams(): Params[] {
-  return products.map((p) => ({ lot: `lot-${p.lot}` }));
+function findProduct(slug: string) {
+  const match = /^lot-(\d+)$/.exec(slug);
+  return match ? getProduct(match[1]) : undefined;
 }
 
 export async function generateMetadata({
@@ -20,7 +26,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { lot } = await params;
-  const product = findProduct(lot);
+  const product = await findProduct(lot);
   if (!product) return {};
   return {
     title: `${product.name} · Theirs. Mine. Yours.`,
@@ -34,7 +40,7 @@ export default async function ProductPage({
   params: Promise<Params>;
 }) {
   const { lot } = await params;
-  const product = findProduct(lot);
+  const product = await findProduct(lot);
   if (!product) notFound();
 
   return (

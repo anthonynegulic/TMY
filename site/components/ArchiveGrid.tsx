@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { products, productPath, cardImageSizes } from "@/lib/products";
+import { productPath, cardImageSizes, type Product } from "@/lib/products";
 
-export default function ArchiveGrid() {
+export default function ArchiveGrid({ products }: { products: Product[] }) {
   return (
     <section id="shop" className="container archive">
       <div className="archive-head">

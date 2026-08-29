@@ -31,10 +31,15 @@ export function cardImageSizes(p: Product): string {
     : "(max-width: 760px) 50vw, (max-width: 1024px) 33vw, 25vw";
 }
 
-// Placeholder copy: names, notes and descriptions are lorem ipsum until the
-// real pieces are photographed and written up. Lot numbers, gold, prices and
-// card layout are real — the price filters on /shop key off `price`.
-export const products: Product[] = [
+/**
+ * Fallback catalogue, used whenever Sanity is not configured (see
+ * lib/sanity/config.ts). Reading the shop always goes through getProducts()
+ * in lib/getProducts.ts — do not import this list directly from a page.
+ *
+ * Copy here is lorem ipsum placeholder; lot numbers, gold, prices and card
+ * layout are real.
+ */
+export const fallbackProducts: Product[] = [
   {
     lot: "01",
     image: "/products/lot-01.jpg",

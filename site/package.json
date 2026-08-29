@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "link-domain": "node scripts/link-domain.mjs"
   },
   "dependencies": {
     "next": "16.2.10",

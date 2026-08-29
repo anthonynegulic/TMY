@@ -26,3 +26,50 @@ npm run start
 - `lib/products.ts` — placeholder product data for the archive grid (swap for real inventory / commerce API later)
 
 Fonts (Bricolage Grotesque, Instrument Serif) are self-hosted via `next/font`.
+
+## Linking the domain (Cloudflare → Vercel)
+
+`scripts/link-domain.mjs` adds the apex and `www` hosts to the Vercel project,
+creates the matching DNS records in Cloudflare unproxied, sets the redirect
+between them, and polls until Vercel reports the domain configured.
+
+You need two scoped tokens:
+
+- **Cloudflare** — My Profile → API Tokens → Create Token → Custom, with
+  `Zone:Read` and `Zone:DNS:Edit` limited to the one zone.
+- **Vercel** — Account Settings → Tokens, scoped to the team that owns the project.
+
+It is a dry run unless you pass `--apply`:
+
+```bash
+cd site
+DOMAIN=example.com \
+VERCEL_TOKEN=... \
+CLOUDFLARE_API_TOKEN=... \
+VERCEL_PROJECT=your-project-name \
+npm run link-domain            # preview
+```
+
+```bash
+... npm run link-domain -- --apply     # do it
+```
+
+Options, all via environment variables:
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `DOMAIN` | — | The apex domain, e.g. `example.com` (not `www.`, no scheme) |
+| `VERCEL_PROJECT` | `.vercel/project.json` | Project name or id |
+| `VERCEL_TEAM_ID` | from `.vercel/project.json` | Needed for team-owned projects |
+| `PRIMARY` | `apex` | `apex` or `www` — the other one 308s to it |
+| `VERCEL_A_RECORD` | `216.198.79.1` | Override with whatever Vercel's dashboard shows |
+| `VERCEL_CNAME_TARGET` | `cname.vercel-dns.com` | Same — Vercel issues per-project targets |
+
+Flags: `--apply` to make changes, `--replace` to overwrite conflicting existing
+A/AAAA/CNAME records on `@` or `www` (without it the script reports them and
+stops).
+
+Records are created **unproxied (grey cloud)** deliberately: with Cloudflare's
+proxy on, Vercel can't complete its certificate challenge, and Cloudflare's
+`Flexible` SSL mode causes a redirect loop against Vercel's HTTPS redirect. The
+script warns if the zone is set to `Flexible`.

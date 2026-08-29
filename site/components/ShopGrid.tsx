@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { products, productPath, priceNumber } from "@/lib/products";
+import Image from "next/image";
+import {
+  products,
+  productPath,
+  priceNumber,
+  cardImageSizes,
+} from "@/lib/products";
 
 const FILTERS = [
   { key: "all", label: "Everything" },
@@ -51,7 +57,13 @@ export default function ShopGrid() {
           >
             <div className="product-block" style={{ background: p.color }}>
               {p.image ? (
-                <img className="product-img" src={p.image} alt={p.name} />
+                <Image
+                  className="product-img"
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  sizes={cardImageSizes(p)}
+                />
               ) : (
                 <div className="hatch hatch-sm product-hatch">
                   <span>product shot</span>

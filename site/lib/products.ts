@@ -23,6 +23,14 @@ export function priceNumber(p: Product): number {
   return Number(p.price.replace(/[^0-9.]/g, ""));
 }
 
+// The archive grid is 4 columns, dropping to 3 at 1024px and 2 at 760px;
+// "big" and "wide" cards span two of them. Keep in sync with .archive-grid.
+export function cardImageSizes(p: Product): string {
+  return p.size
+    ? "(max-width: 760px) 100vw, (max-width: 1024px) 66vw, 50vw"
+    : "(max-width: 760px) 50vw, (max-width: 1024px) 33vw, 25vw";
+}
+
 // Placeholder copy: names, notes and descriptions are lorem ipsum until the
 // real pieces are photographed and written up. Lot numbers, gold, prices and
 // card layout are real — the price filters on /shop key off `price`.
@@ -94,27 +102,5 @@ export const products: Product[] = [
     tilt: 0,
     description:
       "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore cum soluta nobis est eligendi optio.",
-  },
-  {
-    lot: "07",
-    name: "Excepteur sint occaecat",
-    era: "9k",
-    price: "$1,120",
-    meta: "Cupidatat non proident · sunt in culpa",
-    color: "#EFD27E",
-    tilt: 1.1,
-    description:
-      "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
-  },
-  {
-    lot: "08",
-    name: "Officia deserunt mollit",
-    era: "18k",
-    price: "$1,250",
-    meta: "Anim id est · laborum sed ut",
-    color: "#BBC471",
-    tilt: -1.2,
-    description:
-      "Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
   },
 ];

@@ -1,4 +1,5 @@
-import { products, productPath } from "@/lib/products";
+import Image from "next/image";
+import { products, productPath, cardImageSizes } from "@/lib/products";
 
 export default function ArchiveGrid() {
   return (
@@ -6,7 +7,7 @@ export default function ArchiveGrid() {
       <div className="archive-head">
         <div>
           <div className="kicker archive-kicker">
-            ✦&nbsp;&nbsp;45 in the collection
+            ✦&nbsp;&nbsp;{products.length} in the collection
           </div>
           <h2 className="archive-title">Recently unearthed</h2>
         </div>
@@ -24,7 +25,13 @@ export default function ArchiveGrid() {
           >
             <div className="product-block" style={{ background: p.color }}>
               {p.image ? (
-                <img className="product-img" src={p.image} alt={p.name} />
+                <Image
+                  className="product-img"
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  sizes={cardImageSizes(p)}
+                />
               ) : (
                 <div className="hatch hatch-sm product-hatch">
                   <span>product shot</span>

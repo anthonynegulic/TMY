@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import EnquiryForm from "@/components/EnquiryForm";
 import { products } from "@/lib/products";
 
@@ -45,7 +46,14 @@ export default async function ProductPage({
       <div className="product-page-grid">
         <div className="product-page-photo" style={{ background: product.color }}>
           {product.image ? (
-            <img className="product-img" src={product.image} alt={product.name} />
+            <Image
+              className="product-img"
+              src={product.image}
+              alt={product.name}
+              fill
+              sizes="(max-width: 900px) 100vw, 50vw"
+              preload
+            />
           ) : (
             <div className="hatch product-hatch">
               <span>product shot coming soon</span>

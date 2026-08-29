@@ -70,7 +70,15 @@ Options, all via environment variables:
 
 Flags: `--apply` to make changes, `--replace` to overwrite conflicting existing
 A/AAAA/CNAME records on `@` or `www` (without it the script reports them and
-stops).
+stops), and `--reissue` to drop and re-add any host that is not serving a
+certificate covering it.
+
+`--reissue` exists because Vercel stops retrying certificate issuance for a
+domain that was added while its DNS did not resolve, and nothing restarts it —
+the host stays `misconfigured: false` while browsers reject it with
+`ERR_CERT_COMMON_NAME_INVALID`. Removing and re-adding the domain is what kicks
+issuance off again. Verification checks the served certificate for both hosts,
+not just Vercel's DNS view, so this state cannot be reported as success.
 
 Records are created **unproxied (grey cloud)** deliberately: with Cloudflare's
 proxy on, Vercel can't complete its certificate challenge, and Cloudflare's

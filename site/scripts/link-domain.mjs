@@ -4,7 +4,12 @@
  *
  * Adds the apex and www domains to the Vercel project, creates the matching
  * DNS records in Cloudflare (unproxied), sets the apex/www redirect, and polls
- * Vercel until it reports the domain correctly configured.
+ * until Vercel reports the DNS correct AND each host actually serves a TLS
+ * certificate covering it.
+ *
+ * Pass --reissue to drop and re-add any host whose certificate is missing or
+ * does not cover it. Vercel gives up on issuance for a domain added while its
+ * DNS was still unresolvable, and re-adding is what restarts it.
  *
  * Dry run by default — pass --apply to actually make changes.
  *
@@ -17,9 +22,12 @@
  * leak into your shell history or the process list.
  */
 
+import tls from "node:tls";
+
 const args = new Set(process.argv.slice(2));
 const APPLY = args.has("--apply");
 const REPLACE = args.has("--replace");
+const REISSUE = args.has("--reissue");
 
 const {
   DOMAIN,
@@ -243,22 +251,96 @@ async function upsertRecord(zoneId, { type, name, content }) {
   }
 }
 
+/**
+ * Inspect the certificate a host actually serves. rejectUnauthorized is off on
+ * purpose: a mismatched certificate is exactly the condition we want to report,
+ * not throw on.
+ */
+function servedCertificate(host) {
+  return new Promise((resolve) => {
+    const done = (result) => {
+      if (!socket.destroyed) socket.destroy();
+      resolve(result);
+    };
+    const socket = tls.connect(
+      { host, port: 443, servername: host, rejectUnauthorized: false, timeout: 10000 },
+      () => {
+        const cert = socket.getPeerCertificate();
+        const names = String(cert?.subjectaltname || "")
+          .split(/,\s*/)
+          .filter((part) => part.startsWith("DNS:"))
+          .map((part) => part.slice(4).toLowerCase());
+        const covers = names.some(
+          (name) => name === host || (name.startsWith("*.") && host.endsWith(name.slice(1)) && !host.slice(0, -name.slice(1).length).includes(".")),
+        );
+        done({ covers, names });
+      },
+    );
+    socket.on("error", (err) => done({ covers: false, names: [], error: err.message }));
+    socket.on("timeout", () => done({ covers: false, names: [], error: "timed out" }));
+  });
+}
+
+async function reissueIfNeeded(project, host) {
+  const cert = await servedCertificate(host);
+  if (cert.covers) {
+    console.log(`  · ${host} already serves a valid certificate`);
+    return;
+  }
+  const covering = cert.names.length ? `covers ${cert.names.join(", ")}` : cert.error || "no certificate";
+  console.log(`  ! ${host} ${covering} — removing and re-adding to restart issuance`);
+  const removed = await vercel("DELETE", `/v9/projects/${encodeURIComponent(project)}/domains/${host}`);
+  if (!removed.ok && removed.status !== 404) {
+    console.log(`    couldn't remove ${host}: ${removed.json?.error?.message || removed.status}`);
+    return;
+  }
+  await addProjectDomain(project, host);
+}
+
 async function waitForVercel() {
   const deadline = Date.now() + 5 * 60 * 1000;
+  let dnsOk = false;
   let attempt = 0;
+
   while (Date.now() < deadline) {
     attempt++;
-    const { json } = await vercel("GET", `/v6/domains/${DOMAIN}/config`);
-    if (json && json.misconfigured === false) {
-      console.log(`  ✓ Vercel reports ${DOMAIN} correctly configured`);
-      return true;
+    if (!dnsOk) {
+      const { json } = await vercel("GET", `/v6/domains/${DOMAIN}/config`);
+      if (json && json.misconfigured === false) {
+        dnsOk = true;
+        console.log(`  ✓ Vercel reports ${DOMAIN} correctly configured`);
+      }
     }
-    process.stdout.write(`  · not verified yet (attempt ${attempt}) — waiting 15s\r`);
+
+    if (dnsOk) {
+      // DNS being right is not the same as the site working: a domain Vercel
+      // failed to issue for stays misconfigured:false while browsers reject it.
+      const results = await Promise.all([DOMAIN, WWW].map((h) => servedCertificate(h).then((c) => [h, c])));
+      const bad = results.filter(([, c]) => !c.covers);
+      if (!bad.length) {
+        console.log(`  ✓ ${DOMAIN} and ${WWW} both serve valid certificates`);
+        return true;
+      }
+      process.stdout.write(`  · waiting on certificates for ${bad.map(([h]) => h).join(", ")} (attempt ${attempt})   \r`);
+    } else {
+      process.stdout.write(`  · DNS not verified yet (attempt ${attempt}) — waiting 15s   \r`);
+    }
     await new Promise((r) => setTimeout(r, 15000));
   }
-  console.log("\n  ! Still unverified after 5 minutes.");
-  console.log("    Open Vercel → Settings → Domains and compare the records it lists against");
-  console.log(`    what's in Cloudflare. If they differ, re-run with VERCEL_A_RECORD / VERCEL_CNAME_TARGET set to Vercel's values.`);
+
+  console.log("\n  ! Gave up after 5 minutes.");
+  for (const host of [DOMAIN, WWW]) {
+    const cert = await servedCertificate(host);
+    const detail = cert.covers ? "ok" : cert.names.length ? `serves a certificate for ${cert.names.join(", ")}` : cert.error || "no certificate";
+    console.log(`    ${host}: ${detail}`);
+  }
+  if (!dnsOk) {
+    console.log("    DNS never verified. Open Vercel → Settings → Domains and compare the records it");
+    console.log("    lists against Cloudflare; re-run with VERCEL_A_RECORD / VERCEL_CNAME_TARGET if they differ.");
+  } else {
+    console.log("    DNS is correct, so this is certificate issuance. Re-run with --reissue to drop and");
+    console.log("    re-add the affected host, which restarts it.");
+  }
   return false;
 }
 
@@ -280,9 +362,23 @@ console.log("\nVercel — project domains");
 if (APPLY) {
   await addProjectDomain(project, DOMAIN);
   await addProjectDomain(project, WWW);
+  if (REISSUE) {
+    await reissueIfNeeded(project, DOMAIN);
+    await reissueIfNeeded(project, WWW);
+  }
   await setRedirect(project, secondaryHost, primaryHost);
 } else {
   console.log(`  + would add ${DOMAIN} and ${WWW}`);
+  if (REISSUE) {
+    for (const host of [DOMAIN, WWW]) {
+      const cert = await servedCertificate(host);
+      console.log(
+        cert.covers
+          ? `  · ${host} already serves a valid certificate`
+          : `  + would re-add ${host} to restart issuance (${cert.names.length ? `covers ${cert.names.join(", ")}` : cert.error || "no certificate"})`,
+      );
+    }
+  }
   console.log(`  + would redirect ${secondaryHost} → ${primaryHost} (308)`);
 }
 

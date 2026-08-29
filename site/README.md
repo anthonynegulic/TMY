@@ -39,20 +39,23 @@ You need two scoped tokens:
   `Zone:Read` and `Zone:DNS:Edit` limited to the one zone.
 - **Vercel** — Account Settings → Tokens, scoped to the team that owns the project.
 
-It is a dry run unless you pass `--apply`:
+Enter the tokens with `read -s` so they stay out of your shell history:
 
 ```bash
 cd site
-DOMAIN=example.com \
-VERCEL_TOKEN=... \
-CLOUDFLARE_API_TOKEN=... \
-VERCEL_PROJECT=your-project-name \
-npm run link-domain            # preview
+read -rsp "Cloudflare token: " CLOUDFLARE_API_TOKEN && echo
+read -rsp "Vercel token: " VERCEL_TOKEN && echo
+export CLOUDFLARE_API_TOKEN VERCEL_TOKEN
 ```
 
+Then it is a dry run unless you pass `--apply`:
+
 ```bash
-... npm run link-domain -- --apply     # do it
+DOMAIN=example.com VERCEL_PROJECT=your-project-name npm run link-domain
+DOMAIN=example.com VERCEL_PROJECT=your-project-name npm run link-domain -- --apply
 ```
+
+Close the terminal tab when you are done and the exported tokens are gone.
 
 Options, all via environment variables:
 

@@ -58,14 +58,6 @@ body {
   padding-right: 40px;
 }
 
-.kicker {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--maroon);
-}
-
 .accent {
   font-family: var(--font-serif), serif;
   font-weight: 400;
@@ -501,11 +493,6 @@ body {
   gap: 30px;
   flex-wrap: wrap;
   margin-bottom: 46px;
-}
-
-.story-kicker {
-  color: var(--story-ink);
-  margin-bottom: 16px;
 }
 
 .story-title {
@@ -1026,9 +1013,6 @@ body {
 .page-hero-tight {
   padding-bottom: 20px;
 }
-.page-kicker {
-  margin-bottom: 20px;
-}
 .page-title {
   font-weight: 800;
   font-size: clamp(40px, 5.6vw, 76px);
@@ -1206,10 +1190,6 @@ body {
   border-radius: 18px;
   padding: 46px 48px 50px;
 }
-.name-band-kicker {
-  color: var(--peach);
-  margin-bottom: 22px;
-}
 .name-band-words {
   display: flex;
   gap: 8px 26px;
@@ -1333,10 +1313,6 @@ body {
 .contact-form-title {
   margin-bottom: 26px;
 }
-.contact-form-card .page-kicker {
-  margin-bottom: 14px;
-}
-
 /* enquiry form */
 .enquiry-form {
   display: flex;
@@ -1550,9 +1526,6 @@ body {
   border-radius: var(--radius);
   padding: 26px 28px 28px;
   background: rgba(255, 255, 255, 0.28);
-}
-.product-enquiry .page-kicker {
-  margin-bottom: 8px;
 }
 .product-enquiry-note {
   margin: 0 0 18px;

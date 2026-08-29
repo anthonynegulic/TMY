@@ -15,7 +15,6 @@ export default function StoryPage() {
     <div>
       {/* how we met */}
       <section className="container page-hero">
-        <div className="kicker page-kicker">✦&nbsp;&nbsp;The story</div>
         <h1 className="page-title">
           It started on <em className="accent">mat leave</em>.
         </h1>
@@ -42,9 +41,6 @@ export default function StoryPage() {
         <div className="container story-inner">
           <div className="story-head">
             <div>
-              <div className="kicker story-kicker">
-                ✦&nbsp;&nbsp;Where we come from
-              </div>
               <h2 className="story-title">Gold as a love language.</h2>
             </div>
             <div className="story-aside">
@@ -105,9 +101,6 @@ export default function StoryPage() {
       <section className="container page-section">
         <div className="page-split">
           <div>
-            <div className="kicker page-kicker">
-              ✦&nbsp;&nbsp;How it became a thing
-            </div>
             <h2 className="page-h2">
               There was no lightning bolt.
             </h2>
@@ -146,9 +139,6 @@ export default function StoryPage() {
       {/* the name */}
       <section className="container page-section">
         <div className="name-band">
-          <div className="kicker name-band-kicker">
-            ✦&nbsp;&nbsp;Why the name
-          </div>
           <div className="name-band-words">
             <span className="name-band-word">Theirs.</span>
             <span className="name-band-word">Mine.</span>
@@ -178,9 +168,6 @@ export default function StoryPage() {
             </blockquote>
           </div>
           <div>
-            <div className="kicker page-kicker">
-              ✦&nbsp;&nbsp;The friendship underneath it
-            </div>
             <h2 className="page-h2">We laugh. Constantly.</h2>
             <p className="page-copy">
               At the pieces we find, at each other, at our kids when they

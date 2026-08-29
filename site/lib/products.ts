@@ -37,6 +37,7 @@ export function cardImageSizes(p: Product): string {
 export const products: Product[] = [
   {
     lot: "01",
+    image: "/products/lot-01.jpg",
     name: "Lorem ipsum dolor",
     era: "18k",
     price: "$680",
@@ -49,6 +50,7 @@ export const products: Product[] = [
   },
   {
     lot: "02",
+    image: "/products/lot-02.jpg",
     name: "Consectetur adipiscing",
     era: "14k",
     price: "$540",
@@ -60,6 +62,7 @@ export const products: Product[] = [
   },
   {
     lot: "03",
+    image: "/products/lot-03.jpg",
     name: "Tempor incididunt",
     era: "15k",
     price: "$420",
@@ -71,6 +74,7 @@ export const products: Product[] = [
   },
   {
     lot: "04",
+    image: "/products/lot-04.jpg",
     name: "Ut enim ad minim",
     era: "18k",
     price: "$760",
@@ -82,6 +86,7 @@ export const products: Product[] = [
   },
   {
     lot: "05",
+    image: "/products/lot-05.jpg",
     name: "Nisi ut aliquip",
     era: "18k",
     price: "$890",
@@ -93,6 +98,7 @@ export const products: Product[] = [
   },
   {
     lot: "06",
+    image: "/products/lot-06.jpg",
     name: "Voluptate velit esse",
     era: "9k",
     price: "$1,480",
@@ -105,6 +111,7 @@ export const products: Product[] = [
   },
   {
     lot: "07",
+    image: "/products/lot-07.jpg",
     name: "Excepteur sint occaecat",
     era: "9k",
     price: "$1,120",
@@ -116,6 +123,7 @@ export const products: Product[] = [
   },
   {
     lot: "08",
+    image: "/products/lot-08.jpg",
     name: "Officia deserunt mollit",
     era: "18k",
     price: "$1,250",
@@ -127,6 +135,7 @@ export const products: Product[] = [
   },
   {
     lot: "09",
+    image: "/products/lot-09.jpg",
     name: "Sed ut perspiciatis",
     era: "18k",
     price: "$940",
@@ -139,6 +148,7 @@ export const products: Product[] = [
   },
   {
     lot: "10",
+    image: "/products/lot-10.jpg",
     name: "Unde omnis iste",
     era: "14k",
     price: "$460",
@@ -150,6 +160,7 @@ export const products: Product[] = [
   },
   {
     lot: "11",
+    image: "/products/lot-11.jpg",
     name: "Natus error sit",
     era: "9k",
     price: "$1,320",
@@ -161,6 +172,7 @@ export const products: Product[] = [
   },
   {
     lot: "12",
+    image: "/products/lot-12.jpg",
     name: "Accusantium doloremque",
     era: "15k",
     price: "$580",
@@ -172,6 +184,7 @@ export const products: Product[] = [
   },
   {
     lot: "13",
+    image: "/products/lot-13.jpg",
     name: "Totam rem aperiam",
     era: "18k",
     price: "$1,640",
@@ -184,6 +197,7 @@ export const products: Product[] = [
   },
   {
     lot: "14",
+    image: "/products/lot-14.jpg",
     name: "Eaque ipsa quae",
     era: "14k",
     price: "$380",
@@ -195,6 +209,7 @@ export const products: Product[] = [
   },
   {
     lot: "15",
+    image: "/products/lot-15.jpg",
     name: "Architecto beatae vitae",
     era: "18k",
     price: "$820",
@@ -206,6 +221,7 @@ export const products: Product[] = [
   },
   {
     lot: "16",
+    image: "/products/lot-16.jpg",
     name: "Dicta sunt explicabo",
     era: "9k",
     price: "$1,050",

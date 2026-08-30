@@ -1,13 +1,11 @@
-import { products, productPath } from "@/lib/products";
+import Image from "next/image";
+import { productPath, cardImageSizes, type Product } from "@/lib/products";
 
-export default function ArchiveGrid() {
+export default function ArchiveGrid({ products }: { products: Product[] }) {
   return (
     <section id="shop" className="container archive">
       <div className="archive-head">
         <div>
-          <div className="kicker archive-kicker">
-            ✦&nbsp;&nbsp;45 in the collection
-          </div>
           <h2 className="archive-title">Recently unearthed</h2>
         </div>
         <a href="/shop" className="tmy-link text-link">
@@ -24,7 +22,13 @@ export default function ArchiveGrid() {
           >
             <div className="product-block" style={{ background: p.color }}>
               {p.image ? (
-                <img className="product-img" src={p.image} alt={p.name} />
+                <Image
+                  className="product-img"
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  sizes={cardImageSizes(p)}
+                />
               ) : (
                 <div className="hatch hatch-sm product-hatch">
                   <span>product shot</span>

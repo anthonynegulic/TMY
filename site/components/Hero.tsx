@@ -3,15 +3,12 @@ export default function Hero() {
     <section className="container hero">
       <div className="hero-grid">
         <div>
-          <div className="kicker hero-kicker">
-            ✦&nbsp;&nbsp;Curated · preloved · solid gold only
-          </div>
           <h1 className="hero-title">
             Gold that&#39;s already <em className="accent">lived</em> a little.
           </h1>
           <p className="hero-lede">
-            Forty-five solid-gold pieces, hand-picked from other lives and
-            other decades. No reproductions, no two the same. Just the one
+            Solid-gold pieces, hand-picked from other lives and other
+            decades. No reproductions, no two the same. Just the one
             that&#39;s about to be yours.
           </p>
           <div className="hero-ctas">
@@ -31,7 +28,7 @@ export default function Hero() {
               <span className="lot-hole" />
               LOT 14 · 18k
             </div>
-            <div className="hero-tag-name">Byzantine bracelet</div>
+            <div className="hero-tag-name">Lorem ipsum</div>
             <div className="hero-tag-price">$1,250</div>
           </div>
           <div className="hero-tag hero-tag-2">
@@ -40,7 +37,7 @@ export default function Hero() {
               <span className="lot-hole" />
               LOT 07 · 14k
             </div>
-            <div className="hero-tag-name">Bombé ring</div>
+            <div className="hero-tag-name">Dolor sit</div>
           </div>
           <div className="hero-tag hero-tag-3">
             <div className="hatch" />
@@ -48,7 +45,7 @@ export default function Hero() {
               <span className="lot-hole" />
               LOT 22 · 9k
             </div>
-            <div className="hero-tag-name">Curb chain</div>
+            <div className="hero-tag-name">Amet elit</div>
           </div>
           <div className="collage-caption">pinned from the archive ↑</div>
         </div>

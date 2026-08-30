@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import ShopGrid from "@/components/ShopGrid";
-import { products } from "@/lib/products";
+import { getProducts } from "@/lib/getProducts";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -10,13 +10,13 @@ export const metadata: Metadata = {
     "The archive of curated preloved solid-gold pieces. One of one; when it's gone, it's gone.",
 };
 
-export default function ShopPage() {
+export const revalidate = 60;
+
+export default async function ShopPage() {
+  const products = await getProducts();
   return (
     <div>
       <section className="container page-hero page-hero-tight">
-        <div className="kicker page-kicker">
-          ✦&nbsp;&nbsp;{products.length} pieces in the archive right now
-        </div>
         <h1 className="page-title">
           The <em className="accent">archive</em>.
         </h1>
@@ -28,7 +28,7 @@ export default function ShopPage() {
 
       <section className="container page-section page-section-last">
         <Suspense>
-          <ShopGrid />
+          <ShopGrid products={products} />
         </Suspense>
         <p className="shop-footnote">
           Can&#39;t see what you&#39;re after? Drops land first on{" "}

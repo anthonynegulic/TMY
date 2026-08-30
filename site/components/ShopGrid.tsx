@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { products, productPath, priceNumber } from "@/lib/products";
+import Image from "next/image";
+import {
+  productPath,
+  priceNumber,
+  cardImageSizes,
+  type Product,
+} from "@/lib/products";
 
 const FILTERS = [
   { key: "all", label: "Everything" },
@@ -20,7 +26,7 @@ function matches(filter: FilterKey, price: number): boolean {
   return true;
 }
 
-export default function ShopGrid() {
+export default function ShopGrid({ products }: { products: Product[] }) {
   const initial = useSearchParams().get("price") as FilterKey | null;
   const [filter, setFilter] = useState<FilterKey>(
     initial && FILTERS.some((f) => f.key === initial) ? initial : "all",
@@ -51,7 +57,13 @@ export default function ShopGrid() {
           >
             <div className="product-block" style={{ background: p.color }}>
               {p.image ? (
-                <img className="product-img" src={p.image} alt={p.name} />
+                <Image
+                  className="product-img"
+                  src={p.image}
+                  alt={p.name}
+                  fill
+                  sizes={cardImageSizes(p)}
+                />
               ) : (
                 <div className="hatch hatch-sm product-hatch">
                   <span>product shot</span>

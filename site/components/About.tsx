@@ -12,7 +12,6 @@ export default function About() {
           </div>
         </div>
         <div>
-          <div className="kicker about-kicker">✦&nbsp;&nbsp;Who we are</div>
           <h2 className="about-title">
             A shared eye, and a soft spot for{" "}
             <em className="accent">gold with a past</em>.

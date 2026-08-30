@@ -23,95 +23,217 @@ export function priceNumber(p: Product): number {
   return Number(p.price.replace(/[^0-9.]/g, ""));
 }
 
-export const products: Product[] = [
+// The archive grid is 4 columns, dropping to 3 at 1024px and 2 at 760px;
+// "big" and "wide" cards span two of them. Keep in sync with .archive-grid.
+export function cardImageSizes(p: Product): string {
+  return p.size
+    ? "(max-width: 760px) 100vw, (max-width: 1024px) 66vw, 50vw"
+    : "(max-width: 760px) 50vw, (max-width: 1024px) 33vw, 25vw";
+}
+
+/**
+ * Fallback catalogue, used whenever Sanity is not configured (see
+ * lib/sanity/config.ts). Reading the shop always goes through getProducts()
+ * in lib/getProducts.ts — do not import this list directly from a page.
+ *
+ * Copy here is lorem ipsum placeholder; lot numbers, gold, prices and card
+ * layout are real.
+ */
+export const fallbackProducts: Product[] = [
   {
     lot: "01",
-    name: "Etruscan revival signet",
+    image: "/products/lot-01.jpg",
+    name: "Lorem ipsum dolor",
     era: "18k",
     price: "$680",
-    meta: "Heavy oval face · c.1970s",
+    meta: "Sit amet consectetur · adipiscing elit",
     color: "#E5A06B",
     size: "big",
     tilt: -1.5,
     description:
-      "A heavy oval-faced signet in the Etruscan revival style, with the kind of presence you can feel across a room. Unsigned, beautifully worn in, and ready for its next initials (or none at all).",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     lot: "02",
-    name: "Bombé cocktail ring",
+    image: "/products/lot-02.jpg",
+    name: "Consectetur adipiscing",
     era: "14k",
     price: "$540",
-    meta: "Domed, unsigned · c.1960s",
+    meta: "Sed do eiusmod · tempor incididunt",
     color: "#A9C6D6",
     tilt: 1.2,
     description:
-      "A domed bombé cocktail ring from the 1960s. Smooth, sculptural and surprisingly comfortable, it sits on the hand like it was always meant to be there.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
     lot: "03",
-    name: "Seed pearl drops",
+    image: "/products/lot-03.jpg",
+    name: "Tempor incididunt",
     era: "15k",
     price: "$420",
-    meta: "Victorian · tested gold",
+    meta: "Ut labore et dolore · magna aliqua",
     color: "#EFD27E",
-    tilt: -1,
+    tilt: -1.0,
     description:
-      "Victorian seed pearl drop earrings in tested gold. Delicate without being fussy, with over a century of evenings already behind them.",
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   },
   {
     lot: "04",
-    name: "Sculptural knot studs",
+    image: "/products/lot-04.jpg",
+    name: "Ut enim ad minim",
     era: "18k",
     price: "$760",
-    meta: "Modernist · c.1980s",
+    meta: "Quis nostrud · exercitation ullamco",
     color: "#BBC471",
     tilt: 1.4,
     description:
-      "Modernist knot studs from the 1980s. Small, sculptural and quietly odd in the best way. They read as contemporary until you learn their age.",
+      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
   },
   {
     lot: "05",
-    name: "Florentine dome ring",
+    image: "/products/lot-05.jpg",
+    name: "Nisi ut aliquip",
     era: "18k",
     price: "$890",
-    meta: "Textured · c.1970s",
+    meta: "Ex ea commodo · consequat duis",
     color: "#A9C6D6",
     tilt: -1.3,
     description:
-      "A textured Florentine dome ring from the 1970s. The brushed finish softens the shine to a glow, which is exactly the point.",
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti. Quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
   },
   {
     lot: "06",
-    name: "Flat curb tank chain",
+    image: "/products/lot-06.jpg",
+    name: "Voluptate velit esse",
     era: "9k",
     price: "$1,480",
-    meta: "24 inch · solid links",
+    meta: "Cillum dolore · eu fugiat nulla",
     color: "#E5A06B",
     size: "wide",
-    tilt: 0,
+    tilt: 0.0,
     description:
-      "A flat curb tank chain in solid 9k, 24 inches of it. Substantial links, satisfying weight, and it layers with everything.",
+      "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore cum soluta nobis est eligendi optio.",
   },
   {
     lot: "07",
-    name: "Charm gate bracelet",
+    image: "/products/lot-07.jpg",
+    name: "Excepteur sint occaecat",
     era: "9k",
     price: "$1,120",
-    meta: "Five charms · padlock clasp",
+    meta: "Cupidatat non proident · sunt in culpa",
     color: "#EFD27E",
     tilt: 1.1,
     description:
-      "A 9k gate bracelet carrying five charms and closed with its original padlock clasp. Somebody collected these charms one by one; now the collection continues.",
+      "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
   },
   {
     lot: "08",
-    name: "Byzantine chain bracelet",
+    image: "/products/lot-08.jpg",
+    name: "Officia deserunt mollit",
     era: "18k",
     price: "$1,250",
-    meta: "Hand-linked · Italy",
+    meta: "Anim id est · laborum sed ut",
     color: "#BBC471",
     tilt: -1.2,
     description:
-      "A hand-linked Byzantine chain bracelet made in Italy. Dense, liquid and precise, this is craftsmanship you can no longer order off a shelf.",
+      "Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+  },
+  {
+    lot: "09",
+    image: "/products/lot-09.jpg",
+    name: "Sed ut perspiciatis",
+    era: "18k",
+    price: "$940",
+    meta: "Unde omnis iste · natus error",
+    color: "#EFD27E",
+    size: "big",
+    tilt: 1.3,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    lot: "10",
+    image: "/products/lot-10.jpg",
+    name: "Unde omnis iste",
+    era: "14k",
+    price: "$460",
+    meta: "Voluptatem accusantium · doloremque",
+    color: "#BBC471",
+    tilt: -1.4,
+    description:
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+  {
+    lot: "11",
+    image: "/products/lot-11.jpg",
+    name: "Natus error sit",
+    era: "9k",
+    price: "$1,320",
+    meta: "Laudantium totam · rem aperiam",
+    color: "#E5A06B",
+    tilt: 1.5,
+    description:
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+  },
+  {
+    lot: "12",
+    image: "/products/lot-12.jpg",
+    name: "Accusantium doloremque",
+    era: "15k",
+    price: "$580",
+    meta: "Eaque ipsa · quae ab illo",
+    color: "#A9C6D6",
+    tilt: -1.1,
+    description:
+      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.",
+  },
+  {
+    lot: "13",
+    image: "/products/lot-13.jpg",
+    name: "Totam rem aperiam",
+    era: "18k",
+    price: "$1,640",
+    meta: "Inventore veritatis · et quasi",
+    color: "#BBC471",
+    size: "wide",
+    tilt: 0.0,
+    description:
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti. Quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+  },
+  {
+    lot: "14",
+    image: "/products/lot-14.jpg",
+    name: "Eaque ipsa quae",
+    era: "14k",
+    price: "$380",
+    meta: "Architecto beatae · vitae dicta",
+    color: "#E5A06B",
+    tilt: 1.0,
+    description:
+      "Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio, nam libero tempore cum soluta nobis est eligendi optio.",
+  },
+  {
+    lot: "15",
+    image: "/products/lot-15.jpg",
+    name: "Architecto beatae vitae",
+    era: "18k",
+    price: "$820",
+    meta: "Sunt explicabo · nemo enim",
+    color: "#A9C6D6",
+    tilt: -1.6,
+    description:
+      "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.",
+  },
+  {
+    lot: "16",
+    image: "/products/lot-16.jpg",
+    name: "Dicta sunt explicabo",
+    era: "9k",
+    price: "$1,050",
+    meta: "Ipsam voluptatem · quia voluptas",
+    color: "#EFD27E",
+    tilt: 1.6,
+    description:
+      "Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
   },
 ];

@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import EnquiryForm from "@/components/EnquiryForm";
-import { products } from "@/lib/products";
+import { getProducts, getProduct } from "@/lib/getProducts";
 
 type Params = { lot: string };
 
-function findProduct(slug: string) {
-  return products.find((p) => `lot-${p.lot}` === slug);
+export const revalidate = 60;
+
+// Pieces added in the Studio after a deploy are not in this list; Next renders
+// them on demand (dynamicParams defaults to true) and caches from then on.
+export async function generateStaticParams(): Promise<Params[]> {
+  const products = await getProducts();
+  return products.map((p) => ({ lot: `lot-${p.lot}` }));
 }
 
-export function generateStaticParams(): Params[] {
-  return products.map((p) => ({ lot: `lot-${p.lot}` }));
+function findProduct(slug: string) {
+  const match = /^lot-(\d+)$/.exec(slug);
+  return match ? getProduct(match[1]) : undefined;
 }
 
 export async function generateMetadata({
@@ -19,7 +26,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { lot } = await params;
-  const product = findProduct(lot);
+  const product = await findProduct(lot);
   if (!product) return {};
   return {
     title: `${product.name} · Theirs. Mine. Yours.`,
@@ -33,7 +40,7 @@ export default async function ProductPage({
   params: Promise<Params>;
 }) {
   const { lot } = await params;
-  const product = findProduct(lot);
+  const product = await findProduct(lot);
   if (!product) notFound();
 
   return (
@@ -45,7 +52,14 @@ export default async function ProductPage({
       <div className="product-page-grid">
         <div className="product-page-photo" style={{ background: product.color }}>
           {product.image ? (
-            <img className="product-img" src={product.image} alt={product.name} />
+            <Image
+              className="product-img"
+              src={product.image}
+              alt={product.name}
+              fill
+              sizes="(max-width: 900px) 100vw, 50vw"
+              preload
+            />
           ) : (
             <div className="hatch product-hatch">
               <span>product shot coming soon</span>
@@ -59,9 +73,6 @@ export default async function ProductPage({
         </div>
 
         <div>
-          <div className="kicker page-kicker">
-            ✦&nbsp;&nbsp;One of one · available
-          </div>
           <h1 className="product-page-name">{product.name}</h1>
           <div className="product-page-price">{product.price}</div>
           <p className="page-copy">{product.description}</p>
@@ -81,9 +92,6 @@ export default async function ProductPage({
           </dl>
 
           <div className="product-enquiry">
-            <div className="kicker page-kicker">
-              ✦&nbsp;&nbsp;Enquire about this piece
-            </div>
             <p className="product-enquiry-note">
               Sizing, condition, extra photos, holds: ask us anything.
             </p>

@@ -12,7 +12,6 @@ export default function ContactPage() {
   return (
     <div>
       <section className="container page-hero">
-        <div className="kicker page-kicker">✦&nbsp;&nbsp;Contact</div>
         <h1 className="page-title">
           Say <em className="accent">hello</em>.
         </h1>
@@ -54,7 +53,6 @@ export default function ContactPage() {
           </div>
 
           <div className="contact-form-card">
-            <div className="kicker page-kicker">✦&nbsp;&nbsp;Or write to us</div>
             <h2 className="page-h2 contact-form-title">Send an enquiry.</h2>
             <EnquiryForm />
           </div>

@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -20,7 +17,7 @@ const instrument = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Theirs. Mine. Yours. · curated preloved fine jewellery",
   description:
-    "Forty-five solid-gold pieces, hand-picked from other lives and other decades. No reproductions, no two the same. Just the one that's about to be yours.",
+    "Solid-gold pieces, hand-picked from other lives and other decades. No reproductions, no two the same. Just the one that's about to be yours.",
 };
 
 export default function RootLayout({
@@ -31,9 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bricolage.variable} ${instrument.variable}`}>
       <body>
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

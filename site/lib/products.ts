@@ -1,5 +1,5 @@
 export type Product = {
-  lot: string;
+  slug: string;
   name: string;
   era: string;
   price: string;
@@ -7,111 +7,126 @@ export type Product = {
   color: string;
   size?: "big" | "wide";
   tilt: number;
-  // Path to a product photo, e.g. "/products/lot-01.jpg". Drop the file in
+  // Path to a product photo, e.g. "/products/lattice-dome-ring.jpg". Drop the file in
   // site/public/products/ and set this; cards without one show the striped
   // placeholder. (Don't hotlink Instagram URLs — they're signed and expire.)
   image?: string;
+  // Further photos (product page only).
+  images?: string[];
+  // Photos from the CMS are turned 90 degrees on the site (see ProductPhoto);
+  // the bundled fallback photos below already have the turn baked in.
+  rotate?: boolean;
+  sold?: boolean;
   // Longer copy for the product page.
   description: string;
 };
 
 export function productPath(p: Product): string {
-  return `/shop/lot-${p.lot}`;
+  return `/shop/${p.slug}`;
 }
 
 export function priceNumber(p: Product): number {
   return Number(p.price.replace(/[^0-9.]/g, ""));
 }
 
-export const products: Product[] = [
+// Used only until the Sanity catalogue is connected and filled (see lib/catalog.ts).
+export const fallbackProducts: Product[] = [
   {
-    lot: "01",
-    name: "Etruscan revival signet",
+    slug: "lattice-dome-ring",
+    name: "Lattice dome ring",
     era: "18k",
     price: "$680",
-    meta: "Heavy oval face · c.1970s",
+    meta: "Pavé lattice · domed",
     color: "#E5A06B",
     size: "big",
     tilt: -1.5,
+    image: "/products/lattice-dome-ring.jpg",
     description:
-      "A heavy oval-faced signet in the Etruscan revival style, with the kind of presence you can feel across a room. Unsigned, beautifully worn in, and ready for its next initials (or none at all).",
+      "A domed ring woven in a gold lattice and set with sparkling pavé stones. It catches the light from every angle and has the presence of a much bigger piece.",
   },
   {
-    lot: "02",
-    name: "Bombé cocktail ring",
+    slug: "ruby-wave-ring",
+    name: "Ruby wave ring",
     era: "14k",
     price: "$540",
-    meta: "Domed, unsigned · c.1960s",
+    meta: "Serpentine · ruby",
     color: "#A9C6D6",
     tilt: 1.2,
+    image: "/products/ruby-wave-ring.jpg",
     description:
-      "A domed bombé cocktail ring from the 1960s. Smooth, sculptural and surprisingly comfortable, it sits on the hand like it was always meant to be there.",
+      "A flowing gold ring that curls around a single ruby. Sculptural and a little bit wild, it reads like jewellery from a story you want to hear.",
   },
   {
-    lot: "03",
-    name: "Seed pearl drops",
+    slug: "triple-band-gold-ring",
+    name: "Triple-band gold ring",
     era: "15k",
     price: "$420",
-    meta: "Victorian · tested gold",
+    meta: "Sculpted bands · polished",
     color: "#EFD27E",
     tilt: -1,
+    image: "/products/triple-band-gold-ring.jpg",
     description:
-      "Victorian seed pearl drop earrings in tested gold. Delicate without being fussy, with over a century of evenings already behind them.",
+      "Three polished gold bands that twist and part around the finger. Simple in the best way, and made to be worn every day.",
   },
   {
-    lot: "04",
-    name: "Sculptural knot studs",
+    slug: "ruby-gypsy-ring",
+    name: "Ruby gypsy ring",
     era: "18k",
     price: "$760",
-    meta: "Modernist · c.1980s",
+    meta: "Bezel set · ruby",
     color: "#BBC471",
     tilt: 1.4,
+    image: "/products/ruby-gypsy-ring.jpg",
     description:
-      "Modernist knot studs from the 1980s. Small, sculptural and quietly odd in the best way. They read as contemporary until you learn their age.",
+      "A rich ruby sunk into a smooth gold gypsy setting with tiny diamond accents. Warm, weighty and quietly confident.",
   },
   {
-    lot: "05",
-    name: "Florentine dome ring",
+    slug: "pave-block-ring",
+    name: "Pavé block ring",
     era: "18k",
     price: "$890",
-    meta: "Textured · c.1970s",
+    meta: "Pavé · bold",
     color: "#A9C6D6",
     tilt: -1.3,
+    image: "/products/pave-block-ring.jpg",
     description:
-      "A textured Florentine dome ring from the 1970s. The brushed finish softens the shine to a glow, which is exactly the point.",
+      "A bold, flat-topped ring with half of its face set in tiny pavé stones. Very 80s, very unlike anything you'd find in a mall.",
   },
   {
-    lot: "06",
-    name: "Flat curb tank chain",
+    slug: "panther-head-ring",
+    name: "Panther head ring",
     era: "9k",
     price: "$1,480",
-    meta: "24 inch · solid links",
+    meta: "Enamel spots · figural",
     color: "#E5A06B",
     size: "wide",
     tilt: 0,
+    image: "/products/panther-head-ring.jpg",
     description:
-      "A flat curb tank chain in solid 9k, 24 inches of it. Substantial links, satisfying weight, and it layers with everything.",
+      "A figural panther ring with spotted enamel detail and a playful sense of mischief. A proper conversation starter in solid gold.",
   },
   {
-    lot: "07",
-    name: "Charm gate bracelet",
+    slug: "knot-ring",
+    name: "Knot ring",
     era: "9k",
     price: "$1,120",
-    meta: "Five charms · padlock clasp",
+    meta: "Interlocked · polished",
     color: "#EFD27E",
     tilt: 1.1,
+    image: "/products/knot-ring.jpg",
     description:
-      "A 9k gate bracelet carrying five charms and closed with its original padlock clasp. Somebody collected these charms one by one; now the collection continues.",
+      "Polished gold links tied into a knot. Light, sculptural and symbolic, the kind of piece that gets passed on for a reason.",
   },
   {
-    lot: "08",
-    name: "Byzantine chain bracelet",
+    slug: "sapphire-halo-ring",
+    name: "Sapphire halo ring",
     era: "18k",
     price: "$1,250",
-    meta: "Hand-linked · Italy",
+    meta: "Halo · deep blue",
     color: "#BBC471",
     tilt: -1.2,
+    image: "/products/sapphire-halo-ring.jpg",
     description:
-      "A hand-linked Byzantine chain bracelet made in Italy. Dense, liquid and precise, this is craftsmanship you can no longer order off a shelf.",
+      "A deep blue sapphire ringed with a halo of stones on a slim gold band. Classic, a little romantic, and ready for its next chapter.",
   },
 ];

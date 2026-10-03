@@ -22,7 +22,6 @@ export default function StoryBand() {
       <div className="container story-inner">
         <div className="story-head">
           <div>
-            <div className="kicker story-kicker">✦&nbsp;&nbsp;How it finds you</div>
             <h2 className="story-title">Every piece has lived a life before yours.</h2>
           </div>
           <div className="story-aside">

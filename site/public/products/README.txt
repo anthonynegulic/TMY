@@ -1,1 +1,1 @@
-Drop product photos here (e.g. lot-01.jpg) and reference them from lib/products.ts as "/products/lot-01.jpg".
+Product photos live here, named after the product slug (e.g. lattice-dome-ring.jpg) and referenced from lib/products.ts as "/products/lattice-dome-ring.jpg". Regenerate them from photos-raw with scripts/build-photos.py.

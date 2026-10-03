@@ -1,4 +1,4 @@
-"""Builds the web-sized, 45-degree-rotated product crops in public/products
+"""Builds the web-sized, 90-degree-rotated product crops in public/products
 from the originals in photos-raw/. Run from site/: python3 scripts/build-photos.py
 Needs Pillow. Rotation is baked in so every product photo is consistent."""
 import os
@@ -22,13 +22,14 @@ PHOTOS = {
     "story-4": ("Ring16_02_USABLE_orig3179.JPG", CX, CY, 760),
 }
 OUT = 720
+ROTATE = 90  # degrees clockwise
 os.makedirs("public/products", exist_ok=True)
 for name, (src, cx, cy, size) in PHOTOS.items():
     im = Image.open(f"photos-raw/{src}").convert("RGB")
-    # take a larger square, rotate 45 degrees clockwise, then trim the corners
+    # take a larger square, rotate 90 degrees clockwise (45 + a further 45), then trim the corners
     big = int(size * 1.5)
     im = im.crop((cx - big // 2, cy - big // 2, cx + big // 2, cy + big // 2))
-    im = im.rotate(-45, resample=Image.BICUBIC)
+    im = im.rotate(-ROTATE, resample=Image.BICUBIC)
     m = (big - size) // 2
     im = im.crop((m, m, m + size, m + size)).resize((OUT, OUT), Image.LANCZOS)
     im.save(f"public/products/{name}.jpg", quality=82)

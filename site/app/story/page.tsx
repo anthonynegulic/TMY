@@ -66,8 +66,8 @@ export default function StoryPage() {
           <div className="heritage-cards">
             <div className="heritage-card" style={{ background: "#E5A06B" }}>
               <img className="tag-photo" src="/products/story-1.jpg" alt="Gold ring resting in a velvet ring box" />
-              <div className="lot-chip">
-                <span className="lot-hole" />
+              <div className="tag-chip">
+                <span className="tag-hole" />
                 EGYPT
               </div>
               <div className="heritage-card-caption">
@@ -76,8 +76,8 @@ export default function StoryPage() {
             </div>
             <div className="heritage-card" style={{ background: "#A9C6D6" }}>
               <img className="tag-photo" src="/products/story-2.jpg" alt="Ruby ring resting in a velvet ring box" />
-              <div className="lot-chip">
-                <span className="lot-hole" />
+              <div className="tag-chip">
+                <span className="tag-hole" />
                 THE BALKANS
               </div>
               <div className="heritage-card-caption">
@@ -125,8 +125,8 @@ export default function StoryPage() {
           <div className="pull-tag" style={{ background: "#EFD27E" }}>
             <img className="tag-photo" src="/products/story-3.jpg" alt="Gold ring with a clear stone in a velvet ring box" />
             <div className="tag-wash" />
-            <div className="lot-chip">
-              <span className="lot-hole" />
+            <div className="tag-chip">
+              <span className="tag-hole" />
               FIELD NOTE
             </div>
             <blockquote className="pull-tag-quote">
@@ -160,8 +160,8 @@ export default function StoryPage() {
           <div className="pull-tag" style={{ background: "#BBC471" }}>
             <img className="tag-photo" src="/products/story-4.jpg" alt="Gold heart ring in a velvet ring box" />
             <div className="tag-wash" />
-            <div className="lot-chip">
-              <span className="lot-hole" />
+            <div className="tag-chip">
+              <span className="tag-hole" />
               THE TWO OF US
             </div>
             <blockquote className="pull-tag-quote">

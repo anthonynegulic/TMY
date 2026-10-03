@@ -2,7 +2,7 @@
    Theirs. Mine. Yours. — design system
    Baby-pink canvas, lime story band, dark-ink footer.
    Type: Bricolage Grotesque (display/UI) · Instrument Serif italic
-   (storied accents) · monospace lot tags.
+   (storied accents) · monospace tags.
    ———————————————————————————————————————————————— */
 
 :root {
@@ -180,8 +180,8 @@ body {
   );
 }
 
-/* punched-hole lot tag chip */
-.lot-chip {
+/* punched-hole tag chip */
+.tag-chip {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -194,20 +194,20 @@ body {
   font-weight: 700;
   letter-spacing: 0.03em;
 }
-.lot-chip-sm {
+.tag-chip-sm {
   gap: 6px;
   padding: 4px 10px 4px 7px;
   font-size: 10.5px;
   letter-spacing: 0;
 }
-.lot-hole {
+.tag-hole {
   flex: none;
   width: 7px;
   height: 7px;
   border-radius: 999px;
   border: 1.5px solid rgba(43, 33, 26, 0.5);
 }
-.lot-chip-sm .lot-hole {
+.tag-chip-sm .tag-hole {
   width: 6px;
   height: 6px;
 }
@@ -366,7 +366,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* pinned lot-tag collage */
+/* pinned tag collage */
 .hero-collage {
   position: relative;
   height: 480px;
@@ -417,12 +417,12 @@ body {
   transform: scale(0.98) rotate(var(--tilt, 0deg));
 }
 
-.hero-tag .lot-chip {
+.hero-tag .tag-chip {
   position: absolute;
   top: 13px;
   left: 13px;
 }
-.hero-tag .lot-chip-sm {
+.hero-tag .tag-chip-sm {
   top: 11px;
   left: 11px;
 }
@@ -650,7 +650,7 @@ body {
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* picking up a lot card: alternating lean, tag straightens, stripes drift */
+/* picking up a product card: alternating lean, tag straightens, stripes drift */
 @media (hover: hover) {
   .product:nth-child(odd):hover {
     transform: translateY(-5px) rotate(-0.5deg);
@@ -1119,7 +1119,7 @@ body {
 .heritage-card:nth-child(2) {
   transform: rotate(1deg);
 }
-.heritage-card .lot-chip {
+.heritage-card .tag-chip {
   position: absolute;
   top: 13px;
   left: 13px;
@@ -1157,7 +1157,7 @@ body {
 .page-split-reverse .pull-tag {
   transform: rotate(1.5deg);
 }
-.pull-tag .lot-chip {
+.pull-tag .tag-chip {
   position: absolute;
   top: 14px;
   left: 14px;
@@ -1288,7 +1288,7 @@ body {
   box-shadow: 0 12px 30px rgba(43, 33, 26, 0.14);
   transform: rotate(-1deg);
 }
-.contact-card .lot-chip {
+.contact-card .tag-chip {
   position: absolute;
   top: 14px;
   left: 14px;
@@ -1476,7 +1476,7 @@ body {
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(43, 33, 26, 0.14);
 }
-.product-page-photo .lot-chip {
+.product-page-photo .tag-chip {
   position: absolute;
   top: 14px;
   left: 14px;

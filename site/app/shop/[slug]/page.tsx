@@ -3,14 +3,14 @@ import { notFound } from "next/navigation";
 import EnquiryForm from "@/components/EnquiryForm";
 import { products } from "@/lib/products";
 
-type Params = { lot: string };
+type Params = { slug: string };
 
 function findProduct(slug: string) {
-  return products.find((p) => `lot-${p.lot}` === slug);
+  return products.find((p) => p.slug === slug);
 }
 
 export function generateStaticParams(): Params[] {
-  return products.map((p) => ({ lot: `lot-${p.lot}` }));
+  return products.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -18,8 +18,8 @@ export async function generateMetadata({
 }: {
   params: Promise<Params>;
 }): Promise<Metadata> {
-  const { lot } = await params;
-  const product = findProduct(lot);
+  const { slug } = await params;
+  const product = findProduct(slug);
   if (!product) return {};
   return {
     title: `${product.name} · Theirs. Mine. Yours.`,
@@ -32,8 +32,8 @@ export default async function ProductPage({
 }: {
   params: Promise<Params>;
 }) {
-  const { lot } = await params;
-  const product = findProduct(lot);
+  const { slug } = await params;
+  const product = findProduct(slug);
   if (!product) notFound();
 
   return (
@@ -51,9 +51,9 @@ export default async function ProductPage({
               <span>product shot coming soon</span>
             </div>
           )}
-          <div className="lot-chip">
-            <span className="lot-hole" />
-            LOT {product.lot} · {product.era}
+          <div className="tag-chip">
+            <span className="tag-hole" />
+            {product.era}
           </div>
           <span className="product-dot" title="available" />
         </div>
@@ -63,10 +63,6 @@ export default async function ProductPage({
           <div className="product-page-price">{product.price}</div>
           <p className="page-copy">{product.description}</p>
           <dl className="product-specs">
-            <div>
-              <dt>Lot</dt>
-              <dd>№ {product.lot}</dd>
-            </div>
             <div>
               <dt>Gold</dt>
               <dd>{product.era} solid gold</dd>
@@ -81,7 +77,7 @@ export default async function ProductPage({
             <p className="product-enquiry-note">
               Sizing, condition, extra photos, holds: ask us anything.
             </p>
-            <EnquiryForm piece={`Lot ${product.lot} · ${product.name}`} />
+            <EnquiryForm piece={product.name} />
           </div>
         </div>
       </div>

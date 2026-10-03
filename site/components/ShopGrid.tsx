@@ -45,7 +45,7 @@ export default function ShopGrid() {
       <div className="archive-grid">
         {shown.map((p) => (
           <a
-            key={p.lot}
+            key={p.slug}
             href={productPath(p)}
             className={`tmy-card product${p.size ? ` product-${p.size}` : ""}`}
           >
@@ -58,11 +58,11 @@ export default function ShopGrid() {
                 </div>
               )}
               <div
-                className="lot-chip product-chip"
+                className="tag-chip product-chip"
                 style={{ "--chip-tilt": `${p.tilt}deg` } as React.CSSProperties}
               >
-                <span className="lot-hole" />
-                LOT {p.lot} · {p.era}
+                <span className="tag-hole" />
+                {p.era}
               </div>
               <span className="product-dot" title="available" />
             </div>

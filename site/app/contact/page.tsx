@@ -31,8 +31,8 @@ export default function ContactPage() {
         <div className="contact-grid">
           <div className="contact-card" style={{ background: "#BBC471" }}>
             <div className="hatch" />
-            <div className="lot-chip">
-              <span className="lot-hole" />
+            <div className="tag-chip">
+              <span className="tag-hole" />
               FASTEST WAY
             </div>
             <div className="contact-card-body">

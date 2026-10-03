@@ -34,8 +34,8 @@ export default function AboutPage() {
           <div className="hatch about-hatch">
             <span>portrait pending · we&#39;re taking a good one, promise</span>
           </div>
-          <div className="lot-chip about-chip">
-            <span className="lot-hole" />
+          <div className="tag-chip about-chip">
+            <span className="tag-hole" />
             THE TWO OF US
           </div>
         </div>

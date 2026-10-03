@@ -7,14 +7,14 @@ from PIL import Image
 # output name -> (source file, ring centre x, centre y, crop size in px before rotating)
 CX, CY = 930, 533
 PHOTOS = {
-    "lot-01": ("Ring03_01_USABLE_orig3076.JPG", CX, CY, 720),
-    "lot-02": ("Ring05_01_USABLE_orig3091.JPG", CX, CY, 720),
-    "lot-03": ("Ring06_01_USABLE_orig3098.JPG", CX, CY, 720),
-    "lot-04": ("Ring07_01_USABLE_orig3114.JPG", CX, CY, 640),
-    "lot-05": ("Ring08_01_USABLE_orig3129.JPG", CX, CY, 720),
-    "lot-06": ("Ring10_01_USABLE_orig3145.JPG", CX, CY, 720),
-    "lot-07": ("Ring11_01_USABLE_orig3150.JPG", CX, CY, 720),
-    "lot-08": ("Ring14_05_USABLE_orig3167.JPG", CX, CY, 640),
+    "lattice-dome-ring": ("Ring03_01_USABLE_orig3076.JPG", CX, CY, 720),
+    "ruby-wave-ring": ("Ring05_01_USABLE_orig3091.JPG", CX, CY, 720),
+    "triple-band-gold-ring": ("Ring06_01_USABLE_orig3098.JPG", CX, CY, 720),
+    "ruby-gypsy-ring": ("Ring07_01_USABLE_orig3114.JPG", CX, CY, 640),
+    "pave-block-ring": ("Ring08_01_USABLE_orig3129.JPG", CX, CY, 720),
+    "panther-head-ring": ("Ring10_01_USABLE_orig3145.JPG", CX, CY, 720),
+    "knot-ring": ("Ring11_01_USABLE_orig3150.JPG", CX, CY, 720),
+    "sapphire-halo-ring": ("Ring14_05_USABLE_orig3167.JPG", CX, CY, 640),
     # story page
     "story-1": ("Ring04_07_USABLE_orig3124.JPG", CX, CY, 760),
     "story-2": ("Ring09_01_USABLE_orig3137.JPG", CX, CY, 760),

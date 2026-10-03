@@ -23,26 +23,26 @@ export default function Hero() {
 
         <div className="hero-collage">
           <div className="hero-tag hero-tag-1">
-            <img src="/products/lot-04.jpg" alt="Gold gypsy ring set with a ruby" className="hero-tag-img" />
-            <div className="lot-chip">
-              <span className="lot-hole" />
-              LOT 04
+            <img src="/products/ruby-gypsy-ring.jpg" alt="Gold gypsy ring set with a ruby" className="hero-tag-img" />
+            <div className="tag-chip">
+              <span className="tag-hole" />
+              18K
             </div>
             <div className="hero-tag-name">Ruby gypsy ring</div>
           </div>
           <div className="hero-tag hero-tag-2">
-            <img src="/products/lot-01.jpg" alt="Gold and diamond lattice dome ring" className="hero-tag-img" />
-            <div className="lot-chip lot-chip-sm">
-              <span className="lot-hole" />
-              LOT 01
+            <img src="/products/lattice-dome-ring.jpg" alt="Gold and diamond lattice dome ring" className="hero-tag-img" />
+            <div className="tag-chip tag-chip-sm">
+              <span className="tag-hole" />
+              18K
             </div>
             <div className="hero-tag-name">Lattice dome ring</div>
           </div>
           <div className="hero-tag hero-tag-3">
-            <img src="/products/lot-08.jpg" alt="Sapphire halo ring in gold" className="hero-tag-img" />
-            <div className="lot-chip lot-chip-sm">
-              <span className="lot-hole" />
-              LOT 08
+            <img src="/products/sapphire-halo-ring.jpg" alt="Sapphire halo ring in gold" className="hero-tag-img" />
+            <div className="tag-chip tag-chip-sm">
+              <span className="tag-hole" />
+              18K
             </div>
             <div className="hero-tag-name">Sapphire halo</div>
           </div>

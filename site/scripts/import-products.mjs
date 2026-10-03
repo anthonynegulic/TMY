@@ -6,7 +6,11 @@
 // Create the token in manage.sanity.io > API > Tokens (role: Editor).
 import { createClient } from "@sanity/client";
 import { readFileSync } from "node:fs";
-import { fallbackProducts } from "../lib/products.ts";
+
+// Product details live in products-seed.json (a copy of the original 8 pieces)
+const fallbackProducts = JSON.parse(
+  readFileSync(new URL("./products-seed.json", import.meta.url), "utf8"),
+);
 
 const token = process.env.SANITY_WRITE_TOKEN;
 if (!token) {

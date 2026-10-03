@@ -65,7 +65,7 @@ export default function StoryPage() {
           </div>
           <div className="heritage-cards">
             <div className="heritage-card" style={{ background: "#E5A06B" }}>
-              <div className="hatch" />
+              <img className="tag-photo" src="/products/story-1.jpg" alt="Gold ring resting in a velvet ring box" />
               <div className="lot-chip">
                 <span className="lot-hole" />
                 EGYPT
@@ -75,7 +75,7 @@ export default function StoryPage() {
               </div>
             </div>
             <div className="heritage-card" style={{ background: "#A9C6D6" }}>
-              <div className="hatch" />
+              <img className="tag-photo" src="/products/story-2.jpg" alt="Ruby ring resting in a velvet ring box" />
               <div className="lot-chip">
                 <span className="lot-hole" />
                 THE BALKANS
@@ -123,7 +123,8 @@ export default function StoryPage() {
             </p>
           </div>
           <div className="pull-tag" style={{ background: "#EFD27E" }}>
-            <div className="hatch" />
+            <img className="tag-photo" src="/products/story-3.jpg" alt="Gold ring with a clear stone in a velvet ring box" />
+            <div className="tag-wash" />
             <div className="lot-chip">
               <span className="lot-hole" />
               FIELD NOTE
@@ -157,7 +158,8 @@ export default function StoryPage() {
       <section className="container page-section page-section-last">
         <div className="page-split page-split-reverse">
           <div className="pull-tag" style={{ background: "#BBC471" }}>
-            <div className="hatch" />
+            <img className="tag-photo" src="/products/story-4.jpg" alt="Gold heart ring in a velvet ring box" />
+            <div className="tag-wash" />
             <div className="lot-chip">
               <span className="lot-hole" />
               THE TWO OF US

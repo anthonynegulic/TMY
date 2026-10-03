@@ -23,28 +23,28 @@ export default function Hero() {
 
         <div className="hero-collage">
           <div className="hero-tag hero-tag-1">
-            <img src="/products/hero-ruby-ring.jpg" alt="Gold ring set with a ruby cabochon" className="hero-tag-img" />
+            <img src="/products/lot-04.jpg" alt="Gold gypsy ring set with a ruby" className="hero-tag-img" />
             <div className="lot-chip">
               <span className="lot-hole" />
-              LOT 07
+              LOT 04
             </div>
-            <div className="hero-tag-name">Ruby ring</div>
+            <div className="hero-tag-name">Ruby gypsy ring</div>
           </div>
           <div className="hero-tag hero-tag-2">
-            <img src="/products/hero-dome-ring.jpg" alt="Gold and diamond lattice dome ring" className="hero-tag-img" />
+            <img src="/products/lot-01.jpg" alt="Gold and diamond lattice dome ring" className="hero-tag-img" />
             <div className="lot-chip lot-chip-sm">
               <span className="lot-hole" />
-              LOT 03
+              LOT 01
             </div>
-            <div className="hero-tag-name">Lattice dome</div>
+            <div className="hero-tag-name">Lattice dome ring</div>
           </div>
           <div className="hero-tag hero-tag-3">
-            <img src="/products/hero-tanzanite-ring.jpg" alt="Gold halo ring with a blue stone" className="hero-tag-img" />
+            <img src="/products/lot-08.jpg" alt="Sapphire halo ring in gold" className="hero-tag-img" />
             <div className="lot-chip lot-chip-sm">
               <span className="lot-hole" />
-              LOT 14
+              LOT 08
             </div>
-            <div className="hero-tag-name">Halo ring</div>
+            <div className="hero-tag-name">Sapphire halo</div>
           </div>
           <div className="collage-caption">pinned from the archive ↑</div>
         </div>

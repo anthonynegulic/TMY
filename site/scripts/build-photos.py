@@ -24,11 +24,18 @@ PHOTOS = {
 OUT = 720
 ROTATE = 90  # degrees clockwise
 os.makedirs("public/products", exist_ok=True)
+os.makedirs("photos-cms", exist_ok=True)  # unrotated crops, uploaded to Sanity by import-products.mjs
 for name, (src, cx, cy, size) in PHOTOS.items():
     im = Image.open(f"photos-raw/{src}").convert("RGB")
     # take a larger square, rotate 90 degrees clockwise (45 + a further 45), then trim the corners
     big = int(size * 1.5)
     im = im.crop((cx - big // 2, cy - big // 2, cx + big // 2, cy + big // 2))
+    # unrotated version for the CMS (the site turns CMS photos in CSS)
+    if not name.startswith("story-"):
+        cm = (big - size) // 2
+        im.crop((cm, cm, cm + size, cm + size)).resize((OUT, OUT), Image.LANCZOS).save(
+            f"photos-cms/{name}.jpg", quality=85
+        )
     im = im.rotate(-ROTATE, resample=Image.BICUBIC)
     m = (big - size) // 2
     im = im.crop((m, m, m + size, m + size)).resize((OUT, OUT), Image.LANCZOS)

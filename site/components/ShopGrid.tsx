@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { products, productPath, priceNumber } from "@/lib/products";
+import ProductPhoto from "@/components/ProductPhoto";
+import { productPath, priceNumber, type Product } from "@/lib/products";
 
 const FILTERS = [
   { key: "all", label: "Everything" },
@@ -20,12 +21,15 @@ function matches(filter: FilterKey, price: number): boolean {
   return true;
 }
 
-export default function ShopGrid() {
+export default function ShopGrid({ products }: { products: Product[] }) {
   const initial = useSearchParams().get("price") as FilterKey | null;
   const [filter, setFilter] = useState<FilterKey>(
     initial && FILTERS.some((f) => f.key === initial) ? initial : "all",
   );
-  const shown = products.filter((p) => matches(filter, priceNumber(p)));
+  // available pieces first, sold ones after
+  const shown = products
+    .filter((p) => matches(filter, priceNumber(p)))
+    .sort((a, b) => Number(!!a.sold) - Number(!!b.sold));
 
   return (
     <>
@@ -47,11 +51,11 @@ export default function ShopGrid() {
           <a
             key={p.slug}
             href={productPath(p)}
-            className={`tmy-card product${p.size ? ` product-${p.size}` : ""}`}
+            className={`tmy-card product${p.size ? ` product-${p.size}` : ""}${p.sold ? " product-is-sold" : ""}`}
           >
             <div className="product-block" style={{ background: p.color }}>
               {p.image ? (
-                <img className="product-img" src={p.image} alt={p.name} />
+                <ProductPhoto src={p.image} alt={p.name} rotate={p.rotate} />
               ) : (
                 <div className="hatch hatch-sm product-hatch">
                   <span>product shot</span>
@@ -64,7 +68,11 @@ export default function ShopGrid() {
                 <span className="tag-hole" />
                 {p.era}
               </div>
-              <span className="product-dot" title="available" />
+              {p.sold ? (
+                <span className="product-sold-chip">SOLD</span>
+              ) : (
+                <span className="product-dot" title="available" />
+              )}
             </div>
             <div className="product-row">
               <div className="product-name">{p.name}</div>

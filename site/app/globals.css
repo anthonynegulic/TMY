@@ -1630,3 +1630,49 @@ body {
   padding: 3px 9px;
   border-radius: 999px;
 }
+
+/* CMS photos: turned 90deg clockwise, still filling the box */
+.product-rot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container-type: size;
+}
+.product-rot-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  max-width: none;
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+.product-sold-chip {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
+  background: var(--ink);
+  color: var(--pink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.product-is-sold .product-block {
+  opacity: 0.72;
+}
+.product-more {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.product-more-item {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+}

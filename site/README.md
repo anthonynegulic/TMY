@@ -26,3 +26,17 @@ npm run start
 - `lib/products.ts` — placeholder product data for the archive grid (swap for real inventory / commerce API later)
 
 Fonts (Bricolage Grotesque, Instrument Serif) are self-hosted via `next/font`.
+
+## Editing products (Sanity CMS)
+
+Pieces live in Sanity, not in code. The ladies add and edit them at
+`/studio` (theirsmineyours.com/studio): photos, price, gold, description,
+a Sold switch and ordering. The site picks up changes within about a minute.
+
+- Project ID `wpulke7o`, dataset `production` (`lib/sanity/env.ts`)
+- Schema: `sanity/schemaTypes/product.ts`; studio config: `sanity.config.ts`
+- Data layer: `lib/catalog.ts` (falls back to the bundled pieces in
+  `lib/products.ts` if Sanity is unreachable or empty)
+- Photos uploaded in the Studio are turned 90 degrees clockwise on the site
+  (`components/ProductPhoto.tsx`), matching the bundled photos
+- One-off import of the first 8 pieces: `scripts/import-products.mjs`

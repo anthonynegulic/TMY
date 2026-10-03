@@ -11,6 +11,12 @@ export type Product = {
   // site/public/products/ and set this; cards without one show the striped
   // placeholder. (Don't hotlink Instagram URLs — they're signed and expire.)
   image?: string;
+  // Further photos (product page only).
+  images?: string[];
+  // Photos from the CMS are turned 90 degrees on the site (see ProductPhoto);
+  // the bundled fallback photos below already have the turn baked in.
+  rotate?: boolean;
+  sold?: boolean;
   // Longer copy for the product page.
   description: string;
 };
@@ -23,7 +29,8 @@ export function priceNumber(p: Product): number {
   return Number(p.price.replace(/[^0-9.]/g, ""));
 }
 
-export const products: Product[] = [
+// Used only until the Sanity catalogue is connected and filled (see lib/catalog.ts).
+export const fallbackProducts: Product[] = [
   {
     slug: "lattice-dome-ring",
     name: "Lattice dome ring",

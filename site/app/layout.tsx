@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -31,9 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${bricolage.variable} ${instrument.variable}`}>
       <body>
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );

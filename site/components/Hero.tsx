@@ -23,29 +23,28 @@ export default function Hero() {
 
         <div className="hero-collage">
           <div className="hero-tag hero-tag-1">
-            <div className="hatch" />
+            <img src="/products/hero-ruby-ring.jpg" alt="Gold ring set with a ruby cabochon" className="hero-tag-img" />
             <div className="lot-chip">
               <span className="lot-hole" />
-              LOT 14 · 18k
+              LOT 07
             </div>
-            <div className="hero-tag-name">Byzantine bracelet</div>
-            <div className="hero-tag-price">$1,250</div>
+            <div className="hero-tag-name">Ruby ring</div>
           </div>
           <div className="hero-tag hero-tag-2">
-            <div className="hatch" />
+            <img src="/products/hero-dome-ring.jpg" alt="Gold and diamond lattice dome ring" className="hero-tag-img" />
             <div className="lot-chip lot-chip-sm">
               <span className="lot-hole" />
-              LOT 07 · 14k
+              LOT 03
             </div>
-            <div className="hero-tag-name">Bombé ring</div>
+            <div className="hero-tag-name">Lattice dome</div>
           </div>
           <div className="hero-tag hero-tag-3">
-            <div className="hatch" />
+            <img src="/products/hero-tanzanite-ring.jpg" alt="Gold halo ring with a blue stone" className="hero-tag-img" />
             <div className="lot-chip lot-chip-sm">
               <span className="lot-hole" />
-              LOT 22 · 9k
+              LOT 14
             </div>
-            <div className="hero-tag-name">Curb chain</div>
+            <div className="hero-tag-name">Halo ring</div>
           </div>
           <div className="collage-caption">pinned from the archive ↑</div>
         </div>

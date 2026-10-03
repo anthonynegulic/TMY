@@ -1,16 +1,7 @@
 export default function About() {
   return (
     <section id="about" className="container about">
-      <div className="about-grid">
-        <div className="about-photo">
-          <div className="hatch about-hatch">
-            <span>the two of us · lifestyle shot</span>
-          </div>
-          <div className="lot-chip about-chip">
-            <span className="lot-hole" />
-            EST. BY TWO
-          </div>
-        </div>
+      <div className="about-text">
         <div>
           <h2 className="about-title">
             A shared eye, and a soft spot for{" "}

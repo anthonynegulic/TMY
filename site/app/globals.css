@@ -1584,3 +1584,22 @@ body {
     padding-bottom: 40px;
   }
 }
+
+/* hero tag photos */
+.hero-tag-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-tag-name {
+  background: var(--pink);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+/* homepage about is text-only */
+.about-text {
+  max-width: 720px;
+}

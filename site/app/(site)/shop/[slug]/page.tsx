@@ -46,7 +46,7 @@ export default async function ProductPage({
         <div>
         <div className="product-page-photo" style={{ background: product.color }}>
           {product.image ? (
-            <ProductPhoto src={product.image} alt={product.name} rotate={product.rotate} />
+            <ProductPhoto photo={product.image} alt={product.name} />
           ) : (
             <div className="hatch product-hatch">
               <span>product shot coming soon</span>
@@ -64,16 +64,15 @@ export default async function ProductPage({
         </div>
         {product.images && product.images.length > 0 && (
           <div className="product-more">
-            {product.images.map((src, i) => (
+            {product.images.map((photo, i) => (
               <div
-                key={src}
+                key={photo.src}
                 className="product-more-item"
                 style={{ background: product.color }}
               >
                 <ProductPhoto
-                  src={src}
+                  photo={photo}
                   alt={`${product.name}, photo ${i + 2}`}
-                  rotate={product.rotate}
                 />
               </div>
             ))}

@@ -32,7 +32,7 @@ export const product = defineType({
       title: "Photos",
       type: "array",
       description:
-        "The first photo is the main one. Upload straight from your camera or phone; the site turns them to match the rest.",
+        "The first photo is the main one. Upload straight from your camera or phone. If a photo looks sideways on the site, click it and change \"Turn photo\".",
       of: [
         defineArrayMember({
           type: "image",
@@ -42,6 +42,22 @@ export const product = defineType({
               name: "alt",
               title: "Describe the photo (optional)",
               type: "string",
+            }),
+            defineField({
+              name: "rotation",
+              title: "Turn photo",
+              type: "number",
+              description: "Turns the photo on the website (the preview here stays as uploaded).",
+              options: {
+                list: [
+                  { title: "As uploaded", value: 0 },
+                  { title: "Quarter turn right", value: 90 },
+                  { title: "Upside down", value: 180 },
+                  { title: "Quarter turn left", value: 270 },
+                ],
+                layout: "radio",
+              },
+              initialValue: 0,
             }),
           ],
         }),

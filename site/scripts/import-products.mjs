@@ -39,7 +39,7 @@ for (const p of fallbackProducts) {
     name: p.name,
     slug: { _type: "slug", current: p.slug },
     images: [
-      { _type: "image", _key: "main", asset: { _type: "reference", _ref: asset._id }, alt: p.name },
+      { _type: "image", _key: "main", asset: { _type: "reference", _ref: asset._id }, alt: p.name, rotation: 90 },
     ],
     price: Number(p.price.replace(/[^0-9.]/g, "")),
     karat: p.era,

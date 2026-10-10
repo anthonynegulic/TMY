@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import ShopGrid from "@/components/ShopGrid";
 import { getProducts } from "@/lib/catalog";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
@@ -10,9 +9,15 @@ export const metadata: Metadata = {
     "The archive of curated preloved solid-gold pieces. One of one; when it's gone, it's gone.",
 };
 
-export const revalidate = 60;
-
-export default async function ShopPage() {
+// Reading searchParams renders the page per request, so the grid (and any
+// ?price= filter) is in the HTML rather than appearing only after JavaScript
+// loads. The Sanity fetch itself is still cached (lib/catalog.ts).
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ price?: string | string[] }>;
+}) {
+  await searchParams;
   const products = await getProducts();
   return (
     <div>
@@ -27,9 +32,7 @@ export default async function ShopPage() {
       </section>
 
       <section className="container page-section page-section-last">
-        <Suspense>
-          <ShopGrid products={products} />
-        </Suspense>
+        <ShopGrid products={products} />
         <p className="shop-footnote">
           Can&#39;t see what you&#39;re after? Drops land first on{" "}
           <a

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFoundContent() {
   return (
     <section className="container page-hero page-section-last">
@@ -10,12 +12,12 @@ export default function NotFoundContent() {
         us what you&#39;re after and we&#39;ll keep an eye out.
       </p>
       <div className="hero-ctas not-found-ctas">
-        <a href="/shop" className="btn-dark">
+        <Link href="/shop" className="btn-dark">
           Browse the archive
-        </a>
-        <a href="/contact" className="tmy-link text-link">
+        </Link>
+        <Link href="/contact" className="tmy-link text-link">
           Send us a wish list
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ import "./globals.css";
 // Shown for URLs that don't match any page. It renders outside the site
 // layout, so it brings its own header, footer and styles.
 export const metadata: Metadata = {
-  title: "Not found · Theirs. Mine. Yours.",
+  title: "Not found",
 };
 
 export default function NotFound() {

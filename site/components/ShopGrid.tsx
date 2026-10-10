@@ -1,8 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import ProductPhoto from "@/components/ProductPhoto";
-import { productPath, priceNumber, type Product } from "@/lib/products";
+import ProductCard from "@/components/ProductCard";
+import { priceNumber, type Product } from "@/lib/products";
 
 const FILTERS = [
   { key: "all", label: "Everything" },
@@ -60,38 +60,7 @@ export default function ShopGrid({ products }: { products: Product[] }) {
 
       <div className="archive-grid">
         {shown.map((p) => (
-          <a
-            key={p.slug}
-            href={productPath(p)}
-            className={`tmy-card product${p.size ? ` product-${p.size}` : ""}${p.sold ? " product-is-sold" : ""}`}
-          >
-            <div className="product-block" style={{ background: p.color }}>
-              {p.image ? (
-                <ProductPhoto photo={p.image} alt={p.name} />
-              ) : (
-                <div className="hatch hatch-sm product-hatch">
-                  <span>product shot</span>
-                </div>
-              )}
-              <div
-                className="tag-chip product-chip"
-                style={{ "--chip-tilt": `${p.tilt}deg` } as React.CSSProperties}
-              >
-                <span className="tag-hole" />
-                {p.era}
-              </div>
-              {p.sold ? (
-                <span className="product-sold-chip">SOLD</span>
-              ) : (
-                <span className="product-dot" title="available" />
-              )}
-            </div>
-            <div className="product-row">
-              <div className="product-name">{p.name}</div>
-              <div className="product-price">{p.price}</div>
-            </div>
-            <div className="product-meta">{p.meta}</div>
-          </a>
+          <ProductCard key={p.slug} product={p} />
         ))}
       </div>
 

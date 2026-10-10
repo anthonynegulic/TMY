@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ShopGrid from "@/components/ShopGrid";
 import { getProducts } from "@/lib/catalog";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Shop · Theirs. Mine. Yours.",
+  title: "Shop",
   description:
     "The archive of curated preloved solid-gold pieces. One of one; when it's gone, it's gone.",
 };
@@ -44,9 +45,9 @@ export default async function ShopPage({
             Instagram {INSTAGRAM_HANDLE}
           </a>
           , and we take wish lists via the{" "}
-          <a href="/contact" className="tmy-link">
+          <Link href="/contact" className="tmy-link">
             contact page
-          </a>
+          </Link>
           .
         </p>
       </section>

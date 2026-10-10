@@ -3,6 +3,8 @@ export type Rotation = 0 | 90 | 180 | 270;
 
 export type Photo = {
   src: string;
+  // the same photo at several widths, for <img srcset> (CMS photos only)
+  srcSet?: string;
   alt?: string;
   rotation?: Rotation;
 };

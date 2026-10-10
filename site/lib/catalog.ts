@@ -1,5 +1,5 @@
 import { client } from "@/lib/sanity/client";
-import { imageUrl } from "@/lib/sanity/image";
+import { imageSrcSet, imageUrl } from "@/lib/sanity/image";
 import { fallbackProducts, type Photo, type Product, type Rotation } from "@/lib/products";
 
 // How long (seconds) the live site waits before picking up edits made in the Studio.
@@ -59,6 +59,7 @@ function toProduct(p: SanityProduct, i: number): Product {
     .filter((im) => im.asset)
     .map((im) => ({
       src: imageUrl(im),
+      srcSet: imageSrcSet(im),
       alt: im.alt || undefined,
       rotation: toRotation(im.rotation, fallbackTurn),
     }));

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import WaveDivider from "@/components/WaveDivider";
 
 export const metadata: Metadata = {
-  title: "The story · Theirs. Mine. Yours.",
+  title: "The story",
   description:
     "Two first-time mums, two cultures where gold is a love language, and a name that describes the journey every piece takes.",
 };
@@ -138,7 +139,7 @@ export default function StoryPage() {
       </section>
 
       {/* the name */}
-      <section className="container page-section">
+      <section id="the-name" className="container page-section">
         <div className="name-band">
           <div className="name-band-words">
             <span className="name-band-word">Theirs.</span>
@@ -188,10 +189,10 @@ export default function StoryPage() {
               of what happens when the right friendship finds the right idea.
             </p>
             <div className="hero-ctas">
-              <a href="/about" className="btn-dark">Meet the two of us</a>
-              <a href="/shop" className="tmy-link text-link">
+              <Link href="/about" className="btn-dark">Meet the two of us</Link>
+              <Link href="/shop" className="tmy-link text-link">
                 Shop the collection
-              </a>
+              </Link>
             </div>
           </div>
         </div>

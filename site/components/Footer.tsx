@@ -1,3 +1,4 @@
+import Link from "next/link";
 import WaveDivider from "@/components/WaveDivider";
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
@@ -31,13 +32,13 @@ export default function Footer() {
             </div>
             <div className="footer-col">
               <div className="footer-col-title">Browse</div>
-              <a href="/shop" className="tmy-link">Shop all</a>
+              <Link href="/shop" className="tmy-link">Shop all</Link>
               <br />
-              <a href="/shop" className="tmy-link">Shop by price</a>
+              <Link href="/#price" className="tmy-link">Shop by price</Link>
               <br />
-              <a href="/story" className="tmy-link">The story</a>
+              <Link href="/story" className="tmy-link">The story</Link>
               <br />
-              <a href="/about" className="tmy-link">About</a>
+              <Link href="/about" className="tmy-link">About</Link>
             </div>
             <div className="footer-col">
               <div className="footer-col-title">Say hello</div>
@@ -50,7 +51,7 @@ export default function Footer() {
                 Instagram
               </a>
               <br />
-              <a href="/contact" className="tmy-link">Contact us</a>
+              <Link href="/contact" className="tmy-link">Contact us</Link>
               <br />
               <a href={`mailto:${CONTACT_EMAIL}`} className="tmy-link">
                 {CONTACT_EMAIL}

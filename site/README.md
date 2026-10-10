@@ -22,7 +22,8 @@ npm run start
 
 - `app/page.tsx` — homepage composition
 - `app/globals.css` — the design system (palette, type, all section styles, responsive breakpoints)
-- `components/` — Header, Hero, WaveDivider, StoryBand, ArchiveGrid, PriceBand, About, Footer
+- `components/` — Header, Hero, WaveDivider, StoryBand, ArchiveGrid, PriceBand, About, Footer,
+  plus ProductCard (one piece in any grid) and ProductGallery (product photos and zoom)
 - `lib/products.ts` — placeholder product data for the archive grid (swap for real inventory / commerce API later)
 
 Fonts (Bricolage Grotesque, Instrument Serif) are self-hosted via `next/font`.
@@ -44,3 +45,16 @@ a Sold switch and ordering. The site picks up changes within about a minute.
   pieces default to a quarter turn right; everything else defaults to as
   uploaded
 - One-off import of the first 8 pieces: `scripts/import-products.mjs`
+
+## Link previews and search
+
+- Sharing any page shows `app/opengraph-image.tsx`; sharing a piece shows its
+  own card from `app/(site)/shop/[slug]/share.png/route.tsx` (main photo,
+  turned as set in the Studio, with the name and price)
+- Both are drawn with the brand fonts in `assets/fonts` (SIL Open Font
+  License, `.woff` because the image renderer can't read `.woff2`)
+- `app/sitemap.ts`, `app/robots.ts` (keeps `/studio` out of search), and
+  product structured data on each piece's page
+- The site address comes from `SITE_URL` in `lib/site.ts`: on Vercel it's the
+  production domain automatically; set `NEXT_PUBLIC_SITE_URL` to override
+

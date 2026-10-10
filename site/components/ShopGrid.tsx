@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductPhoto from "@/components/ProductPhoto";
 import { productPath, priceNumber, type Product } from "@/lib/products";
@@ -16,16 +15,28 @@ type FilterKey = (typeof FILTERS)[number]["key"];
 
 function matches(filter: FilterKey, price: number): boolean {
   if (filter === "under-500") return price < 500;
-  if (filter === "500-1000") return price >= 500 && price <= 1000;
-  if (filter === "1000-plus") return price > 1000;
+  if (filter === "500-1000") return price >= 500 && price < 1000;
+  if (filter === "1000-plus") return price >= 1000;
   return true;
 }
 
 export default function ShopGrid({ products }: { products: Product[] }) {
-  const initial = useSearchParams().get("price") as FilterKey | null;
-  const [filter, setFilter] = useState<FilterKey>(
-    initial && FILTERS.some((f) => f.key === initial) ? initial : "all",
-  );
+  // The filter lives in the URL (?price=under-500) so it can be shared and the
+  // back button undoes it.
+  const searchParams = useSearchParams();
+  const param = searchParams.get("price");
+  const filter: FilterKey = FILTERS.some((f) => f.key === param)
+    ? (param as FilterKey)
+    : "all";
+
+  function setFilter(key: FilterKey) {
+    if (key === filter) return;
+    const params = new URLSearchParams(searchParams.toString());
+    if (key === "all") params.delete("price");
+    else params.set("price", key);
+    const query = params.toString();
+    window.history.pushState(null, "", query ? `?${query}` : window.location.pathname);
+  }
   // available pieces first, sold ones after
   const shown = products
     .filter((p) => matches(filter, priceNumber(p)))
@@ -39,6 +50,7 @@ export default function ShopGrid({ products }: { products: Product[] }) {
             key={f.key}
             type="button"
             className={`shop-filter${filter === f.key ? " shop-filter-active" : ""}`}
+            aria-pressed={filter === f.key}
             onClick={() => setFilter(f.key)}
           >
             {f.label}
@@ -55,7 +67,7 @@ export default function ShopGrid({ products }: { products: Product[] }) {
           >
             <div className="product-block" style={{ background: p.color }}>
               {p.image ? (
-                <ProductPhoto src={p.image} alt={p.name} rotate={p.rotate} />
+                <ProductPhoto photo={p.image} alt={p.name} />
               ) : (
                 <div className="hatch hatch-sm product-hatch">
                   <span>product shot</span>

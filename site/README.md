@@ -35,8 +35,12 @@ a Sold switch and ordering. The site picks up changes within about a minute.
 
 - Project ID `wpulke7o`, dataset `production` (`lib/sanity/env.ts`)
 - Schema: `sanity/schemaTypes/product.ts`; studio config: `sanity.config.ts`
-- Data layer: `lib/catalog.ts` (falls back to the bundled pieces in
-  `lib/products.ts` if Sanity is unreachable or empty)
-- Photos uploaded in the Studio are turned 90 degrees clockwise on the site
-  (`components/ProductPhoto.tsx`), matching the bundled photos
+- Data layer: `lib/catalog.ts`. If Sanity can't be reached, the live site
+  keeps serving the last good version of each page. The bundled pieces in
+  `lib/products.ts` are only used in `npm run dev`, or in a production build
+  when `USE_BUNDLED_PRODUCTS=1` is set (e.g. building without network access)
+- Each photo has a "Turn photo" setting in the Studio for sideways or
+  upside-down shots (`components/ProductPhoto.tsx`). The first 8 imported
+  pieces default to a quarter turn right; everything else defaults to as
+  uploaded
 - One-off import of the first 8 pieces: `scripts/import-products.mjs`

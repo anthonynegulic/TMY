@@ -152,9 +152,6 @@ body {
   .footer-col a:hover {
     color: var(--pink);
   }
-  .bag-link:hover .bag-count {
-    transform: scale(1.18) rotate(10deg);
-  }
 }
 .btn-dark:active,
 .btn-lime:active,
@@ -261,33 +258,6 @@ body {
 }
 .nav-link {
   color: var(--ink);
-}
-.nav-divider {
-  width: 1px;
-  height: 16px;
-  background: rgba(43, 33, 26, 0.2);
-}
-
-.bag-link {
-  color: var(--ink);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-weight: 700;
-  font-size: 14px;
-}
-.bag-count {
-  display: inline-grid;
-  place-items: center;
-  min-width: 19px;
-  height: 19px;
-  border-radius: 999px;
-  background: var(--maroon);
-  color: var(--pink);
-  font-size: 11px;
-  padding: 0 5px;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .nav-mobile {
@@ -1631,7 +1601,7 @@ body {
   border-radius: 999px;
 }
 
-/* CMS photos: turned 90deg clockwise, still filling the box */
+/* photos given a quarter turn in the Studio, still filling the box */
 .product-rot {
   position: absolute;
   inset: 0;
@@ -1646,7 +1616,10 @@ body {
   height: 100cqw;
   max-width: none;
   object-fit: cover;
-  transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(var(--rot, 90deg));
+}
+.product-img-flip {
+  transform: rotate(180deg);
 }
 .product-sold-chip {
   position: absolute;
@@ -1675,4 +1648,9 @@ body {
   aspect-ratio: 1;
   border-radius: var(--radius);
   overflow: hidden;
+}
+
+/* 404 */
+.not-found-ctas {
+  margin-top: 32px;
 }

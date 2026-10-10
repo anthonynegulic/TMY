@@ -10,14 +10,6 @@ const LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-function BagLink() {
-  return (
-    <a href="/shop" className="bag-link">
-      Bag <span className="bag-count">0</span>
-    </a>
-  );
-}
-
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -42,11 +34,8 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <span className="nav-divider" />
-          <BagLink />
         </nav>
         <div className="nav-mobile">
-          <BagLink />
           <button
             type="button"
             className="nav-burger"

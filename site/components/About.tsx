@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function About() {
   return (
     <section id="about" className="container about">
@@ -18,9 +20,9 @@ export default function About() {
             No mass production. No two the same. Just gold that was loved
             before, and will be again.
           </p>
-          <a href="/about" className="tmy-link text-link">
+          <Link href="/about" className="tmy-link text-link">
             Meet the two of us
-          </a>
+          </Link>
         </div>
       </div>
     </section>

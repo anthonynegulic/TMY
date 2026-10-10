@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About · Theirs. Mine. Yours.",
+  title: "About",
   description:
     "Ally and Abrar: two Melbourne mums with a shared eye, a soft spot for gold with a past, and very different routes to the same obsession.",
 };
@@ -176,10 +177,10 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="hero-ctas bio-ctas">
-            <a href="/story" className="btn-dark">Read our story</a>
-            <a href="/contact" className="tmy-link text-link">
+            <Link href="/story" className="btn-dark">Read our story</Link>
+            <Link href="/contact" className="tmy-link text-link">
               Send us a wish list
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@ import EnquiryForm from "@/components/EnquiryForm";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact · Theirs. Mine. Yours.",
+  title: "Contact",
   description:
     "DM us on Instagram or send an enquiry. We reply within one business day. Fully online, for now.",
 };

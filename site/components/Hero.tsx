@@ -1,4 +1,14 @@
-export default function Hero() {
+import Link from "next/link";
+import ProductPhoto from "@/components/ProductPhoto";
+import { getProducts } from "@/lib/catalog";
+import { productPath } from "@/lib/products";
+
+// The pinned collage shows the first three available pieces (Studio order),
+// so a piece drops out of the hero as soon as it's marked sold.
+const TAG_SIZES = ["250px", "184px", "168px"];
+
+export default async function Hero() {
+  const pinned = (await getProducts()).filter((p) => !p.sold).slice(0, 3);
   return (
     <section className="container hero">
       <div className="hero-grid">
@@ -12,42 +22,37 @@ export default function Hero() {
             that&#39;s about to be yours.
           </p>
           <div className="hero-ctas">
-            <a href="/shop" className="btn-dark">
+            <Link href="/shop" className="btn-dark">
               Shop the collection
-            </a>
-            <a href="/story" className="tmy-link text-link">
+            </Link>
+            <Link href="/story#the-name" className="tmy-link text-link">
               Read the name&#39;s story
-            </a>
+            </Link>
           </div>
         </div>
 
-        <div className="hero-collage">
-          <div className="hero-tag hero-tag-1">
-            <img src="/products/ruby-gypsy-ring.jpg" alt="Gold gypsy ring set with a ruby" className="hero-tag-img" />
-            <div className="tag-chip">
-              <span className="tag-hole" />
-              18K
-            </div>
-            <div className="hero-tag-name">Ruby gypsy ring</div>
+        {pinned.length > 0 && (
+          <div className="hero-collage">
+            {pinned.map((p, i) => (
+              <Link
+                key={p.slug}
+                href={productPath(p)}
+                className={`hero-tag hero-tag-${i + 1}`}
+                style={{ background: p.color }}
+              >
+                {p.image && (
+                  <ProductPhoto photo={p.image} alt={p.name} sizes={TAG_SIZES[i]} eager />
+                )}
+                <div className={`tag-chip${i > 0 ? " tag-chip-sm" : ""}`}>
+                  <span className="tag-hole" />
+                  {p.era}
+                </div>
+                <div className="hero-tag-name">{p.name}</div>
+              </Link>
+            ))}
+            <div className="collage-caption">pinned from the archive ↑</div>
           </div>
-          <div className="hero-tag hero-tag-2">
-            <img src="/products/lattice-dome-ring.jpg" alt="Gold and diamond lattice dome ring" className="hero-tag-img" />
-            <div className="tag-chip tag-chip-sm">
-              <span className="tag-hole" />
-              18K
-            </div>
-            <div className="hero-tag-name">Lattice dome ring</div>
-          </div>
-          <div className="hero-tag hero-tag-3">
-            <img src="/products/sapphire-halo-ring.jpg" alt="Sapphire halo ring in gold" className="hero-tag-img" />
-            <div className="tag-chip tag-chip-sm">
-              <span className="tag-hole" />
-              18K
-            </div>
-            <div className="hero-tag-name">Sapphire halo</div>
-          </div>
-          <div className="collage-caption">pinned from the archive ↑</div>
-        </div>
+        )}
       </div>
     </section>
   );

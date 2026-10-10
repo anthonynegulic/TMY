@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const STEPS = [
   {
     num: "1",
@@ -27,9 +29,9 @@ export default function StoryBand() {
           <div className="story-aside">
             Theirs, then mine, then the good part: yours.
             <br />
-            <a href="/story" className="tmy-link text-link story-aside-link">
+            <Link href="/story" className="tmy-link text-link story-aside-link">
               Read the whole story →
-            </a>
+            </Link>
           </div>
         </div>
 

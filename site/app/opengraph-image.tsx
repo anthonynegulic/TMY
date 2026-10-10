@@ -1,38 +1,27 @@
 import { ImageResponse } from "next/og";
+import { getHeroPieces } from "@/lib/catalog";
 import { OG, OG_SIZE, ogFonts, ogPhoto } from "@/lib/og";
 
 // The preview shown when any page without its own (homepage, story, etc.) is
-// shared. Uses two of the bundled photos, so it never depends on the Studio.
+// shared: the tagline beside the first two hero pieces from the Studio.
 export const alt = "Theirs. Mine. Yours. Gold that's already lived a little.";
 export const size = OG_SIZE;
 export const contentType = "image/png";
+export const revalidate = 60;
 
-const TAGS = [
-  {
-    src: "/products/ruby-gypsy-ring.jpg",
-    color: "#E5A06B",
-    w: 300,
-    h: 380,
-    top: 70,
-    right: 90,
-    tilt: -3,
-  },
-  {
-    src: "/products/lattice-dome-ring.jpg",
-    color: "#A9C6D6",
-    w: 230,
-    h: 230,
-    top: 290,
-    right: 330,
-    tilt: 4,
-  },
+// square cards, so a photo's quarter turn still fills its card
+const SLOTS = [
+  { size: 340, top: 60, right: 80, tilt: -3 },
+  { size: 240, top: 320, right: 345, tilt: 4 },
 ];
 
 export default async function Image() {
+  const pieces = (await getHeroPieces()).slice(0, SLOTS.length);
   const [fonts, ...photos] = await Promise.all([
     ogFonts(),
-    ...TAGS.map((t) => ogPhoto({ src: t.src })),
+    ...pieces.map((p) => ogPhoto(p.image)),
   ]);
+  const tags = pieces.map((p, i) => ({ ...SLOTS[i], piece: p, photo: photos[i] }));
 
   return new ImageResponse(
     <div
@@ -94,31 +83,36 @@ export default async function Image() {
         </div>
       </div>
 
-      {TAGS.map((t, i) => (
+      {tags.map((t) => (
         <div
-          key={t.src}
+          key={t.piece.slug}
           style={{
             position: "absolute",
             top: t.top,
             right: t.right,
-            width: t.w,
-            height: t.h,
+            width: t.size,
+            height: t.size,
             display: "flex",
             borderRadius: 22,
             overflow: "hidden",
-            background: t.color,
+            background: t.piece.color,
             transform: `rotate(${t.tilt}deg)`,
             boxShadow: "0 16px 36px rgba(43, 33, 26, 0.22)",
           }}
         >
-          {photos[i] && (
+          {t.photo && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={photos[i]}
+              src={t.photo}
               alt=""
-              width={t.w}
-              height={t.h}
-              style={{ width: t.w, height: t.h, objectFit: "cover" }}
+              width={t.size}
+              height={t.size}
+              style={{
+                width: t.size,
+                height: t.size,
+                objectFit: "cover",
+                transform: `rotate(${t.piece.image?.rotation ?? 0}deg)`,
+              }}
             />
           )}
         </div>

@@ -1,14 +1,14 @@
 import Link from "next/link";
 import ProductPhoto from "@/components/ProductPhoto";
-import { getProducts } from "@/lib/catalog";
+import { getHeroPieces } from "@/lib/catalog";
 import { productPath } from "@/lib/products";
 
-// The pinned collage shows the first three available pieces (Studio order),
-// so a piece drops out of the hero as soon as it's marked sold.
+// The pinned collage shows the pieces ticked "Show in the homepage hero" in
+// the Studio (see getHeroPieces), so it only ever shows what's in the store.
 const TAG_SIZES = ["250px", "184px", "168px"];
 
 export default async function Hero() {
-  const pinned = (await getProducts()).filter((p) => !p.sold).slice(0, 3);
+  const pinned = await getHeroPieces();
   return (
     <section className="container hero">
       <div className="hero-grid">

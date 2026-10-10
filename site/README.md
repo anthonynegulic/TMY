@@ -44,6 +44,9 @@ a Sold switch and ordering. The site picks up changes within about a minute.
   upside-down shots (`components/ProductPhoto.tsx`). The first 8 imported
   pieces default to a quarter turn right; everything else defaults to as
   uploaded
+- "Show in the homepage hero" picks the pieces pinned in the hero (and the
+  site's share image): first three ticked by Position, sold ones left out.
+  If nothing is ticked, the first three available pieces show
 - One-off import of the first 8 pieces: `scripts/import-products.mjs`
 
 ## Link previews and search

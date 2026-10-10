@@ -17,6 +17,7 @@ const QUERY = `*[_type == "product" && defined(slug.current)]
     detail,
     description,
     sold,
+    featured,
     color,
     cardSize,
     "images": images[]{asset, crop, hotspot, alt, rotation}
@@ -33,6 +34,7 @@ type SanityProduct = {
   detail?: string;
   description?: string;
   sold?: boolean;
+  featured?: boolean;
   color?: string;
   cardSize?: "normal" | "big" | "wide";
   images?: SanityImage[];
@@ -75,6 +77,7 @@ function toProduct(p: SanityProduct, i: number): Product {
     image: photos[0],
     images: photos.slice(1),
     sold: p.sold ?? false,
+    featured: p.featured ?? false,
     description: p.description ?? "",
   };
 }
@@ -104,4 +107,14 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getProduct(slug: string): Promise<Product | undefined> {
   return (await getProducts()).find((p) => p.slug === slug);
+}
+
+// The pieces pinned in the homepage hero (and the site's share image): those
+// ticked "Show in the homepage hero" in the Studio, first three by Position,
+// sold ones left out. If nothing is ticked, the first three available pieces
+// show, so the hero is never empty.
+export async function getHeroPieces(): Promise<Product[]> {
+  const available = (await getProducts()).filter((p) => !p.sold);
+  const ticked = available.filter((p) => p.featured);
+  return (ticked.length > 0 ? ticked : available).slice(0, 3);
 }

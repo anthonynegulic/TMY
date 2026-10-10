@@ -100,6 +100,14 @@ export const product = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "featured",
+      title: "Show in the homepage hero",
+      type: "boolean",
+      description:
+        "Tick up to three. If more are ticked, the three with the lowest Position show. Sold pieces drop out automatically.",
+      initialValue: false,
+    }),
+    defineField({
       name: "order",
       title: "Position",
       type: "number",
@@ -142,11 +150,20 @@ export const product = defineType({
     },
   ],
   preview: {
-    select: { title: "name", sold: "sold", karat: "karat", price: "price", media: "images.0" },
-    prepare({ title, sold, karat, price, media }) {
+    select: {
+      title: "name",
+      sold: "sold",
+      featured: "featured",
+      karat: "karat",
+      price: "price",
+      media: "images.0",
+    },
+    prepare({ title, sold, featured, karat, price, media }) {
       return {
         title: `${title ?? "Untitled"}${sold ? " (SOLD)" : ""}`,
-        subtitle: [karat, price ? `$${price}` : ""].filter(Boolean).join(" · "),
+        subtitle: [karat, price ? `$${price}` : "", featured ? "In hero" : ""]
+          .filter(Boolean)
+          .join(" · "),
         media,
       };
     },

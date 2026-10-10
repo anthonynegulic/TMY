@@ -26,6 +26,8 @@ export type Product = {
   // Further photos (product page only).
   images?: Photo[];
   sold?: boolean;
+  // ticked "Show in the homepage hero" in the Studio
+  featured?: boolean;
   // Longer copy for the product page.
   description: string;
 };

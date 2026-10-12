@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import EnquiryForm from "@/components/EnquiryForm";
+import InstagramPreview from "@/components/InstagramPreview";
+import { getProducts } from "@/lib/catalog";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -8,7 +10,8 @@ export const metadata: Metadata = {
     "DM us on Instagram or send an enquiry. We reply within one business day. Fully online, for now.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const available = (await getProducts()).filter((p) => !p.sold);
   return (
     <div>
       <section className="container page-hero">
@@ -30,12 +33,12 @@ export default function ContactPage() {
       <section className="container page-section page-section-last">
         <div className="contact-grid">
           <div className="contact-card" style={{ background: "#BBC471" }}>
-            <div className="hatch" />
             <div className="tag-chip">
               <span className="tag-hole" />
               FASTEST WAY
             </div>
             <div className="contact-card-body">
+              <InstagramPreview pieces={available} />
               <div className="contact-card-title">DM us on Instagram</div>
               <p>
                 It&#39;s where the drops happen first, and where we&#39;re

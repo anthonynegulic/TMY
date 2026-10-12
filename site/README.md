@@ -61,6 +61,25 @@ a Sold switch and ordering. The site picks up changes within about a minute.
   same Formspree form as enquiries (subject "TMY reservation — <piece>")
 - One-off import of the first 8 pieces: `scripts/import-products.mjs`
 
+## Coming soon (until launch)
+
+Until `LAUNCH_AT` in `lib/site.ts` (Friday 16 October 2026, 2pm Melbourne
+time), every page shows `app/coming-soon/page.tsx` at its own address: a
+countdown, three pinned pieces and a follow button. `proxy.ts` does the
+switching, so at launch the real shop appears by itself with no deploy, and
+anyone sitting on the countdown is reloaded into it. The Studio, photos and
+link previews are never blocked.
+
+- **Preview the real shop before launch:** set `PREVIEW_KEY` in Vercel
+  (Settings → Environment Variables, Production) to any password, redeploy,
+  then visit `theirsmineyours.com/?preview=<that password>` once per browser.
+  Without `PREVIEW_KEY` there's no way in until launch
+- **Move the launch:** set `LAUNCH_AT` in Vercel (e.g.
+  `2026-10-17T10:00:00+11:00`) and redeploy. The page is built ahead of time,
+  so the countdown only picks up a new time after a redeploy
+- **After launch** `proxy.ts`, `app/coming-soon/`, `components/Countdown.tsx`
+  and the "coming soon" styles in `globals.css` can be deleted
+
 ## Link previews and search
 
 - Sharing any page shows `app/opengraph-image.tsx`; sharing a piece shows its

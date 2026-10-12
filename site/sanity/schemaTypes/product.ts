@@ -119,6 +119,10 @@ export const product = defineType({
       title: "Card colour",
       type: "string",
       description: "The colour behind the photo on cards.",
+      // Cards now take their border colour from their place in the grid, so
+      // this no longer shows on the site. Hidden rather than removed so
+      // existing values are kept.
+      hidden: true,
       options: {
         list: PALETTE,
       },

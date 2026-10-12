@@ -5,7 +5,8 @@ import { FORMSPREE_ID, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-export default function EnquiryForm({ piece }: { piece?: string }) {
+// `reserve` turns it into a request to hold `piece` (from "I want this one").
+export default function EnquiryForm({ piece, reserve = false }: { piece?: string; reserve?: boolean }) {
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -33,7 +34,10 @@ export default function EnquiryForm({ piece }: { piece?: string }) {
       <div className="form-done">
         <div className="form-done-title">Got it. Thank you!</div>
         <p>
-          We&#39;ll get back to you within one business day. If it&#39;s urgent,
+          {reserve
+            ? "We'll be in touch within one business day to sort payment and postage."
+            : "We'll get back to you within one business day."}{" "}
+          If it&#39;s urgent,
           DM us on{" "}
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="tmy-link">
             Instagram
@@ -51,15 +55,16 @@ export default function EnquiryForm({ piece }: { piece?: string }) {
         name="_subject"
         value={
           piece
-            ? `TMY enquiry — ${piece}`
+            ? `TMY ${reserve ? "reservation" : "enquiry"} — ${piece}`
             : "TMY enquiry — via the website"
         }
       />
+      {reserve && <input type="hidden" name="request" value="Reserve this piece" />}
       {piece && <input type="hidden" name="piece" value={piece} />}
       <div className="form-row">
         <label className="form-field">
           <span className="form-label">Name</span>
-          <input name="name" type="text" required autoComplete="name" />
+          <input name="name" type="text" required autoComplete="name" autoFocus={reserve} />
         </label>
         <label className="form-field">
           <span className="form-label">Email</span>
@@ -78,6 +83,7 @@ export default function EnquiryForm({ piece }: { piece?: string }) {
           name="message"
           rows={4}
           required
+          defaultValue={reserve && piece ? `Hi! I'd love to reserve ${piece}.` : undefined}
           placeholder={
             piece
               ? "Ask us anything about this piece: sizing, condition, extra photos, holds."
@@ -87,7 +93,7 @@ export default function EnquiryForm({ piece }: { piece?: string }) {
       </label>
       <div className="form-actions">
         <button type="submit" className="btn-dark form-submit" disabled={status === "sending"}>
-          {status === "sending" ? "Sending…" : "Send enquiry"}
+          {status === "sending" ? "Sending…" : reserve ? "Reserve it" : "Send enquiry"}
         </button>
         <span className="form-note">We reply within one business day.</span>
       </div>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "@/components/Logo";
 
 const LINKS = [
   { href: "/shop", label: "Shop" },
@@ -38,7 +39,7 @@ export default function Header() {
     <header className="masthead">
       <div className="container masthead-inner">
         <Link href="/" className="brand" onClick={close}>
-          <span className="brand-mark">TMY</span>
+          <Logo className="brand-logo" />
           <span className="brand-name">Theirs. Mine. Yours.</span>
         </Link>
         <nav className="nav-desktop" aria-label="Main">

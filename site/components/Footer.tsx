@@ -5,7 +5,7 @@ import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
 export default function Footer() {
   return (
     <footer className="footer-wrap">
-      <WaveDivider fill="#F7DCE6" bg="#2B211A" />
+      <WaveDivider fill="#F7DCE6" bg="#7A2E2B" />
       <div className="footer">
         <div className="container">
           <div className="footer-cta">

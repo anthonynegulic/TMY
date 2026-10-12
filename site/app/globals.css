@@ -880,6 +880,76 @@ body {
   color: var(--footer-faint);
 }
 
+/* —— coming soon (until launch, see proxy.ts) —— */
+
+.soon {
+  padding-bottom: 72px;
+}
+.soon-chip {
+  display: inline-flex;
+  margin-bottom: 22px;
+}
+.soon-note {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-size: 19px;
+  color: var(--body);
+}
+.countdown {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 32px;
+}
+.countdown-cell {
+  min-width: 74px;
+  padding: 12px 10px 10px;
+  border-radius: var(--radius);
+  background: var(--lime);
+  text-align: center;
+  box-shadow: 0 4px 0 var(--ink);
+  border: 1.5px solid var(--ink);
+}
+.countdown-cell:nth-child(2) {
+  background: var(--blue);
+}
+.countdown-cell:nth-child(3) {
+  background: var(--yellow);
+}
+.countdown-cell:nth-child(4) {
+  background: var(--peach);
+}
+.countdown-num {
+  display: block;
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.countdown-label {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.soon-email {
+  color: var(--footer-faint);
+}
+@media (max-width: 400px) {
+  .countdown {
+    gap: 7px;
+  }
+  .countdown-cell {
+    min-width: 0;
+    flex: 1;
+  }
+  .countdown-num {
+    font-size: 28px;
+  }
+}
+
 /* —— responsive —— */
 
 @media (max-width: 1024px) {

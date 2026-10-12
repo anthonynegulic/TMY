@@ -16,3 +16,11 @@ export const SITE_URL =
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000");
+
+// When the shop opens. Until then every page shows the coming-soon page
+// (proxy.ts), and at this moment it switches over by itself, no deploy
+// needed. Melbourne time (AEDT, +11:00). Set LAUNCH_AT in Vercel to move it
+// without a code change.
+export const LAUNCH_AT = process.env.LAUNCH_AT ?? "2026-10-16T14:00:00+11:00";
+
+export const isLaunched = (now = Date.now()) => now >= Date.parse(LAUNCH_AT);

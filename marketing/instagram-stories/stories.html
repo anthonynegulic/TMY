@@ -76,6 +76,7 @@ const LOGO = __LOGO__;
 const P = new URLSearchParams(location.search);
 const STORY = P.get('s') || 'demo-soon';
 const LAUNCH = P.get('date') || 'Friday 16 Oct';
+const TIME = P.get('time') || '2pm';
 const SITE = 'theirsmineyours.com';
 const GEO = __GEO__;
 
@@ -215,6 +216,8 @@ S['demo'] = live => {
     'display', `font-size:${live ? 200 : 160}px;width:1080px;text-align:center;color:var(--pink)`);
   const l2 = words(live ? '<span class="word">come</span> <span class="word">and</span> <span class="word">have</span> <span class="word">a</span> <span class="word">look</span>'
     : `<span class="word">${LAUNCH}</span>`, 'serif it', `font-size:${live ? 116 : 168}px;line-height:1;width:1080px;text-align:center;color:var(--yellow)`);
+  const l3 = live ? null : words(`<span class="word">at</span> <span class="word">${TIME}</span>`,
+    'serif it', 'font-size:124px;line-height:1;width:1080px;text-align:center;color:var(--yellow)');
   const pill = el(`<div class="abs" style="width:1080px;text-align:center"><span class="pill" style="background:var(--lime);color:var(--ink)">${SITE}</span></div>`);
 
   const homeTap = { x: GEO.homeStevie.x + GEO.homeStevie.width * 0.62, y: GEO.homeStevie.y + GEO.homeStevie.height * 0.72 };
@@ -261,8 +264,9 @@ S['demo'] = live => {
     dropLetters(endLogo, t, e0);
     place(l1, 0, 780, { o: t < e0 ? 0 : 1 }); popWords(l1, t, e0 + 0.35, 0.1);
     place(l2, 0, live ? 990 : 960, { o: t < e0 ? 0 : 1 }); popWords(l2, t, e0 + 0.6, 0.07);
-    const pp = prog(t, e0 + 1.0, e0 + 1.5);
-    place(pill, 0, 1250, { s: lerp(0.5, 1, eOutBack(pp, 2)), o: clamp(pp * 3) });
+    if (l3) { place(l3, 0, 1140, { o: t < e0 ? 0 : 1 }); popWords(l3, t, e0 + 0.8, 0.08); }
+    const pp = prog(t, e0 + (live ? 1.0 : 1.15), e0 + (live ? 1.5 : 1.65));
+    place(pill, 0, live ? 1250 : 1320, { s: lerp(0.5, 1, eOutBack(pp, 2)), o: clamp(pp * 3) });
   } };
 };
 S['demo-soon'] = () => S.demo(false);
@@ -282,7 +286,7 @@ S['teaser'] = () => {
   const lg = logo('#2b211a', 640);
   const e1 = words('<span class="word">Something\'s</span>', 'display', 'font-size:138px;width:1080px;text-align:center');
   const e2 = words('<span class="word">coming.</span>', 'serif it', 'font-size:200px;line-height:1;width:1080px;text-align:center;color:var(--maroon)');
-  const pill = el(`<div class="abs" style="width:1080px;text-align:center"><span class="pill" style="background:var(--maroon);color:var(--pink);font-size:64px">${LAUNCH}</span></div>`);
+  const pill = el(`<div class="abs" style="width:1080px;text-align:center"><span class="pill" style="background:var(--maroon);color:var(--pink);font-size:64px">${LAUNCH} · ${TIME}</span></div>`);
   const url = el(`<div class="abs mono" style="width:1080px;text-align:center;font-size:36px;letter-spacing:0.06em;font-weight:700">${SITE}</div>`);
   return { D, seek(t) {
     place(h1, 84, 330); popWords(h1, t, 0.15, 0.12, 0.55, 120);

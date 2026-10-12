@@ -6,8 +6,8 @@ Instagram.
 
 | File | Length | What it is | When to post |
 | --- | --- | --- | --- |
-| `videos/1-teaser.mp4` | 8.5s | "Gold that's already lived a little", three hero pieces pinned in, then "Something's coming · Friday 16 Oct" | Early in launch week |
-| `videos/2a-site-demo-launching-friday.mp4` | 16.5s | Logo intro, then the real site on a phone: homepage, tap into Stevie, "I want this one", the archive. Ends on "Launching Friday 16 Oct" | The day or two before launch |
+| `videos/1-teaser.mp4` | 8.5s | "Gold that's already lived a little", three hero pieces pinned in, then "Something's coming · Friday 16 Oct · 2pm" | Early in launch week |
+| `videos/2a-site-demo-launching-friday.mp4` | 16.5s | Logo intro, then the real site on a phone: homepage, tap into Stevie, "I want this one", the archive. Ends on "Launching Friday 16 Oct at 2pm" | The day or two before launch |
 | `videos/2b-site-demo-now-live.mp4` | 16.5s | Same demo, ends on "Now live. Come and have a look" | Launch day |
 | `videos/3-were-open.mp4` | 8.5s | "We're open." with ten pieces dealt out like cards, then "When it's gone, it's gone. Shop now" | Launch day, first thing |
 
@@ -34,7 +34,7 @@ NODE_USE_ENV_PROXY=1 npm run capture   # fresh screenshots + photos from theirsm
 npm run render                          # all four videos into videos/
 ```
 
-- **Different launch date:** `DATE="Saturday 17 Oct" npm run render`
+- **Different launch date or time:** `DATE="Saturday 17 Oct" TIME="10am" npm run render`
 - **Different piece in the demo:** change `PIECE` in `capture.mjs` (it has to
   be one of the pieces pinned in the homepage hero)
 - **Words, colours, timing:** all in `stories.html`. Check single frames

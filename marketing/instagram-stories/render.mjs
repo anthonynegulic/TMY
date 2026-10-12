@@ -20,7 +20,9 @@ fs.writeFileSync(DIR + "stories.built.html", html);
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 page.on("pageerror", (e) => console.error("page error:", e.message));
-const date = process.env.DATE ? `&date=${encodeURIComponent(process.env.DATE)}` : "";
+const date =
+  (process.env.DATE ? `&date=${encodeURIComponent(process.env.DATE)}` : "") +
+  (process.env.TIME ? `&time=${encodeURIComponent(process.env.TIME)}` : "");
 await page.goto(`file://${DIR}stories.built.html?s=${story}${date}`);
 await page.evaluate(() => window.ready);
 const duration = await page.evaluate(() => window.DURATION);

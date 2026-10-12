@@ -51,9 +51,11 @@ export default function ProductGallery({
 
   if (!current) {
     return (
-      <div className="product-page-photo" style={{ background: color }}>
-        <div className="hatch product-hatch">
-          <span>product shot coming soon</span>
+      <div className="product-page-photo">
+        <div className="product-frame">
+          <div className="hatch product-hatch">
+            <span>product shot coming soon</span>
+          </div>
         </div>
         {tags}
       </div>
@@ -67,16 +69,17 @@ export default function ProductGallery({
       <button
         type="button"
         className="product-page-photo product-zoom"
-        style={{ background: color }}
         onClick={() => dialogRef.current?.showModal()}
         aria-label={`Zoom in: ${label(index)}`}
       >
-        <ProductPhoto
-          photo={current}
-          alt={label(index)}
-          sizes="(max-width: 900px) 100vw, 640px"
-          eager
-        />
+        <span className="product-frame">
+          <ProductPhoto
+            photo={current}
+            alt={label(index)}
+            sizes="(max-width: 900px) 100vw, 640px"
+            eager
+          />
+        </span>
         {tags}
         <span className="zoom-hint" aria-hidden="true">
           Zoom

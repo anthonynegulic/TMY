@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import EnquiryForm from "@/components/EnquiryForm";
 import ProductCard from "@/components/ProductCard";
+import ProductActions from "@/components/ProductActions";
 import ProductGallery from "@/components/ProductGallery";
 import { getProduct, getProducts } from "@/lib/catalog";
 import { OG_SIZE } from "@/lib/og";
@@ -55,6 +55,17 @@ export async function generateMetadata({
   };
 }
 
+// The ladies write the ring size into the detail line ("… · Size R"); pull it
+// out so it gets its own row on the product page.
+function splitRingSize(meta: string): { ringSize?: string; notes: string } {
+  const parts = meta.split("·").map((part) => part.trim()).filter(Boolean);
+  const i = parts.findIndex((part) => /^size\s+\S/i.test(part));
+  if (i < 0) return { notes: meta };
+  const ringSize = parts[i].replace(/^size\s+/i, "");
+  parts.splice(i, 1);
+  return { ringSize, notes: parts.join(" · ") };
+}
+
 function shareImagePath(product: Product): string {
   return `${productPath(product)}/share.png`;
 }
@@ -93,6 +104,7 @@ export default async function ProductPage({
 
   const photos = product.image ? [product.image, ...(product.images ?? [])] : [];
   const others = products.filter((p) => !p.sold && p.slug !== product.slug).slice(0, 4);
+  const { ringSize, notes } = splitRingSize(product.meta);
 
   return (
     <div className="container product-page">
@@ -124,10 +136,16 @@ export default async function ProductPage({
               <dt>Gold</dt>
               <dd>{product.era} solid gold</dd>
             </div>
-            {product.meta && (
+            {ringSize && (
+              <div>
+                <dt>Ring size</dt>
+                <dd>{ringSize} (AU)</dd>
+              </div>
+            )}
+            {notes && (
               <div>
                 <dt>Notes</dt>
-                <dd>{product.meta}</dd>
+                <dd>{notes}</dd>
               </div>
             )}
           </dl>
@@ -144,12 +162,7 @@ export default async function ProductPage({
               </p>
             </div>
           ) : (
-            <div className="product-enquiry">
-              <p className="product-enquiry-note">
-                Sizing, condition, extra photos, holds: ask us anything.
-              </p>
-              <EnquiryForm piece={product.name} />
-            </div>
+            <ProductActions piece={product.name} />
           )}
         </div>
       </div>

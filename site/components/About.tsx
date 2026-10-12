@@ -3,7 +3,17 @@ import Link from "next/link";
 export default function About() {
   return (
     <section id="about" className="container about">
-      <div className="about-text">
+      <div className="about-grid">
+        {/* portrait slot, matching the placeholder on /about until the photo is taken */}
+        <div className="about-photo">
+          <div className="hatch about-hatch">
+            <span>portrait pending · we&#39;re taking a good one, promise</span>
+          </div>
+          <div className="tag-chip about-chip">
+            <span className="tag-hole" />
+            THE TWO OF US
+          </div>
+        </div>
         <div>
           <h2 className="about-title">
             A shared eye, and a soft spot for{" "}

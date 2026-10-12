@@ -28,6 +28,11 @@ npm run start
 
 Fonts (Bricolage Grotesque, Instrument Serif) are self-hosted via `next/font`.
 
+The logo lives in `assets/brand/tmy-logo.png`. The header uses a traced
+vector of its lettering (`components/Logo.tsx`), and the browser-tab and
+home-screen icons (`app/favicon.ico`, `app/icon.png`, `app/apple-icon.png`)
+are made from the full logo.
+
 ## Editing products (Sanity CMS)
 
 Pieces live in Sanity, not in code. The ladies add and edit them at
@@ -47,6 +52,13 @@ a Sold switch and ordering. The site picks up changes within about a minute.
 - "Show in the homepage hero" picks the pieces pinned in the hero (and the
   site's share image): first three ticked by Position, sold ones left out.
   If nothing is ticked, the first three available pieces show
+- Card borders take turns in blue, lime and maroon by each card's place in
+  the grid (`globals.css`), so there's nothing to set. The old "Card colour"
+  setting is hidden in the Studio
+- Ring size: end the "Short detail line" with "Size R" (or "Size N.5") and the
+  product page shows it on its own Ring size row
+- "I want this one" on a product page sends a reservation request through the
+  same Formspree form as enquiries (subject "TMY reservation — <piece>")
 - One-off import of the first 8 pieces: `scripts/import-products.mjs`
 
 ## Link previews and search

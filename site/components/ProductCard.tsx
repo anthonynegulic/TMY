@@ -20,14 +20,17 @@ export default function ProductCard({
       href={productPath(p)}
       className={`tmy-card product${size ? ` product-${size}` : ""}${p.sold ? " product-is-sold" : ""}`}
     >
-      <div className="product-block" style={{ background: p.color }}>
-        {p.image ? (
-          <ProductPhoto photo={p.image} alt={p.name} sizes={sizes} />
-        ) : (
-          <div className="hatch hatch-sm product-hatch">
-            <span>product shot</span>
-          </div>
-        )}
+      {/* the mat colour comes from the card's place in the grid (globals.css) */}
+      <div className="product-block">
+        <div className="product-frame">
+          {p.image ? (
+            <ProductPhoto photo={p.image} alt={p.name} sizes={sizes} />
+          ) : (
+            <div className="hatch hatch-sm product-hatch">
+              <span>product shot</span>
+            </div>
+          )}
+        </div>
         <div
           className="tag-chip product-chip"
           style={{ "--chip-tilt": `${p.tilt}deg` } as React.CSSProperties}

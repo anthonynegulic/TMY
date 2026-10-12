@@ -8,13 +8,13 @@ export default function PriceBand() {
           <div className="price-title">Shop to your budget.</div>
         </div>
         <div className="price-options">
-          <Link href="/shop?price=under-500" className="price-btn price-btn-solid">
+          <Link href="/shop?price=under-500" className="price-btn price-btn-yellow">
             Under $500
           </Link>
-          <Link href="/shop?price=500-1000" className="price-btn">
+          <Link href="/shop?price=500-1000" className="price-btn price-btn-pink">
             $500 – $1,000
           </Link>
-          <Link href="/shop?price=1000-plus" className="price-btn">
+          <Link href="/shop?price=1000-plus" className="price-btn price-btn-orange">
             $1,000+
           </Link>
         </div>

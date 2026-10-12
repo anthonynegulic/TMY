@@ -422,8 +422,11 @@ body {
 
 /* —— scalloped wave divider —— */
 
+/* 44px of scallops plus a 2px overlap tucked up under the section above
+   (see WaveDivider.tsx) */
 .wave {
-  height: 44px;
+  height: 46px;
+  margin-top: -2px;
   margin-bottom: -1px;
   position: relative;
   z-index: 3;

@@ -7,7 +7,8 @@ const REVALIDATE = 60;
 
 const TILTS = [-1.5, 1.2, -1, 1.4, -1.3, 0, 1.1, -1.2];
 
-const QUERY = `*[_type == "product" && defined(slug.current)]
+// Pieces ticked "Hide from the website" in the Studio are left out everywhere.
+const QUERY = `*[_type == "product" && defined(slug.current) && hidden != true]
   | order(coalesce(order, 9999) asc, _createdAt desc){
     _id,
     "slug": slug.current,

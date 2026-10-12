@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType, type ValidationContext } from "sanity";
 
 export const PALETTE = [
   { title: "Orange", value: "#E5A06B" },
@@ -7,11 +7,26 @@ export const PALETTE = [
   { title: "Lime", value: "#BBC471" },
 ];
 
+// Price and Gold can be left blank while a piece is hidden, so a piece can be
+// uploaded before everything's confirmed. They're required again to go live.
+function requiredUnlessHidden(value: unknown, context: ValidationContext) {
+  if (value !== undefined && value !== null && value !== "") return true;
+  return context.document?.hidden === true ? true : "Required (or tick \"Hide from the website\" to finish later)";
+}
+
 export const product = defineType({
   name: "product",
   title: "Piece",
   type: "document",
   fields: [
+    defineField({
+      name: "hidden",
+      title: "Hide from the website",
+      type: "boolean",
+      description:
+        "Tick to keep this piece off the site while you check details. Untick and Publish when it's ready to go live. Price and Gold can be left blank while it's hidden.",
+      initialValue: false,
+    }),
     defineField({
       name: "name",
       title: "Name",
@@ -69,7 +84,7 @@ export const product = defineType({
       title: "Price (AUD)",
       type: "number",
       description: "Numbers only, e.g. 680",
-      validation: (r) => r.required().positive(),
+      validation: (r) => r.positive().custom(requiredUnlessHidden),
     }),
     defineField({
       name: "karat",
@@ -78,7 +93,7 @@ export const product = defineType({
       options: {
         list: ["9k", "10k", "14k", "15k", "18k", "22k"],
       },
-      validation: (r) => r.required(),
+      validation: (r) => r.custom(requiredUnlessHidden),
     }),
     defineField({
       name: "detail",
@@ -156,15 +171,16 @@ export const product = defineType({
   preview: {
     select: {
       title: "name",
+      hidden: "hidden",
       sold: "sold",
       featured: "featured",
       karat: "karat",
       price: "price",
       media: "images.0",
     },
-    prepare({ title, sold, featured, karat, price, media }) {
+    prepare({ title, hidden, sold, featured, karat, price, media }) {
       return {
-        title: `${title ?? "Untitled"}${sold ? " (SOLD)" : ""}`,
+        title: `${title ?? "Untitled"}${hidden ? " (HIDDEN)" : ""}${sold ? " (SOLD)" : ""}`,
         subtitle: [karat, price ? `$${price}` : "", featured ? "In hero" : ""]
           .filter(Boolean)
           .join(" · "),

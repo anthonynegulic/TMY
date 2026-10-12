@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TMY stories</title>
+<!-- Animated Instagram stories for the launch. Render with render.mjs (see README.md). -->
+<style>
+/* the site's own brand fonts (SIL Open Font License) */
+@font-face { font-family: "Bricolage"; src: url(../../site/assets/fonts/bricolage-grotesque-latin-800-normal.woff) format("woff"); font-weight: 100 900; }
+@font-face { font-family: "Instrument"; src: url(../../site/assets/fonts/instrument-serif-latin-400-normal.woff) format("woff"); font-style: normal; }
+@font-face { font-family: "Instrument"; src: url(../../site/assets/fonts/instrument-serif-latin-400-italic.woff) format("woff"); font-style: italic; }
+:root {
+  --pink: #f7dce6; --ink: #2b211a; --maroon: #7a2e2b; --lime: #bbc471;
+  --blue: #a9c6d6; --orange: #e5a06b; --yellow: #efd27e; --body: #4a3d31;
+  --mono: ui-monospace, Menlo, "DejaVu Sans Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--pink); }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--pink);
+  font-family: "Bricolage", sans-serif; color: var(--ink); }
+.abs { position: absolute; left: 0; top: 0; will-change: transform, opacity; }
+.band { width: 1080px; height: 2300px; }
+.band svg { display: block; }
+.band .fill { width: 100%; height: 2300px; }
+.logo { display: block; overflow: visible; }
+.display { font-weight: 800; letter-spacing: -0.035em; line-height: 0.92; white-space: nowrap; }
+.serif { font-family: "Instrument", serif; font-weight: 400; letter-spacing: -0.01em; white-space: nowrap; }
+.serif.it { font-style: italic; }
+.word { display: inline-block; will-change: transform, opacity; }
+
+/* caption stickers: echo the site's tag chips (punched hole) */
+.chip { display: inline-flex; align-items: center; gap: 22px; padding: 24px 36px 26px 30px;
+  border: 4px solid var(--ink); border-radius: 30px; box-shadow: 0 10px 0 var(--ink);
+  font-weight: 800; font-size: 48px; letter-spacing: -0.02em; line-height: 1.05; white-space: nowrap; transform-origin: 50% 50%; }
+.chip .hole { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 4px solid var(--ink); background: var(--pink); }
+.chip .sub { display: block; font-family: "Instrument", serif; font-style: italic; font-weight: 400; font-size: 52px; letter-spacing: 0; margin-top: 2px; }
+
+/* phone */
+#phone { width: 640px; height: 1350px; border-radius: 86px; background: var(--ink); padding: 16px;
+  box-shadow: 0 50px 90px rgba(43,33,26,0.32), inset 0 0 0 3px #4a3d31; transform-origin: 50% 50%; }
+#screen { width: 608px; height: 1318px; border-radius: 70px; overflow: hidden; position: relative; background: var(--pink); }
+#vp { position: absolute; left: 0; top: 0; width: 390px; height: 845px; transform: scale(1.559); transform-origin: 0 0; overflow: hidden; background: var(--pink); }
+.pg { position: absolute; left: 0; top: 44px; width: 390px; height: 801px; overflow: hidden; background: var(--pink); }
+.pg img { position: absolute; left: 0; top: 0; width: 390px; display: block; }
+#status { position: absolute; left: 0; top: 0; width: 390px; height: 44px; background: var(--pink); z-index: 5;
+  font: 600 16px/1 -apple-system, Arial, sans-serif; }
+#status .time { position: absolute; left: 44px; top: 14px; }
+#status .island { position: absolute; left: 135px; top: 10px; width: 120px; height: 34px; border-radius: 20px; background: #000; }
+#status .icons { position: absolute; right: 30px; top: 16px; }
+#safari { position: absolute; left: 0; bottom: 0; width: 390px; height: 84px; z-index: 5;
+  background: rgba(247,220,230,0.94); border-top: 1px solid rgba(43,33,26,0.12); }
+#safari .bar { position: absolute; left: 16px; right: 16px; top: 9px; height: 42px; border-radius: 14px; background: rgba(255,255,255,0.75);
+  display: flex; align-items: center; justify-content: center; gap: 6px; font: 500 16px/1 -apple-system, Arial, sans-serif; color: var(--ink); }
+#safari .home { position: absolute; left: 128px; bottom: 8px; width: 134px; height: 5px; border-radius: 3px; background: var(--ink); }
+.tap { position: absolute; width: 50px; height: 50px; margin: -25px 0 0 -25px; border-radius: 50%; z-index: 6; pointer-events: none; }
+.tap .dot { position: absolute; inset: 0; border-radius: 50%; background: rgba(255,255,255,0.8); border: 3px solid rgba(43,33,26,0.85); box-shadow: 0 3px 10px rgba(43,33,26,0.35); }
+.tap .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(255,255,255,0.95); box-shadow: 0 0 0 2px rgba(43,33,26,0.5); }
+
+/* photo tags / product cards */
+.card { border-radius: 34px; padding: 14px; box-shadow: 0 30px 60px rgba(43,33,26,0.28); transform-origin: 50% 50%; }
+.card .ph { position: relative; width: 100%; height: 100%; border-radius: 22px; overflow: hidden; }
+.card .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .kt { position: absolute; left: 22px; top: 22px; background: rgba(247,220,230,0.94); border-radius: 14px; padding: 9px 18px 10px 14px;
+  font: 700 30px/1 var(--mono); display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.card .kt i { width: 15px; height: 15px; border-radius: 50%; border: 2.5px solid var(--stone, #6b5d4f); }
+.card .nm { position: absolute; left: 22px; bottom: 22px; background: rgba(247,220,230,0.96); border-radius: 40px; padding: 6px 26px 10px;
+  font: italic 400 50px/1.05 "Instrument", serif; color: var(--ink); }
+.mono { font-family: var(--mono); }
+.pill { display: inline-block; border-radius: 999px; padding: 26px 48px 28px; font-weight: 800; font-size: 56px; letter-spacing: -0.02em; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const LOGO = __LOGO__;
+const P = new URLSearchParams(location.search);
+const STORY = P.get('s') || 'demo-soon';
+const LAUNCH = P.get('date') || 'Friday 16 Oct';
+const SITE = 'theirsmineyours.com';
+const GEO = __GEO__;
+
+// ——— easing & helpers ———
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, x) => a + (b - a) * x;
+const eOutCubic = x => 1 - Math.pow(1 - x, 3);
+const eInCubic = x => x * x * x;
+const eInOutCubic = x => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const eOutQuart = x => 1 - Math.pow(1 - x, 4);
+const eOutBack = (x, s = 1.70158) => { const c3 = s + 1; return 1 + c3 * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2); };
+const stage = document.getElementById('stage');
+function el(html, parent = stage) {
+  const t = document.createElement('template'); t.innerHTML = html.trim();
+  const n = t.content.firstElementChild; parent.appendChild(n); return n;
+}
+function place(n, x, y, { s = 1, r = 0, o = 1 } = {}) {
+  n.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg) scale(${s})`;
+  n.style.opacity = o;
+}
+// a colour band whose top edge is a row of scallops, like the logo artwork
+function band(color, R = 54) {
+  const W = 1080, n = Math.ceil(W / (2 * R)) + 1;
+  let d = `M0,${R * 2} L0,${R}`;
+  for (let i = 0; i < n; i++) d += ` A${R},${R} 0 0,1 ${(i + 1) * 2 * R},${R}`;
+  d += ` L${n * 2 * R},${R * 2} Z`;
+  const b = el(`<div class="abs band"><svg width="1080" height="${R * 2}" style="margin-bottom:-1px"><path d="${d}" fill="${color}"/></svg><div class="fill" style="background:${color}"></div></div>`);
+  b.R = R; return b;
+}
+// TMY lettermark split into its three letters so they can drop in one by one
+function logo(color, width) {
+  const h = width * 626 / 1640;
+  const g = el(`<div class="abs" style="width:${width}px;height:${h}px"></div>`);
+  g.letters = LOGO.map(d => {
+    const s = el(`<svg class="abs logo" width="${width}" height="${h}" viewBox="0 0 1640 626"><path d="${d}" fill="${color}"/></svg>`, g);
+    return s;
+  });
+  g.w = width; g.h = h; return g;
+}
+function dropLetters(g, t, t0, stagger = 0.12, dur = 0.55) {
+  g.letters.forEach((s, i) => {
+    const x = prog(t, t0 + i * stagger, t0 + i * stagger + dur);
+    s.style.transformOrigin = `${[0.15, 0.5, 0.85][i] * 100}% 100%`;
+    s.style.transform = `translateY(${lerp(-260, 0, eOutBack(x, 2.2))}px) rotate(${lerp([-14, 8, -10][i], 0, eOutCubic(x))}deg)`;
+    s.style.opacity = clamp(x * 4);
+  });
+}
+function words(html, cls, style, parent = stage) {
+  const n = el(`<div class="abs ${cls}" style="${style}"></div>`, parent);
+  n.innerHTML = html; n.ws = [...n.querySelectorAll('.word')]; return n;
+}
+function popWords(n, t, t0, stagger = 0.09, dur = 0.5, dy = 90) {
+  n.ws.forEach((w, i) => {
+    const x = prog(t, t0 + i * stagger, t0 + i * stagger + dur);
+    w.style.transform = `translateY(${lerp(dy, 0, eOutBack(x, 1.6))}px)`;
+    w.style.opacity = clamp(x * 3);
+  });
+}
+function chip(text, bg, sub = '') {
+  return el(`<div class="abs chip" style="background:${bg}"><span class="hole"></span><span>${text}${sub ? `<span class="sub">${sub}</span>` : ''}</span></div>`);
+}
+// sticker in/out: pops in with overshoot, shrinks away
+function chipAt(n, t, t0, t1, x, y, r) {
+  const a = prog(t, t0, t0 + 0.45), b = prog(t, t1 - 0.25, t1);
+  if (t < t0 || t > t1) { n.style.opacity = 0; return; }
+  const s = lerp(0.4, 1, eOutBack(a, 2.4)) * lerp(1, 0.6, eInCubic(b));
+  place(n, x, y, { s, r: r + lerp(-10, 0, eOutCubic(a)), o: clamp(a * 3) * (1 - b) });
+}
+const COLORS = ['var(--blue)', 'var(--lime)', 'var(--maroon)'];
+function card(name, kt, w, h, frame) {
+  return el(`<div class="abs card" style="width:${w}px;height:${h}px;background:${frame}">
+    <div class="ph"><img src="assets/${name.toLowerCase()}.jpg"><div class="kt"><i></i>${kt}</div><div class="nm">${name}</div></div></div>`);
+}
+function cardDrop(n, t, t0, x, y, r, { dur = 0.6, from = -1500, fromX = 0, fromR = 0 } = {}) {
+  const a = prog(t, t0, t0 + dur);
+  place(n, lerp(x + fromX, x, eOutCubic(a)), lerp(y + from, y, eOutBack(a, 1.3)), { r: lerp(r + fromR, r, eOutCubic(a)), o: t < t0 ? 0 : 1 });
+}
+
+// ——— the phone ———
+function phone() {
+  const ph = el(`<div class="abs" id="phone"><div id="screen"><div id="vp">
+    <div class="pg" id="pg-home"><img src="assets/home.png"></div>
+    <div class="pg" id="pg-prod"><img src="assets/prod.png"><img src="assets/prod-open.png" style="opacity:0"></div>
+    <div class="pg" id="pg-shop"><img src="assets/shop.png"></div>
+    <div id="status"><span class="time">9:41</span><span class="island"></span>
+      <svg class="icons" width="66" height="13" viewBox="0 0 66 13"><g fill="#2b211a"><rect x="0" y="8" width="3" height="5" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/>
+      <rect x="38" y="0.5" width="24" height="12" rx="3.5" fill="none" stroke="#2b211a" stroke-opacity=".45"/><rect x="40" y="2.5" width="18" height="8" rx="2"/><rect x="63.5" y="4" width="2" height="5" rx="1" fill-opacity=".45"/></g></svg></div>
+    <div id="safari"><div class="bar"><svg width="11" height="14" viewBox="0 0 11 14"><rect x="0.5" y="6" width="10" height="7.5" rx="2" fill="#2b211a"/><path d="M2.8 6V4.2a2.7 2.7 0 0 1 5.4 0V6" fill="none" stroke="#2b211a" stroke-width="1.6"/></svg>${SITE}</div><div class="home"></div></div>
+    <div class="tap" id="tap"><div class="ring"></div><div class="dot"></div></div>
+  </div></div></div>`);
+  const $ = id => document.getElementById(id);
+  ph.pages = { home: $('pg-home'), prod: $('pg-prod'), shop: $('pg-shop') };
+  ph.tap = $('tap');
+  return ph;
+}
+const VIEW_TOP = 44; // page content starts below the status bar
+function scrollPage(pg, y) { [...pg.querySelectorAll('img')].forEach(i => i.style.transform = `translateY(${-y}px)`); }
+// iOS-style push: incoming page slides from the right, outgoing drifts left
+function push(from, to, t, t0, dur = 0.5) {
+  const x = eInOutCubic(prog(t, t0, t0 + dur));
+  if (t < t0) { from.style.display = ''; to.style.display = 'none'; from.style.transform = ''; return; }
+  to.style.display = ''; to.style.zIndex = 2; from.style.zIndex = 1;
+  to.style.transform = `translateX(${lerp(390, 0, x)}px)`; to.style.boxShadow = `-10px 0 30px rgba(43,33,26,${0.18 * (1 - x)})`;
+  from.style.transform = `translateX(${lerp(0, -110, x)}px)`;
+  from.style.filter = `brightness(${lerp(1, 0.9, x)})`;
+  if (x >= 1) from.style.display = 'none';
+}
+function tapAt(tp, t, t0, x, y) {
+  const a = prog(t, t0 - 0.28, t0), b = prog(t, t0, t0 + 0.45);
+  if (t < t0 - 0.28 || t > t0 + 0.45) { tp.style.opacity = 0; return; }
+  tp.style.left = x + 'px'; tp.style.top = y + 'px';
+  tp.style.opacity = 1;
+  const dot = tp.querySelector('.dot'), ring = tp.querySelector('.ring');
+  dot.style.transform = `scale(${t < t0 ? lerp(1.4, 0.85, eOutCubic(a)) : lerp(0.85, 1, b)})`;
+  dot.style.opacity = t < t0 ? a : 1 - b;
+  ring.style.transform = `scale(${lerp(1, 2.6, eOutCubic(b))})`;
+  ring.style.opacity = t < t0 ? 0 : (1 - b);
+}
+
+// ——— stories ———
+const S = {};
+
+S['demo'] = live => {
+  const D = 16.5;
+  const lime = band('#bbc471');
+  const lg = logo('#2b211a', 860);
+  const tag = words(['Theirs.', 'Mine.', 'Yours.'].map(w => `<span class="word">${w}</span>`).join(' '), 'display', 'font-size:84px;width:1080px;text-align:center;word-spacing:6px');
+  const ph = phone();
+  const c1 = chip(live ? 'Our new site is live' : 'A first look at our new site', 'var(--lime)');
+  const c2 = chip('Every piece has a name', 'var(--blue)', '(and a past)');
+  const c3 = chip('Love it? Reserve it in a tap', 'var(--yellow)');
+  const c4 = chip('Solid gold. One of one.', 'var(--orange)');
+  const mar = band('#7a2e2b');
+  const endLogo = logo('#f7dce6', 520);
+  const l1 = words(live ? '<span class="word">Now</span> <span class="word">live.</span>' : '<span class="word">Launching</span>',
+    'display', `font-size:${live ? 200 : 160}px;width:1080px;text-align:center;color:var(--pink)`);
+  const l2 = words(live ? '<span class="word">come</span> <span class="word">and</span> <span class="word">have</span> <span class="word">a</span> <span class="word">look</span>'
+    : `<span class="word">${LAUNCH}</span>`, 'serif it', `font-size:${live ? 116 : 168}px;line-height:1;width:1080px;text-align:center;color:var(--yellow)`);
+  const pill = el(`<div class="abs" style="width:1080px;text-align:center"><span class="pill" style="background:var(--lime);color:var(--ink)">${SITE}</span></div>`);
+
+  const homeTap = { x: GEO.homeStevie.x + GEO.homeStevie.width * 0.62, y: GEO.homeStevie.y + GEO.homeStevie.height * 0.72 };
+  const HOME_SCROLL = Math.round(homeTap.y - 330);
+  const PROD_SCROLL = Math.round(GEO.reserve.y - 300);
+  const PROD_SCROLL2 = 1700 - 801;
+  const SHOP_SCROLL = 2900;
+  const resTap = { x: 195, y: GEO.reserve.y + GEO.reserve.height / 2 };
+
+  return { D, seek(t) {
+    // intro: scallop band rises, the logo drops in across its edge (like the brand artwork)
+    const bandY = lerp(1920, 870, eOutCubic(prog(t, 0, 0.8))) + lerp(0, 1020, eInCubic(prog(t, 12.95, 13.5)));
+    place(lime, 0, bandY);
+    const ex = eInOutCubic(prog(t, 2.5, 3.1));
+    place(lg, 110, 700 - ex * 900, { o: 1 - ex, s: lerp(1, 0.7, ex) });
+    dropLetters(lg, t, 0.35);
+    popWords(tag, t, 1.25, 0.14);
+    place(tag, 0, 1190 + ex * 600, { o: 1 - ex });
+
+    // phone rises in, demos, then falls away
+    const inX = eOutCubic(prog(t, 2.75, 3.45)), outX = eInCubic(prog(t, 12.85, 13.45));
+    place(ph, 220, lerp(1950, 330, inX) + outX * 1700, { r: lerp(8, -1.5, inX) + outX * 10, o: t < 2.7 ? 0 : 1 });
+    const { home, prod, shop } = ph.pages;
+    scrollPage(home, HOME_SCROLL * eInOutCubic(prog(t, 4.2, 5.2)));
+    push(home, prod, t, 5.75);
+    const prodImgs = prod.querySelectorAll('img');
+    prodImgs[1].style.opacity = t >= 8.62 ? 1 : 0;
+    scrollPage(prod, PROD_SCROLL * eInOutCubic(prog(t, 6.55, 8.0)) + (PROD_SCROLL2 - PROD_SCROLL) * eInOutCubic(prog(t, 8.95, 9.7)));
+    if (t >= 9.95) { push(prod, shop, t, 9.95); } else { shop.style.display = 'none'; }
+    scrollPage(shop, SHOP_SCROLL * eInOutCubic(prog(t, 10.55, 12.8)));
+    if (t < 5.75) { prod.style.display = 'none'; }
+    if (t < 8.7) tapAt(ph.tap, t, 5.5, homeTap.x, homeTap.y - HOME_SCROLL + VIEW_TOP);
+    else tapAt(ph.tap, t, 8.55, resTap.x, resTap.y - PROD_SCROLL + VIEW_TOP);
+
+    chipAt(c1, t, 3.55, 5.45, 54, 262, -3);
+    chipAt(c2, t, 6.05, 8.3, 430, 1000, 3);
+    chipAt(c3, t, 8.4, 10.1, 46, 1190, -2.5);
+    chipAt(c4, t, 10.4, 12.85, 450, 560, 2.5);
+
+    // end card on maroon, like the site footer
+    place(mar, 0, lerp(1960, -140, eInOutCubic(prog(t, 12.9, 13.6))));
+    const e0 = 13.45;
+    place(endLogo, 280, 470, { o: t < e0 ? 0 : 1 });
+    dropLetters(endLogo, t, e0);
+    place(l1, 0, 780, { o: t < e0 ? 0 : 1 }); popWords(l1, t, e0 + 0.35, 0.1);
+    place(l2, 0, live ? 990 : 960, { o: t < e0 ? 0 : 1 }); popWords(l2, t, e0 + 0.6, 0.07);
+    const pp = prog(t, e0 + 1.0, e0 + 1.5);
+    place(pill, 0, 1250, { s: lerp(0.5, 1, eOutBack(pp, 2)), o: clamp(pp * 3) });
+  } };
+};
+S['demo-soon'] = () => S.demo(false);
+S['demo-live'] = () => S.demo(true);
+
+S['teaser'] = () => {
+  const D = 8.5;
+  const h1 = words('<span class="word">Gold</span> <span class="word">that\'s</span>', 'display', 'font-size:150px;left:0');
+  const h2 = words('<span class="word">already</span>', 'display', 'font-size:150px');
+  const h3 = words('<span class="word serif it" style="color:var(--maroon);font-size:176px;letter-spacing:-0.02em">lived</span> <span class="word">a</span> <span class="word">little.</span>', 'display', 'font-size:150px');
+  const cards = [
+    ['Stevie', '14k', 360, 360, 'var(--blue)', 96, 1010, -6],
+    ['Maria', '18k', 420, 520, 'var(--lime)', 560, 880, 5],
+    ['Francine', '18k', 380, 380, 'var(--maroon)', 250, 1390, -2.5],
+  ].map(([n, k, w, h, f, x, y, r]) => ({ n: card(n, k, w, h, f), x, y, r }));
+  const lime = band('#bbc471');
+  const lg = logo('#2b211a', 640);
+  const e1 = words('<span class="word">Something\'s</span>', 'display', 'font-size:138px;width:1080px;text-align:center');
+  const e2 = words('<span class="word">coming.</span>', 'serif it', 'font-size:200px;line-height:1;width:1080px;text-align:center;color:var(--maroon)');
+  const pill = el(`<div class="abs" style="width:1080px;text-align:center"><span class="pill" style="background:var(--maroon);color:var(--pink);font-size:64px">${LAUNCH}</span></div>`);
+  const url = el(`<div class="abs mono" style="width:1080px;text-align:center;font-size:36px;letter-spacing:0.06em;font-weight:700">${SITE}</div>`);
+  return { D, seek(t) {
+    place(h1, 84, 330); popWords(h1, t, 0.15, 0.12, 0.55, 120);
+    place(h2, 84, 480); popWords(h2, t, 0.45, 0.12, 0.55, 120);
+    place(h3, 84, 620); popWords(h3, t, 0.75, 0.16, 0.55, 120);
+    cards.forEach((c, i) => cardDrop(c.n, t, 1.55 + i * 0.32, c.x, c.y, c.r, { fromR: [-20, 18, -14][i] }));
+    // lime scallop wipe up into the reveal
+    place(lime, 0, lerp(1960, -140, eInOutCubic(prog(t, 3.9, 4.6))));
+    const e0 = 4.45;
+    place(lg, 220, 430, { o: t < e0 ? 0 : 1 }); dropLetters(lg, t, e0);
+    place(e1, 0, 760, { o: t < e0 ? 0 : 1 }); popWords(e1, t, e0 + 0.35);
+    place(e2, 0, 890, { o: t < e0 ? 0 : 1 }); popWords(e2, t, e0 + 0.55);
+    const pp = prog(t, e0 + 1.0, e0 + 1.5);
+    place(pill, 0, 1200, { s: lerp(0.5, 1, eOutBack(pp, 2)), o: clamp(pp * 3) });
+    place(url, 0, 1395, { o: prog(t, e0 + 1.4, e0 + 1.8) });
+  } };
+};
+
+S['open'] = () => {
+  const D = 8.5;
+  stage.style.background = 'var(--lime)';
+  const w1 = words('<span class="word">We\'re</span>', 'display', 'font-size:230px;width:1080px;text-align:center');
+  const w2 = words('<span class="word">open.</span>', 'serif it', 'font-size:290px;line-height:1;width:1080px;text-align:center;color:var(--maroon)');
+  const deck = [['Stevie', '14k'], ['Odette', '18k'], ['Maria', '18k'], ['Fern', '14k'], ['Francine', '18k'], ['Gwen', '22k'],
+    ['Celeste', '18k'], ['Fleur', '18k'], ['Cleo', '18k'], ['Joanie', '18k']].map(([n, k], i) => {
+    const r = [-7, 6, -3, 8, -9, 4, -5, 7, -2, 3][i];
+    return { n: card(n, k, 560, 600, COLORS[i % 3]), r, x: 260 + [0, 20, -25, 30, -10, 15, -30, 10, -15, 0][i], y: 840 + [0, 15, -10, 20, 5, -15, 10, -5, 15, 0][i], from: i % 2 ? 1300 : -1300 };
+  });
+  const pink = band('#f7dce6');
+  const lg = logo('#2b211a', 420);
+  const g1 = words('<span class="word">When</span> <span class="word">it\'s</span> <span class="word">gone,</span>', 'serif it', 'font-size:150px;line-height:1;width:1080px;text-align:center');
+  const g2 = words('<span class="word">it\'s</span> <span class="word">gone.</span>', 'serif it', 'font-size:150px;line-height:1;width:1080px;text-align:center;color:var(--maroon)');
+  const pill = el(`<div class="abs" style="width:1080px;text-align:center"><span class="pill" style="background:var(--ink);color:var(--pink);font-size:60px">Shop now</span></div>`);
+  const url = el(`<div class="abs mono" style="width:1080px;text-align:center;font-size:40px;letter-spacing:0.05em;font-weight:700">${SITE}</div>`);
+  return { D, seek(t) {
+    // headline slams in
+    w1.ws.forEach(w => { const x = prog(t, 0.1, 0.45); w.style.transform = `scale(${lerp(2.4, 1, eOutCubic(x))})`; w.style.opacity = clamp(x * 3); });
+    w2.ws.forEach(w => { const x = prog(t, 0.45, 0.85); w.style.transform = `scale(${lerp(2.4, 1, eOutCubic(x))}) rotate(${lerp(-12, 0, eOutBack(x))}deg)`; w.style.opacity = clamp(x * 3); });
+    place(w1, 0, 300); place(w2, 0, 500);
+    // the archive deals itself out, one piece after another
+    deck.forEach((c, i) => cardDrop(c.n, t, 1.0 + i * 0.3, c.x, c.y, c.r, { dur: 0.45, from: 0, fromX: c.from, fromR: c.from > 0 ? 25 : -25 }));
+    place(pink, 0, lerp(1960, -140, eInOutCubic(prog(t, 4.55, 5.25))));
+    const e0 = 5.1;
+    place(lg, 330, 470, { o: t < e0 ? 0 : 1 }); dropLetters(lg, t, e0);
+    place(g1, 0, 760, { o: t < e0 ? 0 : 1 }); popWords(g1, t, e0 + 0.3, 0.1);
+    place(g2, 0, 905, { o: t < e0 ? 0 : 1 }); popWords(g2, t, e0 + 0.6, 0.1);
+    const pp = prog(t, e0 + 1.0, e0 + 1.5);
+    place(pill, 0, 1170, { s: lerp(0.5, 1, eOutBack(pp, 2)), o: clamp(pp * 3) });
+    place(url, 0, 1350, { o: prog(t, e0 + 1.4, e0 + 1.8) });
+  } };
+};
+
+const story = S[STORY]();
+window.DURATION = story.D;
+window.seek = t => story.seek(t);
+window.ready = (async () => {
+  await document.fonts.ready;
+  await Promise.all([...document.images].map(i => i.decode().catch(() => {})));
+  story.seek(0);
+  return true;
+})();
+</script>
+</body>
+</html>

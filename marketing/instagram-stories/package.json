@@ -1,0 +1,12 @@
+{
+  "name": "tmy-instagram-stories",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "render": "node render.mjs teaser videos/1-teaser.mp4 && node render.mjs demo-soon videos/2a-site-demo-launching-friday.mp4 && node render.mjs demo-live videos/2b-site-demo-now-live.mp4 && node render.mjs open videos/3-were-open.mp4"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

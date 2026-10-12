@@ -737,39 +737,8 @@ body {
   padding-bottom: 88px;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 52px;
-  align-items: center;
-}
-
-.about-photo {
-  position: relative;
-  aspect-ratio: 5 / 4;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--yellow);
-  transform: rotate(-2deg);
-  box-shadow: 0 12px 30px rgba(43, 33, 26, 0.16);
-}
-.about-hatch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.about-hatch span {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--ink);
-  opacity: 0.5;
-  text-transform: uppercase;
-}
-.about-chip {
-  position: absolute;
-  top: 14px;
-  left: 14px;
+.about-text {
+  max-width: 760px;
 }
 
 .about-title {
@@ -977,13 +946,6 @@ body {
     gap: 44px;
   }
   .hero-collage {
-    max-width: 520px;
-  }
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-  .about-photo {
     max-width: 520px;
   }
   .price-card {
@@ -1266,12 +1228,6 @@ body {
 }
 
 /* about page */
-.about-portrait {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: hidden;
-  aspect-ratio: 21 / 9;
-}
 .bio {
   border-top: 1px solid var(--hairline);
   padding-top: 40px;
@@ -1350,7 +1306,7 @@ body {
 }
 .contact-card-body {
   position: relative;
-  padding: 84px 28px 30px;
+  padding: 64px 28px 30px;
 }
 .contact-card-title {
   font-family: var(--font-serif), serif;
@@ -1365,6 +1321,338 @@ body {
   color: var(--story-body);
   max-width: 34ch;
 }
+/* animated copy of the Instagram profile in the contact card
+   (components/InstagramPreview). Sized in --u, 1/375 of the phone screen's
+   width, so the whole profile scales with the card */
+.igp {
+  margin: 0 auto 26px;
+  max-width: 300px;
+}
+.igp-phone {
+  background: var(--ink);
+  border-radius: 34px;
+  padding: 7px;
+  box-shadow: 0 18px 36px rgba(43, 33, 26, 0.3), inset 0 0 0 1.5px #4a3d31;
+  transform: rotate(1.5deg);
+}
+.igp-screen {
+  --u: calc(100cqw / 375);
+  container-type: inline-size;
+  position: relative;
+  aspect-ratio: 375 / 700;
+  border-radius: 27px;
+  overflow: hidden;
+  background: #0c1014;
+  color: #f5f5f5;
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+.igp-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.igp-icon {
+  width: calc(var(--u) * 26);
+  height: calc(var(--u) * 26);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+.igp-icon-fill {
+  fill: currentColor;
+  stroke: none;
+}
+.igp-status {
+  position: relative;
+  z-index: 3;
+  height: calc(var(--u) * 46);
+  padding: calc(var(--u) * 16) calc(var(--u) * 30) 0 calc(var(--u) * 40);
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: calc(var(--u) * 16);
+  background: #0c1014;
+}
+.igp-status-icons {
+  width: calc(var(--u) * 62);
+  height: calc(var(--u) * 13);
+}
+.igp-topbar {
+  position: relative;
+  z-index: 3;
+  height: calc(var(--u) * 48);
+  padding: 0 calc(var(--u) * 14);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 16);
+  background: #0c1014;
+}
+.igp-topbar-handle {
+  flex: 1;
+  font-weight: 700;
+  font-size: calc(var(--u) * 21);
+  letter-spacing: -0.01em;
+}
+.igp-viewport {
+  position: absolute;
+  inset: calc(var(--u) * 94) 0 0;
+  overflow: hidden;
+}
+.igp-page {
+  animation: igp-scroll 14s ease-in-out infinite;
+}
+.igp-head {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 18);
+  padding: calc(var(--u) * 10) calc(var(--u) * 16) calc(var(--u) * 12);
+}
+.igp-avatar {
+  flex: none;
+  width: calc(var(--u) * 90);
+  height: calc(var(--u) * 90);
+  border-radius: 50%;
+  padding: calc(var(--u) * 4);
+  border: calc(var(--u) * 2.5) solid #3a3f45;
+}
+.igp-avatar img,
+.igp-dm-avatar img,
+.igp-highlight-img img {
+  border-radius: 50%;
+}
+.igp-name {
+  font-weight: 600;
+  font-size: calc(var(--u) * 17);
+}
+.igp-bio {
+  margin: 0;
+  padding: 0 calc(var(--u) * 16);
+  font-size: calc(var(--u) * 14.5);
+  line-height: 1.35;
+}
+.igp-buttons {
+  display: flex;
+  gap: calc(var(--u) * 8);
+  padding: calc(var(--u) * 16) calc(var(--u) * 16) calc(var(--u) * 14);
+}
+.igp-btn {
+  position: relative;
+  flex: 1;
+  height: calc(var(--u) * 34);
+  border-radius: calc(var(--u) * 8);
+  background: #25292e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: calc(var(--u) * 14.5);
+}
+.igp-btn-follow {
+  background: #0095f6;
+}
+.igp-btn-icon {
+  flex: none;
+  width: calc(var(--u) * 36);
+}
+.igp-btn-icon .igp-icon {
+  width: calc(var(--u) * 20);
+  height: calc(var(--u) * 20);
+}
+.igp-highlights {
+  display: flex;
+  gap: calc(var(--u) * 13);
+  padding: 0 calc(var(--u) * 12) calc(var(--u) * 16);
+  white-space: nowrap;
+}
+.igp-highlight {
+  flex: none;
+  width: calc(var(--u) * 66);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 6);
+  font-size: calc(var(--u) * 11.5);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.igp-highlight-img {
+  width: calc(var(--u) * 66);
+  height: calc(var(--u) * 66);
+  border-radius: 50%;
+  padding: calc(var(--u) * 3);
+  border: calc(var(--u) * 2) solid #3a3f45;
+}
+.igp-highlight:last-child .igp-highlight-img img {
+  object-position: left center;
+}
+.igp-tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: calc(var(--u) * 10) 0 calc(var(--u) * 12);
+  color: #a8a8a8;
+}
+.igp-tab-on {
+  color: #f5f5f5;
+  fill: currentColor;
+  stroke: none;
+  box-shadow: 0 calc(var(--u) * 12) 0 calc(var(--u) * -10) #f5f5f5;
+}
+.igp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--u) * 1.5);
+}
+.igp-grid img {
+  aspect-ratio: 3 / 4;
+  height: auto;
+}
+/* the tap on "Message" before the DM opens */
+.igp-tap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--u) * 40);
+  height: calc(var(--u) * 40);
+  margin: calc(var(--u) * -20) 0 0 calc(var(--u) * -20);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  border: calc(var(--u) * 2) solid #fff;
+  opacity: 0;
+  animation: igp-tap 14s ease-out infinite;
+}
+.igp-dm {
+  position: absolute;
+  inset: calc(var(--u) * 46) 0 0;
+  z-index: 4;
+  background: #0c1014;
+  transform: translateX(100%);
+  animation: igp-dm 14s ease-in-out infinite;
+}
+.igp-dm-bar {
+  border-bottom: 1px solid #25292e;
+  gap: calc(var(--u) * 12);
+}
+.igp-dm-bar .igp-topbar-handle {
+  font-size: calc(var(--u) * 16);
+}
+.igp-dm-avatar {
+  flex: none;
+  width: calc(var(--u) * 32);
+  height: calc(var(--u) * 32);
+}
+.igp-dm-body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 8);
+  padding: calc(var(--u) * 20) calc(var(--u) * 14);
+  font-size: calc(var(--u) * 15);
+  line-height: 1.3;
+}
+.igp-shared {
+  align-self: flex-end;
+  width: calc(var(--u) * 170);
+  border-radius: calc(var(--u) * 16);
+  overflow: hidden;
+  background: #25292e;
+}
+.igp-shared img {
+  aspect-ratio: 3 / 4;
+  height: auto;
+}
+.igp-shared span {
+  display: block;
+  padding: calc(var(--u) * 8) calc(var(--u) * 10);
+  font-weight: 600;
+  font-size: calc(var(--u) * 13);
+}
+.igp-msg {
+  max-width: 78%;
+  padding: calc(var(--u) * 9) calc(var(--u) * 13);
+  border-radius: calc(var(--u) * 20);
+}
+.igp-msg-out {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #7a3cf0, #3f6bff);
+}
+.igp-msg-in {
+  align-self: flex-start;
+  background: #25292e;
+  opacity: 0;
+  animation: igp-reply 14s ease infinite;
+}
+.igp-out {
+  opacity: 0;
+  animation: igp-send 14s ease infinite;
+}
+.igp-typing {
+  align-self: flex-start;
+  display: flex;
+  gap: calc(var(--u) * 4);
+  padding: calc(var(--u) * 12) calc(var(--u) * 14);
+  border-radius: calc(var(--u) * 20);
+  background: #25292e;
+  opacity: 0;
+  animation: igp-typing 14s ease infinite;
+}
+.igp-typing i {
+  width: calc(var(--u) * 7);
+  height: calc(var(--u) * 7);
+  border-radius: 50%;
+  background: #a8a8a8;
+  animation: igp-dot 0.9s ease-in-out infinite;
+}
+.igp-typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.igp-typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+/* 14s loop: hold, scroll down the grid, back up, tap Message, the DM plays,
+   back to the profile */
+@keyframes igp-scroll {
+  0%, 14% { transform: none; }
+  /* to the bottom of the grid: the page's height less the 606u viewport */
+  32%, 39% { transform: translateY(calc(-100% + var(--u) * 606)); }
+  50%, 100% { transform: none; }
+}
+@keyframes igp-tap {
+  0%, 51% { opacity: 0; transform: scale(0.6); }
+  52.5% { opacity: 1; transform: scale(1); }
+  56%, 100% { opacity: 0; transform: scale(1.9); }
+}
+@keyframes igp-dm {
+  0%, 55% { transform: translateX(100%); }
+  58.5%, 91% { transform: none; }
+  95%, 100% { transform: translateX(100%); }
+}
+@keyframes igp-send {
+  0%, 60% { opacity: 0; transform: translateY(calc(var(--u) * 10)); }
+  62.5%, 100% { opacity: 1; transform: none; }
+}
+@keyframes igp-typing {
+  0%, 66% { opacity: 0; }
+  67.5%, 74% { opacity: 1; }
+  75%, 100% { opacity: 0; }
+}
+@keyframes igp-reply {
+  0%, 74.5% { opacity: 0; transform: translateY(calc(var(--u) * 10)); }
+  77%, 100% { opacity: 1; transform: none; }
+}
+@keyframes igp-dot {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(calc(var(--u) * -3)); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .igp *,
+  .igp-page {
+    animation: none !important;
+  }
+}
+
 .contact-form-title {
   margin-bottom: 26px;
 }
@@ -1707,9 +1995,6 @@ body {
   .page-split-reverse .pull-tag {
     order: 2;
   }
-  .about-portrait {
-    aspect-ratio: 4 / 3;
-  }
   .name-band {
     padding: 34px 28px 38px;
   }
@@ -1743,6 +2028,11 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* the quote sits on a pink wash over the lower half, so keep the piece in
+   the upper part of the photo */
+.pull-tag .tag-photo {
+  object-position: 50% 22%;
 }
 .tag-wash {
   position: absolute;

@@ -66,7 +66,7 @@ export default function StoryPage() {
           </div>
           <div className="heritage-cards">
             <div className="heritage-card" style={{ background: "#E5A06B" }}>
-              <img className="tag-photo" src="/products/story-1.jpg" alt="Gold ring resting in a velvet ring box" />
+              <img className="tag-photo" src="/products/story-1.jpg" alt="Openwork 22k gold ring in a ring box on mustard velvet" />
               <div className="tag-chip">
                 <span className="tag-hole" />
                 EGYPT
@@ -76,7 +76,7 @@ export default function StoryPage() {
               </div>
             </div>
             <div className="heritage-card" style={{ background: "#A9C6D6" }}>
-              <img className="tag-photo" src="/products/story-2.jpg" alt="Ruby ring resting in a velvet ring box" />
+              <img className="tag-photo" src="/products/story-2.jpg" alt="Antique flower cluster ring in a ring box on mustard velvet" />
               <div className="tag-chip">
                 <span className="tag-hole" />
                 THE BALKANS
@@ -124,7 +124,7 @@ export default function StoryPage() {
             </p>
           </div>
           <div className="pull-tag" style={{ background: "#EFD27E" }}>
-            <img className="tag-photo" src="/products/story-3.jpg" alt="Gold ring with a clear stone in a velvet ring box" />
+            <img className="tag-photo" src="/products/story-3.jpg" alt="Blue sapphire ring in a ring box on mustard velvet" />
             <div className="tag-wash" />
             <div className="tag-chip">
               <span className="tag-hole" />
@@ -159,7 +159,7 @@ export default function StoryPage() {
       <section className="container page-section page-section-last">
         <div className="page-split page-split-reverse">
           <div className="pull-tag" style={{ background: "#BBC471" }}>
-            <img className="tag-photo" src="/products/story-4.jpg" alt="Gold heart ring in a velvet ring box" />
+            <img className="tag-photo" src="/products/story-4.jpg" alt="Ring with two heart-shaped stones in a ring box on mustard velvet" />
             <div className="tag-wash" />
             <div className="tag-chip">
               <span className="tag-hole" />

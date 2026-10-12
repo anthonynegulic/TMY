@@ -29,19 +29,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* photo placeholder */}
-      <section className="container page-section">
-        <div className="about-portrait" style={{ background: "#A9C6D6" }}>
-          <div className="hatch about-hatch">
-            <span>portrait pending · we&#39;re taking a good one, promise</span>
-          </div>
-          <div className="tag-chip about-chip">
-            <span className="tag-hole" />
-            THE TWO OF US
-          </div>
-        </div>
-      </section>
-
       {/* Ally */}
       <section className="container page-section">
         <div className="bio">

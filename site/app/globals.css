@@ -882,7 +882,20 @@ body {
 
 /* —— coming soon (until launch, see proxy.ts) —— */
 
+/* fills at least the screen, so the footer always sits on the bottom edge
+   and any spare height goes to the pink above it */
+.soon-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
 .soon {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-bottom: 72px;
 }
 .soon-chip {

@@ -37,7 +37,7 @@ export default async function ComingSoon() {
   const pinned = await getHeroPieces();
   const { day, time } = launchWhen();
   return (
-    <>
+    <div className="soon-page">
       <header className="masthead">
         <div className="container masthead-inner">
           <span className="brand">
@@ -114,6 +114,6 @@ export default async function ComingSoon() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 const PINK = "#F7DCE6";
 const LIME = "#BBC471";
 
+// "Gold as a love language" is hidden for now; flip to true to bring it back.
+const SHOW_GOLD_SECTION = false;
+
 export default function StoryPage() {
   return (
     <div>
@@ -35,108 +38,72 @@ export default function StoryPage() {
         </div>
       </section>
 
-      <WaveDivider fill={PINK} bg={LIME} />
+      {SHOW_GOLD_SECTION && (
+        <>
+          <WaveDivider fill={PINK} bg={LIME} />
 
-      {/* gold as a love language */}
-      <section className="story">
-        <div className="container story-inner">
-          <div className="story-head">
-            <div>
-              <h2 className="story-title">Gold as a love language.</h2>
-            </div>
-            <div className="story-aside">
-              Chosen carefully, kept forever, and passed down with intention.
-            </div>
-          </div>
-          <div className="page-cols">
-            <p>
-              Growing up, gold wasn&#39;t costume jewellery and it wasn&#39;t
-              fast fashion. In Egyptian and Macedonian culture, gold is
-              something you receive at your christening, your engagement, your
-              wedding. It marks the moments that matter.
-            </p>
-            <p>
-              So when we source, we&#39;re instinctively drawn to pieces made
-              with that same weight of meaning. High-carat gold, 18ct and 22ct,
-              the kind our grandmothers would have recognised and approved of.
-              Real craftsmanship, real presence. Things made to last a
-              lifetime, because in our cultures that&#39;s exactly what
-              jewellery is supposed to do.
-            </p>
-          </div>
-          <div className="heritage-cards">
-            <div className="heritage-card" style={{ background: "#E5A06B" }}>
-              <img className="tag-photo" src="/products/story-1.jpg" alt="Openwork 22k gold ring in a ring box on mustard velvet" />
-              <div className="tag-chip">
-                <span className="tag-hole" />
-                EGYPT
+          {/* gold as a love language */}
+          <section className="story">
+            <div className="container story-inner">
+              <div className="story-head">
+                <div>
+                  <h2 className="story-title">Gold as a love language.</h2>
+                </div>
+                <div className="story-aside">
+                  Chosen carefully, kept forever, and passed down with intention.
+                </div>
               </div>
-              <div className="heritage-card-caption">
-                Bold, ornate goldwork
+              <div className="page-cols">
+                <p>
+                  Growing up, gold wasn&#39;t costume jewellery and it wasn&#39;t
+                  fast fashion. In Egyptian and Macedonian culture, gold is
+                  something you receive at your christening, your engagement, your
+                  wedding. It marks the moments that matter.
+                </p>
+                <p>
+                  So when we source, we&#39;re instinctively drawn to pieces made
+                  with that same weight of meaning. High-carat gold, 18ct and 22ct,
+                  the kind our grandmothers would have recognised and approved of.
+                  Real craftsmanship, real presence. Things made to last a
+                  lifetime, because in our cultures that&#39;s exactly what
+                  jewellery is supposed to do.
+                </p>
+              </div>
+              <div className="heritage-cards">
+                <div className="heritage-card" style={{ background: "#E5A06B" }}>
+                  <img className="tag-photo" src="/products/story-1.jpg" alt="Openwork 22k gold ring in a ring box on mustard velvet" />
+                  <div className="tag-chip">
+                    <span className="tag-hole" />
+                    EGYPT
+                  </div>
+                  <div className="heritage-card-caption">
+                    Bold, ornate goldwork
+                  </div>
+                </div>
+                <div className="heritage-card" style={{ background: "#A9C6D6" }}>
+                  <img className="tag-photo" src="/products/story-2.jpg" alt="Antique flower cluster ring in a ring box on mustard velvet" />
+                  <div className="tag-chip">
+                    <span className="tag-hole" />
+                    THE BALKANS
+                  </div>
+                  <div className="heritage-card-caption">
+                    Richly detailed pieces
+                  </div>
+                </div>
+                <div className="heritage-note">
+                  <p>
+                    We&#39;re not just looking for pretty things. We&#39;re looking
+                    for pieces that feel significant. That&#39;s just how we were
+                    raised to see gold.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="heritage-card" style={{ background: "#A9C6D6" }}>
-              <img className="tag-photo" src="/products/story-2.jpg" alt="Antique flower cluster ring in a ring box on mustard velvet" />
-              <div className="tag-chip">
-                <span className="tag-hole" />
-                THE BALKANS
-              </div>
-              <div className="heritage-card-caption">
-                Richly detailed pieces
-              </div>
-            </div>
-            <div className="heritage-note">
-              <p>
-                We&#39;re not just looking for pretty things. We&#39;re looking
-                for pieces that feel significant. That&#39;s just how we were
-                raised to see gold.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <WaveDivider fill={LIME} bg={PINK} />
-
-      {/* no lightning bolt */}
-      <section className="container page-section">
-        <div className="page-split">
-          <div>
-            <h2 className="page-h2">
-              There was no lightning bolt.
-            </h2>
-            <p className="page-copy">
-              Honestly? There wasn&#39;t one moment. It was more that every
-              time we found something beautiful, our first instinct was to
-              share it with each other.
-            </p>
-            <p className="page-copy">
-              We have a deep, genuine love for vintage jewellery: the history
-              it carries, the craftsmanship of a different era, the fact that
-              something made a hundred years ago can still take your breath
-              away.
-            </p>
-            <p className="page-copy">
-              TMY was never really a business decision. It was a natural
-              extension of who we already were. Two people who couldn&#39;t
-              stop finding beautiful things, and couldn&#39;t stop wanting
-              others to love them too.
-            </p>
-          </div>
-          <div className="pull-tag" style={{ background: "#EFD27E" }}>
-            <img className="tag-photo" src="/products/story-3.jpg" alt="Blue sapphire ring in a ring box on mustard velvet" />
-            <div className="tag-wash" />
-            <div className="tag-chip">
-              <span className="tag-hole" />
-              FIELD NOTE
-            </div>
-            <blockquote className="pull-tag-quote">
-              &#34;Omg, look at this. Can you believe it?&#34;
-              <footer>every single time, both of us</footer>
-            </blockquote>
-          </div>
-        </div>
-      </section>
+          <WaveDivider fill={LIME} bg={PINK} />
+        </>
+      )}
 
       {/* the name */}
       <section id="the-name" className="container page-section">

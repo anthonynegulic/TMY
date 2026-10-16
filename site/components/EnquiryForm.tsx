@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FORMSPREE_ID, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/lib/site";
+import { track } from "@/lib/analytics";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -24,6 +25,13 @@ export default function EnquiryForm({ piece, reserve = false }: { piece?: string
         headers: { Accept: "application/json" },
       });
       setStatus(res.ok ? "sent" : "error");
+      // GA's standard "lead" event; mark it as a key event in GA to count it
+      if (res.ok) {
+        track("generate_lead", {
+          form_type: reserve ? "reservation" : "enquiry",
+          ...(piece && { piece }),
+        });
+      }
     } catch {
       setStatus("error");
     }

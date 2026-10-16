@@ -3,6 +3,7 @@ import Logo from "@/components/Logo";
 import WaveDivider from "@/components/WaveDivider";
 import ProductPhoto from "@/components/ProductPhoto";
 import Countdown from "@/components/Countdown";
+import Analytics from "@/components/Analytics";
 import { getHeroPieces } from "@/lib/catalog";
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, LAUNCH_AT } from "@/lib/site";
 import "../globals.css";
@@ -114,6 +115,7 @@ export default async function ComingSoon() {
           </div>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }

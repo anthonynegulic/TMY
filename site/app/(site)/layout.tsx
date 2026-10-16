@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
 import "../globals.css";
 
 export default function SiteLayout({
@@ -12,6 +13,7 @@ export default function SiteLayout({
       <Header />
       {children}
       <Footer />
+      <Analytics />
     </>
   );
 }

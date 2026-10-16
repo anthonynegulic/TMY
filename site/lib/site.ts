@@ -8,6 +8,11 @@ export const CONTACT_EMAIL = "hello@theirsmineyours.com";
 // blanked out they fall back to a "DM us on Instagram" prompt.
 export const FORMSPREE_ID = "mnjezygz";
 
+// Google Analytics 4 measurement ID (GA → Admin → Data streams). It only
+// loads on the live site (Vercel production), never in local dev or preview
+// deployments, and never in the Studio. Set NEXT_PUBLIC_GA_ID to override it.
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-FHQLFXLQGP";
+
 // The site's public address, used for link previews, the sitemap and
 // structured data. On Vercel this is the production domain automatically;
 // set NEXT_PUBLIC_SITE_URL to override it.

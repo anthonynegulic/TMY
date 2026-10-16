@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import EnquiryForm from "@/components/EnquiryForm";
+import { track } from "@/lib/analytics";
 
 type Open = "reserve" | "question" | null;
 
@@ -19,7 +20,10 @@ export default function ProductActions({ piece }: { piece: string }) {
         className="btn-dark product-buy"
         aria-expanded={open === "reserve"}
         aria-controls="reserve-form"
-        onClick={() => toggle("reserve")}
+        onClick={() => {
+          if (open !== "reserve") track("reserve_click", { piece });
+          toggle("reserve");
+        }}
       >
         I want this one
       </button>

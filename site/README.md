@@ -80,6 +80,17 @@ link previews are never blocked.
 - **After launch** `proxy.ts`, `app/coming-soon/`, `components/Countdown.tsx`
   and the "coming soon" styles in `globals.css` can be deleted
 
+## Analytics (Google Analytics 4)
+
+- Measurement ID `G-FHQLFXLQGP` is set as `GA_ID` in `lib/site.ts`
+  (override with `NEXT_PUBLIC_GA_ID`). The tag (`components/Analytics.tsx`)
+  loads only on the live site, never in `npm run dev`, preview deployments or
+  the Studio
+- Page views, scrolls and outbound clicks come from GA's Enhanced measurement
+- Our own events (`lib/analytics.ts`): `reserve_click` when "I want this one"
+  is opened, and `generate_lead` when an enquiry or reservation actually sends
+  (`form_type` is `enquiry` or `reservation`, `piece` is the piece's name)
+
 ## Link previews and search
 
 - Sharing any page shows `app/opengraph-image.tsx`; sharing a piece shows its
